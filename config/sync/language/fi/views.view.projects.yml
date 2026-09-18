@@ -1,0 +1,9 @@
+label: Projektit
+description: 'Viimeisimmät projektit'
+display:
+  default:
+    display_options:
+      title: Projektit
+  block_1:
+    display_options:
+      block_description: Projektit

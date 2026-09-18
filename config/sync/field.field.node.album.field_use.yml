@@ -1,0 +1,29 @@
+uuid: 990418c5-471d-40e5-86ee-5b01fbae74ca
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_use
+    - node.type.album
+    - taxonomy.vocabulary.use
+id: node.album.field_use
+field_name: field_use
+entity_type: node
+bundle: album
+label: Use
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      use: use
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

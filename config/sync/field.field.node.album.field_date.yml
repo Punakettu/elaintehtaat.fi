@@ -1,0 +1,21 @@
+uuid: ba1225e6-7df1-40bb-ad4c-e570fddb6628
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_date
+    - node.type.album
+  module:
+    - datetime
+id: node.album.field_date
+field_name: field_date
+entity_type: node
+bundle: album
+label: 'Album date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

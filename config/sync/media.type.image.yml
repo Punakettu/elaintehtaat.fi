@@ -1,0 +1,14 @@
+uuid: d2fab5df-b5b6-4157-9c2a-cbe58a3ecd40
+langcode: en
+status: true
+dependencies: {  }
+id: image
+label: Image
+description: 'Image that relates to a project.'
+source: image
+queue_thumbnail_downloads: false
+new_revision: false
+source_configuration:
+  source_field: field_media_image
+field_map:
+  name: name

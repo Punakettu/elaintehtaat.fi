@@ -1,0 +1,94 @@
+uuid: e6ddcae6-604a-4882-b93d-464313ad6344
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.image
+    - node.type.album
+    - node.type.page
+    - node.type.project
+    - taxonomy.vocabulary.licence
+    - taxonomy.vocabulary.species
+    - taxonomy.vocabulary.use
+  module:
+    - content_translation
+    - contextual
+    - file
+    - media
+    - node
+    - system
+    - taxonomy
+    - workspaces
+_core:
+  default_config_hash: og55Zu0F-q-X8zG0Ohrls49zws6IrmmosZS-30Es8vw
+id: content_editor
+label: 'Content editor'
+weight: 2
+is_admin: false
+permissions:
+  - 'access administration pages'
+  - 'access content'
+  - 'access content overview'
+  - 'access contextual links'
+  - 'access files overview'
+  - 'access taxonomy overview'
+  - 'change own username'
+  - 'create album content'
+  - 'create image media'
+  - 'create page content'
+  - 'create project content'
+  - 'create terms in licence'
+  - 'create terms in species'
+  - 'create terms in use'
+  - 'delete any album content'
+  - 'delete any image media'
+  - 'delete any page content'
+  - 'delete any project content'
+  - 'delete own album content'
+  - 'delete own files'
+  - 'delete own image media'
+  - 'delete own page content'
+  - 'delete own project content'
+  - 'delete terms in licence'
+  - 'delete terms in species'
+  - 'delete terms in use'
+  - 'edit any album content'
+  - 'edit any image media'
+  - 'edit any page content'
+  - 'edit any project content'
+  - 'edit own album content'
+  - 'edit own image media'
+  - 'edit own page content'
+  - 'edit own project content'
+  - 'edit terms in licence'
+  - 'edit terms in species'
+  - 'edit terms in use'
+  - 'revert album revisions'
+  - 'revert all revisions'
+  - 'revert any image media revisions'
+  - 'revert page revisions'
+  - 'revert project revisions'
+  - 'revert term revisions in licence'
+  - 'revert term revisions in species'
+  - 'revert term revisions in use'
+  - 'translate album node'
+  - 'translate editable entities'
+  - 'translate image media'
+  - 'translate licence taxonomy_term'
+  - 'translate page node'
+  - 'translate project node'
+  - 'translate species taxonomy_term'
+  - 'translate use taxonomy_term'
+  - 'view album revisions'
+  - 'view all revisions'
+  - 'view any image media revisions'
+  - 'view any workspace'
+  - 'view own unpublished content'
+  - 'view own unpublished media'
+  - 'view own workspace'
+  - 'view page revisions'
+  - 'view project revisions'
+  - 'view term revisions in licence'
+  - 'view term revisions in species'
+  - 'view term revisions in use'
+  - 'view the administration theme'

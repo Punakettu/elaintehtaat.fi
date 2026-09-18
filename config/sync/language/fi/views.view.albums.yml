@@ -1,0 +1,13 @@
+label: Albumit
+description: 'Tuoreimmat albumit'
+display:
+  default:
+    display_options:
+      title: 'Tuoreimmat albumit'
+      filters:
+        promote:
+          expose:
+            description: ''
+  block_1:
+    display_options:
+      block_description: Albumit

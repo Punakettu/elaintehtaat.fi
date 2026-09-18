@@ -1,0 +1,21 @@
+uuid: 3cdc6d4a-dbe2-4d0a-8874-dc5d622f9b45
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_date
+    - media.type.image
+  module:
+    - datetime
+id: media.image.field_date
+field_name: field_date
+entity_type: media
+bundle: image
+label: Date
+description: 'When was this image captured'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

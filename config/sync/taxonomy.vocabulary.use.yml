@@ -1,0 +1,9 @@
+uuid: f3b04782-5faa-4c1a-9c4a-9f3284f1472f
+langcode: en
+status: true
+dependencies: {  }
+name: Use
+vid: use
+description: 'Type of exploitation'
+weight: 0
+new_revision: false

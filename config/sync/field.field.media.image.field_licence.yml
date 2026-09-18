@@ -1,0 +1,29 @@
+uuid: d22bb41b-ba59-4e3e-bb0a-f0f800884352
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_licence
+    - media.type.image
+    - taxonomy.vocabulary.licence
+id: media.image.field_licence
+field_name: field_licence
+entity_type: media
+bundle: image
+label: Licence
+description: 'Content license'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      licence: licence
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

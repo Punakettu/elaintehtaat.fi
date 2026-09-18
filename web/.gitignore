@@ -1,0 +1,43 @@
+# Composer-managed code.
+/core
+/libraries
+/modules/contrib
+/profiles/contrib
+/themes/contrib
+
+# Composer-generated.
+/autoload.php
+/autoload_runtime.php
+
+# Drupal core scaffold files.
+/.csslintrc
+/.eslintignore
+/.eslintrc.json
+/.ht.router.php
+/.htaccess
+/example.gitignore
+/index.php
+/update.php
+/INSTALL.txt
+/README.md
+/robots.txt
+/sites/README.txt
+/sites/development.services.yml
+/sites/example.settings.local.php
+/sites/example.sites.php
+/sites/*/default.services.yml
+/sites/*/default.settings.php
+/modules/README.txt
+/profiles/README.txt
+/themes/README.txt
+
+# Local overrides that may contain secrets. settings.php itself is tracked.
+/sites/*/settings.*.php
+/sites/*/services.*.yml
+
+# User-generated content.
+/sites/*/files
+/sites/*/private
+
+# Multi-site test environment.
+/sites/simpletest
