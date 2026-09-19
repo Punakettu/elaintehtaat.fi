@@ -1,0 +1,72 @@
+/**
+ * @file
+ * Site footer.
+ */
+
+.footer {
+  margin-top: 90px;
+  border-top: 1px solid var(--color-line);
+}
+
+.footer__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px 80px;
+  padding: 48px 0 64px;
+}
+
+.footer__row > .region {
+  display: contents;
+}
+
+.footer .block {
+  max-width: 340px;
+}
+
+.footer h2,
+.footer h4 {
+  margin-bottom: 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+
+.footer p {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.footer .menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer .menu a {
+  display: block;
+  padding: 4px 0;
+  border: 0;
+  font-size: 13.5px;
+  color: var(--color-text-muted);
+}
+
+.footer .menu a:hover,
+.footer .menu a:focus-visible {
+  color: var(--color-text);
+}
+
+.footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  padding: 20px 0 32px;
+  border-top: 1px solid var(--color-line);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--color-text-faint);
+}

@@ -20,11 +20,11 @@ use Drupal\pathauto\PathautoGeneratorInterface;
  * or edited in the URL alias admin UI, is a path_alias entity save, so that is
  * the event to react to.
  */
-class AlbumAliasHooks {
+readonly class AlbumAliasHooks {
 
   public function __construct(
-    protected readonly EntityTypeManagerInterface $entityTypeManager,
-    protected readonly PathautoGeneratorInterface $pathautoGenerator,
+    protected EntityTypeManagerInterface $entityTypeManager,
+    protected PathautoGeneratorInterface $pathautoGenerator,
   ) {}
 
   /**
@@ -45,9 +45,6 @@ class AlbumAliasHooks {
 
   /**
    * Regenerates the aliases of all albums belonging to the aliased project.
-   *
-   * Does nothing unless the alias points at a project node. Regeneration is
-   * cheap: pathauto skips writing when the generated alias is unchanged.
    */
   protected function updateAlbumAliases(PathAliasInterface $path_alias): void {
     if (!preg_match('#^/node/(\d+)$#', $path_alias->getPath(), $matches)) {

@@ -1,0 +1,8 @@
+<ul{{ attributes.addClass('key-numbers') }}>
+  {% for item in items %}
+    <li class="key-numbers__item">
+      <span class="key-numbers__value">{{ item.value }}</span>
+      <span class="key-numbers__label">{{ item.label }}</span>
+    </li>
+  {% endfor %}
+</ul>

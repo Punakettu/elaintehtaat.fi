@@ -1,0 +1,29 @@
+uuid: 9ca0cb61-301c-4f2d-bc3b-25e24e43d2be
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.albums
+  module:
+    - system
+    - views
+  theme:
+    - elaintehtaat_theme
+id: elaintehtaat_theme_views_block__albums_block_1
+theme: elaintehtaat_theme
+region: content
+weight: 20
+provider: null
+plugin: 'views_block:albums-block_1'
+settings:
+  id: 'views_block:albums-block_1'
+  label: ''
+  label_display: visible
+  provider: views
+  views_label: ''
+  items_per_page: null
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

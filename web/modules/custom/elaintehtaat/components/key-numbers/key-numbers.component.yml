@@ -1,0 +1,35 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Key numbers
+description: A row of large figures with small labels, used to show the size of the archive.
+status: stable
+props:
+  type: object
+  required:
+    - items
+  properties:
+    attributes:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      description: Wrapper attributes.
+    items:
+      type: array
+      title: Items
+      description: The figures to show, in display order.
+      items:
+        type: object
+        required:
+          - value
+          - label
+        properties:
+          value:
+            type: integer
+            title: Value
+            description: The number.
+            examples:
+              - 8
+          label:
+            type: string
+            title: Label
+            description: What the number counts, shown under it.
+            examples:
+              - albums

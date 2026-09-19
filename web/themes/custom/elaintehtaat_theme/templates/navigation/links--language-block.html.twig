@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Theme override for the language switcher, rendered as a segmented toggle.
+ *
+ * Available variables:
+ * - attributes: Attributes for the UL containing the list of links.
+ * - links: Links to be output, keyed by langcode. Titles are replaced with the
+ *   uppercase langcode in ElaintehtaatThemeHooks::preprocessLinksLanguageBlock().
+ *
+ * @see \Drupal\Core\Theme\ThemePreprocess::preprocessLinks()
+ * @see \Drupal\elaintehtaat_theme\Hook\ElaintehtaatThemeHooks::preprocessLinksLanguageBlock()
+ */
+#}
+{% if links -%}
+  <ul{{ attributes.removeClass('links').addClass('lang-toggle') }}>
+    {%- for item in links -%}
+      <li{{ item.attributes.addClass('lang-toggle__item') }}>
+        {%- if item.link -%}
+          {{ item.link }}
+        {%- else -%}
+          <span{{ item.text_attributes }}>{{ item.text }}</span>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ul>
+{%- endif %}

@@ -1,0 +1,20 @@
+/**
+ * @file
+ * Hero region and page title.
+ */
+
+.hero {
+  padding-top: clamp(32px, 6vh, 72px);
+}
+
+.page-title {
+  margin: 18px 0 0;
+}
+
+.hero__lede,
+.lede {
+  max-width: 680px;
+  margin-top: 20px;
+  font-size: clamp(16px, 1.5vw, 19px);
+  line-height: 1.55;
+}

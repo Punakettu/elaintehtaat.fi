@@ -4,6 +4,10 @@ description: 'Site-specific customisations for elaintehtaat.fi.'
 package: Custom
 core_version_requirement: ^11
 dependencies:
+  - drupal:block
+  - drupal:media
   - drupal:node
   - drupal:path
   - pathauto:pathauto
+'interface translation project': elaintehtaat
+'interface translation server pattern': modules/custom/elaintehtaat/translations/%project.%language.po

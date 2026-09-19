@@ -1,0 +1,20 @@
+uuid: 12273726-f3ca-43f3-9cf7-5e6d8bdc1b35
+langcode: en
+status: true
+dependencies:
+  theme:
+    - elaintehtaat_theme
+_core:
+  default_config_hash: 6aOgWsNTXjqrDm98TXSAjP6qd2nCijD1xw45MrnbK-Y
+id: elaintehtaat_theme_page_title
+theme: elaintehtaat_theme
+region: hero
+weight: 0
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility: {  }

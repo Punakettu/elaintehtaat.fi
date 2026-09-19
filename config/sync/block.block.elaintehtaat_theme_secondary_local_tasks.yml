@@ -1,0 +1,22 @@
+uuid: aa3e227a-ee51-4478-9f62-76bcdd8729e0
+langcode: en
+status: true
+dependencies:
+  theme:
+    - elaintehtaat_theme
+_core:
+  default_config_hash: ydSxdq7R66I8UMC460rOzlfzvlUL4VRbdwc6z9DWaUI
+id: elaintehtaat_theme_secondary_local_tasks
+theme: elaintehtaat_theme
+region: highlighted
+weight: -2
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Secondary tabs'
+  label_display: '0'
+  provider: core
+  primary: false
+  secondary: true
+visibility: {  }

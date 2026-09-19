@@ -1,0 +1,41 @@
+/**
+ * @file
+ * Key numbers: a wrapping row of large figures with small labels.
+ */
+
+.key-numbers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.key-numbers__item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.key-numbers__value {
+  font-family: var(--et-font-mono, ui-monospace, "SFMono-Regular", Menlo, monospace);
+  font-size: 26px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.key-numbers__label {
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--et-text-faint, inherit);
+  opacity: var(--et-text-faint-opacity, 0.65);
+}
+
+@media (max-width: 560px) {
+  .key-numbers {
+    gap: 14px 28px;
+  }
+}

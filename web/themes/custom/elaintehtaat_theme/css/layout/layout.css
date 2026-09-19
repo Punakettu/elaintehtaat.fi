@@ -1,0 +1,64 @@
+/**
+ * @file
+ * Page layout: shell widths, main column and optional sidebar.
+ */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.page__main {
+  flex: 1;
+}
+
+.shell {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+
+.shell--wide {
+  max-width: var(--max-width-wide);
+}
+
+.page__pre-content {
+  padding-top: 24px;
+}
+
+.page__pre-content:empty {
+  display: none;
+}
+
+.layout {
+  display: grid;
+  gap: 36px;
+  padding-block: clamp(28px, 4vh, 48px) clamp(48px, 6vh, 72px);
+}
+
+.layout--has-sidebar {
+  grid-template-columns: minmax(0, 1fr) 320px;
+  align-items: start;
+}
+
+.layout__sidebar {
+  position: sticky;
+  top: calc(var(--masthead-height) + 20px);
+}
+
+@media (max-width: 1080px) {
+  .layout--has-sidebar {
+    grid-template-columns: 1fr;
+  }
+
+  .layout__sidebar {
+    position: static;
+  }
+}
+
+/* Regions render without wrapper styling by default. */
+.region {
+  min-width: 0;
+}

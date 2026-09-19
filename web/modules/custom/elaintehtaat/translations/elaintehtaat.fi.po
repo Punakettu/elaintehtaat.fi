@@ -1,0 +1,27 @@
+# Finnish translation of the Eläintehtaat module.
+msgid ""
+msgstr ""
+"Project-Id-Version: elaintehtaat\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fi\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Key numbers"
+msgstr "Avainluvut"
+
+msgid "album"
+msgid_plural "albums"
+msgstr[0] "albumi"
+msgstr[1] "albumia"
+
+msgid "media item"
+msgid_plural "media"
+msgstr[0] "mediatiedosto"
+msgstr[1] "mediaa"
+
+msgid "project"
+msgid_plural "projects"
+msgstr[0] "projekti"
+msgstr[1] "projektia"

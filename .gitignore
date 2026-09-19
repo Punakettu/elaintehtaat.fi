@@ -12,3 +12,5 @@
 /phpstan.neon
 /phpcs.xml
 /phpunit.xml
+
+.idea
