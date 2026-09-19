@@ -6,3 +6,9 @@
 
 # Private files (see $settings['file_private_path']).
 /private/
+
+# Dev tool local overrides
+/.phpcs-cache
+/phpstan.neon
+/phpcs.xml
+/phpunit.xml

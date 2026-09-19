@@ -39,15 +39,16 @@
     "config": {
         "allow-plugins": {
             "composer/installers": true,
-            "drupal/core-composer-scaffold": true,
-            "drupal/core-recipe-unpack": true,
-            "drupal/core-project-message": true,
-            "phpstan/extension-installer": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
+            "drupal/core-composer-scaffold": true,
+            "drupal/core-project-message": true,
+            "drupal/core-recipe-unpack": true,
+            "drush/drush": true,
             "php-http/discovery": true,
             "php-tuf/composer-integration": true,
+            "phpstan/extension-installer": true,
             "symfony/runtime": true,
-            "drush/drush": true
+            "tbachert/spi": false
         },
         "sort-packages": true
     },
@@ -110,5 +111,12 @@
                 "      composer remove drupal/core-project-message"
             ]
         }
+    },
+    "require-dev": {
+        "drupal/core-dev": "^11.4",
+        "mglaman/phpstan-drupal": "^2.0",
+        "phpspec/prophecy-phpunit": "^2.3",
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan-deprecation-rules": "^2.0"
     }
 }

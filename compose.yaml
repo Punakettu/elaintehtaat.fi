@@ -44,6 +44,11 @@ services:
       # Lets drush (uli, etc.) generate links with the real host instead of http://default.
       DRUSH_OPTIONS_URI: ${DRUPAL_BASE_URL:-http://localhost:8080}
       COMPOSER_HOME: /tmp/composer
+      # PHPUnit functional tests hit nginx directly.
+      SIMPLETEST_DB: mysql://${MYSQL_USER:-drupal}:${MYSQL_PASSWORD:-drupal}@mysql/${MYSQL_DATABASE:-drupal}
+      SIMPLETEST_BASE_URL: http://nginx
+      BROWSERTEST_OUTPUT_DIRECTORY: /var/www/html/web/sites/simpletest/browser_output
+      BROWSERTEST_OUTPUT_BASE_URL: http://localhost:8081
     depends_on:
       mysql:
         condition: service_healthy
