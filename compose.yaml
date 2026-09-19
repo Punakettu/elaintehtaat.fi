@@ -7,6 +7,17 @@ services:
       - "8080:80"
     volumes:
       - ./docker/varnish/default.vcl:/etc/varnish/default.vcl:ro
+    # Drupal's Cache-Tags response header can exceed Varnish's 8k default
+    # header limit on tag-heavy pages, which surfaces as a 503 from Varnish.
+    command:
+      - -p
+      - http_resp_hdr_len=65536
+      - -p
+      - http_resp_size=98304
+      - -p
+      - http_req_hdr_len=32768
+      - -p
+      - workspace_backend=196608
     environment:
       VARNISH_SIZE: ${VARNISH_SIZE:-256M}
     depends_on:

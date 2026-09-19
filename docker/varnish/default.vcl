@@ -33,13 +33,22 @@ sub vcl_recv {
         if (!client.ip ~ purge) {
             return (synth(405, "Not allowed."));
         }
+        # Drupal (varnish_purger, bundled) sends pipe-separated tags, e.g.
+        # "node:1|node_list". The response header is space-separated, so
+        # anchor each tag to avoid node:1 also banning node:10. The ban
+        # expression must not contain literal spaces (the parser splits on
+        # them), hence \s. Only obj.* is used so the ban lurker can work.
         if (req.http.Cache-Tags) {
-            ban("obj.http.Cache-Tags ~ " + req.http.Cache-Tags);
-            return (synth(200, "Ban added."));
+            if (std.ban("obj.http.Cache-Tags ~ (^|\s)(" + req.http.Cache-Tags + ")(\s|$)")) {
+                return (synth(200, "Ban added."));
+            }
+            return (synth(400, "Ban failed: " + std.ban_error()));
         }
         if (req.http.X-Url) {
-            ban("obj.http.X-Url == " + req.http.X-Url);
-            return (synth(200, "Ban added."));
+            if (std.ban("obj.http.X-Url == " + req.http.X-Url)) {
+                return (synth(200, "Ban added."));
+            }
+            return (synth(400, "Ban failed: " + std.ban_error()));
         }
         return (synth(403, "Cache-Tags or X-Url header missing."));
     }
@@ -128,7 +137,15 @@ sub vcl_deliver {
         set resp.http.X-Varnish-Cache = "MISS";
     }
 
+    # Drupal's max-age (system.performance) is the Varnish TTL. Browsers must
+    # revalidate instead, otherwise purges never reach them; Varnish answers
+    # If-None-Match / If-Modified-Since with a cheap 304.
+    if (resp.http.Cache-Tags) {
+        set resp.http.Cache-Control = "public, max-age=0, must-revalidate";
+    }
+
     # Tidy internal headers before sending to the client.
+    unset resp.http.Cache-Tags;
     unset resp.http.X-Url;
     unset resp.http.X-Host;
     unset resp.http.X-Drupal-Cache-Tags;
