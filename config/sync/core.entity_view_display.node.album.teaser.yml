@@ -1,0 +1,69 @@
+uuid: 4ac68630-221f-426a-a1a2-158f6cb19da1
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.card
+    - core.entity_view_mode.node.teaser
+    - field.field.node.album.field_album_media
+    - field.field.node.album.field_date
+    - field.field.node.album.field_description
+    - field.field.node.album.field_license
+    - field.field.node.album.field_project
+    - field.field.node.album.field_species
+    - field.field.node.album.field_use
+    - node.type.album
+  module:
+    - datetime
+id: node.album.teaser
+targetEntityType: node
+bundle: album
+mode: teaser
+content:
+  field_album_media:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: card
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_date:
+    type: datetime_custom
+    label: hidden
+    settings:
+      timezone_override: ''
+      date_format: 'Y'
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_project:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_species:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_use:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+hidden:
+  field_description: true
+  field_license: true
+  langcode: true
+  links: true

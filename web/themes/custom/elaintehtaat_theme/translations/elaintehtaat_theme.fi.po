@@ -13,3 +13,17 @@ msgstr "kuva-arkisto"
 
 msgid "An open image and video archive documenting conditions in animal production. Material is available to journalists, researchers and the public under its license terms."
 msgstr "Avoin kuva- ja videoarkisto eläintuotannon olosuhteista. Aineisto on toimittajien, tutkijoiden ja kansalaisten käytettävissä lisenssiehtojen mukaisesti."
+
+msgid "More from this project"
+msgstr "Saman projektin albumit"
+
+msgid "Whole project"
+msgstr "Koko projekti"
+
+msgid "Albums"
+msgstr "Albumit"
+
+msgid "@count media item"
+msgid_plural "@count media"
+msgstr[0] "@count mediatiedosto"
+msgstr[1] "@count mediaa"

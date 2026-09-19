@@ -2,8 +2,11 @@
 
 namespace Drupal\elaintehtaat_theme\Hook;
 
+use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Language\LanguageInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\node\NodeInterface;
 
 /**
  * Hook implementations for the Eläintehtaat theme.
@@ -13,6 +16,14 @@ class ElaintehtaatThemeHooks {
    * @file
    * Functions to support theming.
    */
+
+  /**
+   * Constructs the theme hook implementations.
+   */
+  public function __construct(
+    protected readonly RouteMatchInterface $routeMatch,
+    protected readonly EntityRepositoryInterface $entityRepository,
+  ) {}
 
   /**
    * Implements hook_preprocess_image_widget().
@@ -52,6 +63,29 @@ class ElaintehtaatThemeHooks {
         ],
       ];
       $item['link']['#options']['attributes']['class'][] = 'lang-toggle__link';
+    }
+  }
+
+  /**
+   * Implements hook_preprocess_HOOK() for views_view__related_albums.
+   *
+   * The view lists the other albums of the project the viewed album belongs
+   * to. The section header names that project and links to it, so pass the
+   * project node (in the current language) to the template. The block varies
+   * by URL, and the rows already carry the project's cache tags through the
+   * project label formatter.
+   */
+  #[Hook('preprocess_views_view__related_albums')]
+  public function preprocessViewsViewRelatedAlbums(array &$variables): void {
+    $variables['project'] = NULL;
+
+    $album = $this->routeMatch->getParameter('node');
+    if (!$album instanceof NodeInterface || !$album->hasField('field_project')) {
+      return;
+    }
+    $project = $album->get('field_project')->entity;
+    if ($project instanceof NodeInterface) {
+      $variables['project'] = $this->entityRepository->getTranslationFromContext($project);
     }
   }
 

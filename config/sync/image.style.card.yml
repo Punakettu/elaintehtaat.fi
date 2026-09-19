@@ -1,0 +1,21 @@
+uuid: 125e802a-2e06-4429-9084-98e758e096d9
+langcode: en
+status: true
+dependencies: {  }
+name: card
+label: 'Card (900×600)'
+effects:
+  fd3158dd-927a-4091-b009-1f6611d6be5a:
+    uuid: fd3158dd-927a-4091-b009-1f6611d6be5a
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 900
+      height: 600
+      anchor: center-center
+  da7fb0f7-2f26-4917-972f-71760912c052:
+    uuid: da7fb0f7-2f26-4917-972f-71760912c052
+    id: image_convert_avif
+    weight: 2
+    data:
+      extension: webp

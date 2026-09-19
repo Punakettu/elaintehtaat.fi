@@ -134,3 +134,13 @@ user:
     component:
       css/components/user.css:
         weight: -10
+album-card:
+  version: VERSION
+  css:
+    component:
+      css/components/album-card.css: {  }
+related-albums:
+  version: VERSION
+  css:
+    component:
+      css/components/related-albums.css: {  }
