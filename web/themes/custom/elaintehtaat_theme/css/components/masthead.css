@@ -68,7 +68,9 @@
 }
 
 /* Primary menu. */
-.mast-nav {
+/* Selectors are qualified with .menu / .menu-item so they beat the generic
+   Starterkit rules in menu.css (ul.menu, .menu-item, ul.menu a.is-active). */
+.menu.mast-nav {
   display: flex;
   align-items: center;
   gap: 4px;
@@ -77,25 +79,32 @@
   list-style: none;
 }
 
-.mast-nav a {
+.mast-nav .menu-item {
+  margin: 0;
+  padding: 0;
+}
+
+.mast-nav .menu-item a {
   display: block;
-  padding: 7px 11px;
+  padding: 7px 12px;
   border: 0;
   border-radius: var(--radius-sm);
-  font-size: 13.5px;
+  font-size: 15px;
   font-weight: 500;
+  line-height: 1.3;
   color: var(--color-text-muted);
   transition: color var(--transition-fast), background var(--transition-fast);
 }
 
-.mast-nav a:hover,
-.mast-nav a:focus-visible {
+.mast-nav .menu-item a:hover,
+.mast-nav .menu-item a:focus-visible {
   color: var(--color-text);
   background: var(--color-surface);
 }
 
-.mast-nav a.is-active {
+.mast-nav .menu-item a.is-active {
   color: var(--color-text);
+  background: var(--color-surface);
 }
 
 @media (max-width: 900px) {

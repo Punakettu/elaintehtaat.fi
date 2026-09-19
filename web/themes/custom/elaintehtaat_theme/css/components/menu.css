@@ -30,5 +30,5 @@ ul.menu {
   padding-top: 0.2em;
 }
 ul.menu a.is-active {
-  color: #000;
+  color: var(--color-text);
 }

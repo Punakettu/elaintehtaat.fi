@@ -79,16 +79,16 @@ a {
 }
 
 a:hover,
-ah1 a,
+a:focus-visible {
+  border-color: var(--color-accent);
+  color: var(--color-accent-text);
+}
+
+h1 a,
 h2 a,
 h3 a,
 h4 a {
   border-bottom: 0;
-}
-
-:focus-visible {
-  border-color: var(--color-accent);
-  color: var(--color-accent-text);
 }
 
 :focus-visible {
