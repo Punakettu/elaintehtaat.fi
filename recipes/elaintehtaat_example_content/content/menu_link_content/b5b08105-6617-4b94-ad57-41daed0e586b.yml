@@ -1,0 +1,91 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: b5b08105-6617-4b94-ad57-41daed0e586b
+  bundle: menu_link_content
+  default_langcode: en
+translations:
+  fi:
+    enabled:
+      -
+        value: true
+    title:
+      -
+        value: Käyttö
+    menu_name:
+      -
+        value: footer
+    link:
+      -
+        uri: 'route:<nolink>'
+        title: null
+        options: {  }
+    external:
+      -
+        value: false
+    rediscover:
+      -
+        value: false
+    weight:
+      -
+        value: 1
+    expanded:
+      -
+        value: true
+    revision_translation_affected:
+      -
+        value: true
+    content_translation_source:
+      -
+        value: und
+    content_translation_outdated:
+      -
+        value: false
+    content_translation_uid:
+      -
+        target_id: 0
+    content_translation_status:
+      -
+        value: true
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: Use
+  menu_name:
+    -
+      value: footer
+  link:
+    -
+      uri: 'route:<nolink>'
+      title: null
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: 1
+  expanded:
+    -
+      value: true
+  revision_translation_affected:
+    -
+      value: true
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  content_translation_uid:
+    -
+      target_id: 0
+  content_translation_status:
+    -
+      value: true

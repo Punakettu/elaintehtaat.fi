@@ -1,0 +1,59 @@
+_meta:
+  version: '1.0'
+  entity_type: taxonomy_term
+  uuid: 63a5b61b-fd2a-4112-86d1-c06a3ed75589
+  bundle: use
+  default_langcode: en
+translations:
+  fi:
+    status:
+      -
+        value: true
+    name:
+      -
+        value: Vesiviljely
+    weight:
+      -
+        value: 4
+    revision_translation_affected:
+      -
+        value: true
+    path:
+      -
+        langcode: fi
+        alias: null
+    content_translation_source:
+      -
+        value: und
+    content_translation_outdated:
+      -
+        value: false
+    content_translation_uid:
+      -
+        target_id: 0
+default:
+  status:
+    -
+      value: true
+  name:
+    -
+      value: Aquaculture
+  weight:
+    -
+      value: 4
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      langcode: en
+      alias: null
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  content_translation_uid:
+    -
+      target_id: 0

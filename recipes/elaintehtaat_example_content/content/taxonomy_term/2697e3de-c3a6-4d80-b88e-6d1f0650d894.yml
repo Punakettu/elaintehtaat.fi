@@ -1,0 +1,77 @@
+_meta:
+  version: '1.0'
+  entity_type: taxonomy_term
+  uuid: 2697e3de-c3a6-4d80-b88e-6d1f0650d894
+  bundle: licence
+  default_langcode: en
+translations:
+  fi:
+    status:
+      -
+        value: true
+    name:
+      -
+        value: Toimituksellinen
+    description:
+      -
+        value: '<p>Vain toimituksellinen käyttö. Muusta käytöstä sovitaan toimituksen kanssa.</p>'
+        format: basic_html
+    weight:
+      -
+        value: 2
+    revision_translation_affected:
+      -
+        value: true
+    path:
+      -
+        langcode: fi
+        alias: null
+    content_translation_source:
+      -
+        value: und
+    content_translation_outdated:
+      -
+        value: false
+    content_translation_uid:
+      -
+        target_id: 0
+    field_licence_link:
+      -
+        uri: 'mailto:arkisto@elaintehtaat.fi'
+        title: 'Licence text'
+        options: {  }
+default:
+  status:
+    -
+      value: true
+  name:
+    -
+      value: 'Editorial use only'
+  description:
+    -
+      value: '<p>Editorial use only. Contact the editorial team for other uses.</p>'
+      format: basic_html
+  weight:
+    -
+      value: 2
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      langcode: en
+      alias: null
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  content_translation_uid:
+    -
+      target_id: 0
+  field_licence_link:
+    -
+      uri: 'mailto:arkisto@elaintehtaat.fi'
+      title: 'Licence text'
+      options: {  }

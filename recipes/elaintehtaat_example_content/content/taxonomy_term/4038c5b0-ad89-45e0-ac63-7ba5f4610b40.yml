@@ -1,0 +1,59 @@
+_meta:
+  version: '1.0'
+  entity_type: taxonomy_term
+  uuid: 4038c5b0-ad89-45e0-ac63-7ba5f4610b40
+  bundle: species
+  default_langcode: en
+translations:
+  fi:
+    status:
+      -
+        value: true
+    name:
+      -
+        value: Kettu
+    weight:
+      -
+        value: 4
+    revision_translation_affected:
+      -
+        value: true
+    path:
+      -
+        langcode: fi
+        alias: null
+    content_translation_source:
+      -
+        value: und
+    content_translation_outdated:
+      -
+        value: false
+    content_translation_uid:
+      -
+        target_id: 0
+default:
+  status:
+    -
+      value: true
+  name:
+    -
+      value: Fox
+  weight:
+    -
+      value: 4
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      langcode: en
+      alias: null
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  content_translation_uid:
+    -
+      target_id: 0

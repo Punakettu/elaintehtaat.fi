@@ -1,0 +1,99 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: ad53b8ce-a7f0-4f04-80e0-38f11462c179
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    dcec2a24-8b48-4fa8-a5f7-9d2b2976ab61: menu_link_content
+translations:
+  fi:
+    enabled:
+      -
+        value: true
+    title:
+      -
+        value: 'Selaa kaikkia'
+    menu_name:
+      -
+        value: footer
+    link:
+      -
+        uri: 'route:<nolink>'
+        title: null
+        options: {  }
+    external:
+      -
+        value: false
+    rediscover:
+      -
+        value: false
+    weight:
+      -
+        value: 0
+    expanded:
+      -
+        value: false
+    parent:
+      -
+        value: 'menu_link_content:dcec2a24-8b48-4fa8-a5f7-9d2b2976ab61'
+    revision_translation_affected:
+      -
+        value: true
+    content_translation_source:
+      -
+        value: und
+    content_translation_outdated:
+      -
+        value: false
+    content_translation_uid:
+      -
+        target_id: 0
+    content_translation_status:
+      -
+        value: true
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: 'Browse all'
+  menu_name:
+    -
+      value: footer
+  link:
+    -
+      uri: 'route:<nolink>'
+      title: null
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: 0
+  expanded:
+    -
+      value: false
+  parent:
+    -
+      value: 'menu_link_content:dcec2a24-8b48-4fa8-a5f7-9d2b2976ab61'
+  revision_translation_affected:
+    -
+      value: true
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  content_translation_uid:
+    -
+      target_id: 0
+  content_translation_status:
+    -
+      value: true

@@ -1,0 +1,90 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: 67202b1d-287f-4c1f-8d6d-aca5ae089c3f
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    44f4479a-101b-4c5d-9a9d-fb5d0ea81b48: node
+translations:
+  fi:
+    enabled:
+      -
+        value: true
+    title:
+      -
+        value: 'Tietoa meistä'
+    menu_name:
+      -
+        value: main
+    link:
+      -
+        title: null
+        options: {  }
+        target_uuid: 44f4479a-101b-4c5d-9a9d-fb5d0ea81b48
+    external:
+      -
+        value: false
+    rediscover:
+      -
+        value: false
+    weight:
+      -
+        value: 0
+    expanded:
+      -
+        value: false
+    revision_translation_affected:
+      -
+        value: true
+    content_translation_source:
+      -
+        value: und
+    content_translation_outdated:
+      -
+        value: false
+    content_translation_uid:
+      -
+        target_id: 0
+    content_translation_status:
+      -
+        value: true
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: 'About us'
+  menu_name:
+    -
+      value: main
+  link:
+    -
+      title: null
+      options: {  }
+      target_uuid: 44f4479a-101b-4c5d-9a9d-fb5d0ea81b48
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: 0
+  expanded:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  content_translation_status:
+    -
+      value: true

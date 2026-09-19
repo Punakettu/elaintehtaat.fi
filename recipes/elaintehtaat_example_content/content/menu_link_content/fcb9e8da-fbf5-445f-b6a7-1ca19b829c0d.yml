@@ -1,0 +1,99 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: fcb9e8da-fbf5-445f-b6a7-1ca19b829c0d
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    b5b08105-6617-4b94-ad57-41daed0e586b: menu_link_content
+translations:
+  fi:
+    enabled:
+      -
+        value: true
+    title:
+      -
+        value: Lisenssit
+    menu_name:
+      -
+        value: footer
+    link:
+      -
+        uri: 'route:<nolink>'
+        title: null
+        options: {  }
+    external:
+      -
+        value: false
+    rediscover:
+      -
+        value: false
+    weight:
+      -
+        value: 0
+    expanded:
+      -
+        value: false
+    parent:
+      -
+        value: 'menu_link_content:b5b08105-6617-4b94-ad57-41daed0e586b'
+    revision_translation_affected:
+      -
+        value: true
+    content_translation_source:
+      -
+        value: und
+    content_translation_outdated:
+      -
+        value: false
+    content_translation_uid:
+      -
+        target_id: 0
+    content_translation_status:
+      -
+        value: true
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: Licensing
+  menu_name:
+    -
+      value: footer
+  link:
+    -
+      uri: 'route:<nolink>'
+      title: null
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: 0
+  expanded:
+    -
+      value: false
+  parent:
+    -
+      value: 'menu_link_content:b5b08105-6617-4b94-ad57-41daed0e586b'
+  revision_translation_affected:
+    -
+      value: true
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  content_translation_uid:
+    -
+      target_id: 0
+  content_translation_status:
+    -
+      value: true
