@@ -1,0 +1,19 @@
+uuid: 4137c702-07fb-45dc-b1d9-4e5407fb4869
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_author
+    - media.type.image
+id: media.image.field_author
+field_name: field_author
+entity_type: media
+bundle: image
+label: Author
+description: 'Optional image author'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

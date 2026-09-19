@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.media.image.field_author
     - field.field.media.image.field_caption
     - field.field.media.image.field_date
     - field.field.media.image.field_licence
@@ -24,6 +25,14 @@ content:
     weight: 4
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_author:
+    type: string_textfield
+    weight: 26
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_caption:
     type: text_textfield
