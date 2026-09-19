@@ -89,11 +89,18 @@
 
   <footer class="footer" role="contentinfo">
     <div class="shell shell--wide">
-      {% if page.footer_top %}
-        <div class="footer__row">
-          {{ page.footer_top }}
+      <div class="footer__row">
+        <div class="footer__brand">
+          <a href="{{ path('<front>') }}" rel="home" class="wordmark">
+            <span class="wordmark__name">Eläintehtaat</span>
+            <span class="wordmark__tag">{{ 'photo archive'|t }}</span>
+          </a>
+          <p class="footer__lede">
+            {{ 'An open image and video archive documenting conditions in animal production. Material is available to journalists, researchers and the public under its license terms.'|t }}
+          </p>
         </div>
-      {% endif %}
+        {{ page.footer_top }}
+      </div>
       {% if page.footer %}
         <div class="footer__bottom">
           {{ page.footer }}

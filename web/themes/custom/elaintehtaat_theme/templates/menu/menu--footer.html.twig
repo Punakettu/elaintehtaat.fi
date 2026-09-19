@@ -1,0 +1,43 @@
+{#
+/**
+ * @file
+ * Theme override for the footer menu.
+ *
+ * The footer menu is two levels deep: each top-level item is a column heading
+ * (usually a "<nolink>" item) and its children are the links shown under it.
+ * A top-level item without children is rendered as a heading only.
+ *
+ * Available variables:
+ * - menu_name: The machine name of the menu.
+ * - items: A nested list of menu items. Each menu item contains:
+ *   - attributes: HTML attributes for the menu item.
+ *   - below: The menu item child items.
+ *   - title: The menu link title.
+ *   - url: The menu link URL, instance of \Drupal\Core\Url
+ *   - in_active_trail: TRUE if the link is in the active trail.
+ */
+#}
+{% if items %}
+  <div{{ attributes.addClass('footer-nav') }}>
+    {% for item in items %}
+      <div{{ item.attributes.addClass('footer-nav__group') }}>
+        <h3 class="footer-nav__heading">
+          {% if item.url.routed and item.url.routeName == '<nolink>' %}
+            {{ item.title }}
+          {% else %}
+            {{ link(item.title, item.url) }}
+          {% endif %}
+        </h3>
+        {% if item.below %}
+          <ul class="footer-nav__list">
+            {% for child in item.below %}
+              <li{{ child.attributes.addClass(child.in_active_trail ? 'is-active-trail') }}>
+                {{ link(child.title, child.url, { class: [child.in_active_trail ? 'is-active'] }) }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
