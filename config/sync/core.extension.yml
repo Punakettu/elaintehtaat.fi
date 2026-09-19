@@ -12,6 +12,7 @@ module:
   datetime: 0
   dynamic_page_cache: 0
   editor: 0
+  elaintehtaat: 0
   field: 0
   field_ui: 0
   file: 0

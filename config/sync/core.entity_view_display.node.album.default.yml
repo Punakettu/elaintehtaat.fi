@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.album.field_date
     - field.field.node.album.field_description
     - field.field.node.album.field_license
+    - field.field.node.album.field_project
     - field.field.node.album.field_species
     - field.field.node.album.field_use
     - node.type.album
@@ -51,6 +52,14 @@ content:
       link: true
     third_party_settings: {  }
     weight: 102
+    region: content
+  field_project:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 99
     region: content
   field_species:
     type: entity_reference_label

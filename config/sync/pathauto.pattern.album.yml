@@ -1,0 +1,24 @@
+uuid: c1286684-9ffe-48b4-bfa4-83fdf05c6359
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.album.field_project
+    - node.type.album
+  module:
+    - node
+id: album
+label: Album
+type: 'canonical_entities:node'
+pattern: '/[node:field_project:entity:url:path]/[node:title]'
+selection_criteria:
+  d4acbb9c-3e3d-4ef9-ae8a-5b1ed5ee61f2:
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: node
+    bundles:
+      album: album
+selection_logic: and
+weight: -10
+relationships: {  }

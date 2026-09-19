@@ -1,0 +1,9 @@
+name: Eläintehtaat
+type: module
+description: 'Site-specific customisations for elaintehtaat.fi.'
+package: Custom
+core_version_requirement: ^11
+dependencies:
+  - drupal:node
+  - drupal:path
+  - pathauto:pathauto
