@@ -9,7 +9,7 @@ dependencies:
 id: elaintehtaat_theme_languageswitcher
 theme: elaintehtaat_theme
 region: secondary_menu
-weight: 0
+weight: -8
 provider: null
 plugin: 'language_block:language_interface'
 settings:
