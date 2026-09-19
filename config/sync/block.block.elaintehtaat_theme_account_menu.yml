@@ -6,14 +6,15 @@ dependencies:
     - system.menu.account
   module:
     - system
+    - user
   theme:
     - elaintehtaat_theme
 _core:
   default_config_hash: gmxYWWHmgbe0Pnv8y48ZLSLH5mEHejOjAP6RLxUfdzU
 id: elaintehtaat_theme_account_menu
 theme: elaintehtaat_theme
-region: footer_top
-weight: -6
+region: footer
+weight: -7
 provider: null
 plugin: 'system_menu_block:account'
 settings:
@@ -24,4 +25,11 @@ settings:
   level: 1
   depth: 1
   expand_all_items: false
-visibility: {  }
+visibility:
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      authenticated: authenticated
