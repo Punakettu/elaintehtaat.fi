@@ -11,10 +11,12 @@ dependencies:
     - taxonomy.vocabulary.species
     - taxonomy.vocabulary.use
   module:
+    - canvas
     - content_translation
     - contextual
     - file
     - media
+    - menu_link_content
     - node
     - system
     - taxonomy
@@ -31,10 +33,13 @@ permissions:
   - 'access content overview'
   - 'access contextual links'
   - 'access files overview'
+  - 'access media overview'
   - 'access taxonomy overview'
   - 'change own username'
   - 'create album content'
+  - 'create canvas_page'
   - 'create image media'
+  - 'create media'
   - 'create page content'
   - 'create project content'
   - 'create terms in licence'
@@ -42,8 +47,11 @@ permissions:
   - 'create terms in use'
   - 'delete any album content'
   - 'delete any image media'
+  - 'delete any media'
   - 'delete any page content'
   - 'delete any project content'
+  - 'delete canvas_page'
+  - 'delete media'
   - 'delete own album content'
   - 'delete own files'
   - 'delete own image media'
@@ -56,6 +64,7 @@ permissions:
   - 'edit any image media'
   - 'edit any page content'
   - 'edit any project content'
+  - 'edit canvas_page'
   - 'edit own album content'
   - 'edit own image media'
   - 'edit own page content'
@@ -63,6 +72,7 @@ permissions:
   - 'edit terms in licence'
   - 'edit terms in species'
   - 'edit terms in use'
+  - 'publish auto-saves'
   - 'revert album revisions'
   - 'revert all revisions'
   - 'revert any image media revisions'
@@ -75,11 +85,15 @@ permissions:
   - 'translate editable entities'
   - 'translate image media'
   - 'translate licence taxonomy_term'
+  - 'translate menu_link_content'
   - 'translate page node'
   - 'translate project node'
   - 'translate species taxonomy_term'
   - 'translate use taxonomy_term'
+  - 'update any media'
+  - 'update media'
   - 'view album revisions'
+  - 'view all media revisions'
   - 'view all revisions'
   - 'view any image media revisions'
   - 'view any workspace'

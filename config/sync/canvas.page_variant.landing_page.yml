@@ -1,0 +1,15 @@
+uuid: ec1ee2f2-9c2a-478b-9626-7da6982ce3d0
+langcode: fi
+status: true
+dependencies:
+  config:
+    - canvas.component.marker.page_content
+id: landing_page
+label: 'Landing page'
+description: ''
+component_tree:
+  7edeb964-e46d-4a95-895c-c5a01f28eb73:
+    uuid: 7edeb964-e46d-4a95-895c-c5a01f28eb73
+    component_id: marker.page_content
+    component_version: 3b12c0b99a6caecc
+    inputs: {  }

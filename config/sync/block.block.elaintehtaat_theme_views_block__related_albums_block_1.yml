@@ -6,7 +6,6 @@ dependencies:
     - views.view.related_albums
   module:
     - node
-    - system
     - views
   theme:
     - elaintehtaat_theme

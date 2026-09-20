@@ -1,0 +1,22 @@
+uuid: 8b416e35-3e64-41b2-9272-53f5349c2dab
+langcode: fi
+status: false
+dependencies:
+  module:
+    - system
+active_version: '3643243024517316'
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: system_clear_cache_block
+        label: 'Clear cache'
+        label_display: '0'
+        provider: system
+    fallback_metadata:
+      slot_definitions: null
+label: 'Clear cache'
+id: block.system_clear_cache_block
+provider: system
+source: block
+source_local_id: system_clear_cache_block

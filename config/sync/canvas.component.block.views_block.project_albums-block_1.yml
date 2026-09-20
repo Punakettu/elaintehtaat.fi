@@ -1,0 +1,48 @@
+uuid: 81083034-fa4d-4b5c-8904-a4fe7eb03a99
+langcode: fi
+status: false
+dependencies:
+  config:
+    - views.view.project_albums
+  module:
+    - views
+active_version: 21e139a83390d4cf
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'views_block:project_albums-block_1'
+        label: 'Projektin albumit'
+        label_display: '0'
+        provider: views
+        views_label: ''
+        items_per_page: null
+    fallback_metadata:
+      slot_definitions: null
+  f9e353fef7bd2e01:
+    settings:
+      default_settings:
+        id: 'views_block:project_albums-block_1'
+        label: 'Albums of the project'
+        label_display: '0'
+        provider: views
+        views_label: ''
+        items_per_page: null
+    fallback_metadata:
+      slot_definitions: null
+  21e139a83390d4cf:
+    settings:
+      default_settings:
+        id: 'views_block:project_albums-block_1'
+        label: 'Projektin albumit'
+        label_display: '0'
+        provider: views
+        views_label: ''
+        items_per_page: null
+    fallback_metadata:
+      slot_definitions: null
+label: 'Projektin albumit'
+id: block.views_block.project_albums-block_1
+provider: views
+source: block
+source_local_id: 'views_block:project_albums-block_1'

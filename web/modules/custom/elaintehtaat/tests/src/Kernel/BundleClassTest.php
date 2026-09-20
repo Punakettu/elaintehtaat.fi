@@ -7,8 +7,12 @@ namespace Drupal\Tests\elaintehtaat\Kernel;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\elaintehtaat\Entity\Album;
+use Drupal\elaintehtaat\Entity\Image;
+use Drupal\elaintehtaat\Entity\Licence;
 use Drupal\elaintehtaat\Entity\Project;
 use Drupal\media\MediaInterface;
+use Drupal\taxonomy\Entity\Term;
+use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\Tests\elaintehtaat\Traits\ContentModelTrait;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 use PHPUnit\Framework\Attributes\Group;
@@ -56,6 +60,81 @@ class BundleClassTest extends KernelTestBase {
     $storage->resetCache();
     $this->assertInstanceOf(Album::class, $storage->load($album->id()));
     $this->assertInstanceOf(Project::class, $storage->load($project->id()));
+  }
+
+  /**
+   * Image media and licence terms are loaded as their bundle class too.
+   */
+  public function testMediaAndTermsUseTheirBundleClass(): void {
+    Vocabulary::create(['vid' => 'species', 'name' => 'Species'])->save();
+    $species = Term::create(['vid' => 'species', 'name' => 'Fox']);
+    $species->save();
+
+    $media = $this->createImageMedia();
+    $licence = $this->createLicence();
+
+    // createImageMedia() and createLicence() assert the class on create; the
+    // storages below prove it holds on load as well.
+    $this->assertNotInstanceOf(Licence::class, $species);
+
+    $entity_type_manager = $this->container->get(EntityTypeManagerInterface::class);
+    $media_storage = $entity_type_manager->getStorage('media');
+    $media_storage->resetCache();
+    $this->assertInstanceOf(Image::class, $media_storage->load($media->id()));
+
+    $term_storage = $entity_type_manager->getStorage('taxonomy_term');
+    $term_storage->resetCache();
+    $this->assertInstanceOf(Licence::class, $term_storage->load($licence->id()));
+    $this->assertNotInstanceOf(Licence::class, $term_storage->load($species->id()));
+  }
+
+  /**
+   * The image getters read the fields they are named after.
+   */
+  public function testImageReadsItsFields(): void {
+    $licence = $this->createLicence();
+    $media = $this->createImageMedia('Emakko', [
+      'field_caption' => ['value' => 'Emakko häkissä.', 'format' => 'plain_text'],
+      'field_date' => '2024-03-07',
+      'field_author' => 'Jane Doe',
+      'field_licence' => $licence,
+    ]);
+
+    $this->assertSame('Emakko häkissä.', $media->getCaption()?->value);
+    $this->assertSame('2024-03-07', $media->getDate()?->format('Y-m-d'));
+    $this->assertSame('2024', $media->getYear());
+    $this->assertSame('Jane Doe', $media->getAuthor());
+    $this->assertSame($licence->id(), $media->getLicence()?->id());
+    // The alt text of the source item is the name createImageMedia() gave it.
+    $this->assertSame('Emakko', $media->getSourceItem()?->get('alt')->getValue());
+    $this->assertSame('image-test.png', $media->getSourceFile()?->getFilename());
+    $this->assertNotNull($media->getThumbnailFile());
+  }
+
+  /**
+   * An image without values of its own reads as empty rather than failing.
+   */
+  public function testImageWithoutValues(): void {
+    $media = $this->createImageMedia();
+
+    $this->assertNull($media->getCaption());
+    $this->assertNull($media->getDate());
+    $this->assertNull($media->getYear());
+    $this->assertSame('', $media->getAuthor());
+    $this->assertNull($media->getLicence());
+  }
+
+  /**
+   * A licence links to its terms when it has a link, and reads NULL when not.
+   */
+  public function testLicenceUrl(): void {
+    $licence = $this->createLicence();
+    $this->assertSame(
+      'https://creativecommons.org/licenses/by/4.0/',
+      $licence->getUrl()?->toString(),
+    );
+
+    $this->assertNull($this->createLicence('All rights reserved', NULL)->getUrl());
   }
 
   /**

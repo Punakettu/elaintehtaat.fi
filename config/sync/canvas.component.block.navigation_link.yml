@@ -1,0 +1,49 @@
+uuid: 8093d0f0-1442-4289-8eb4-f09929129500
+langcode: fi
+status: false
+dependencies:
+  module:
+    - navigation
+active_version: d2342aeb14a97f9d
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: navigation_link
+        label: Linkki
+        label_display: '0'
+        provider: navigation
+        title: ''
+        uri: ''
+        icon_class: ''
+    fallback_metadata:
+      slot_definitions: null
+  d20fb2310aabc41e:
+    settings:
+      default_settings:
+        id: navigation_link
+        label: Link
+        label_display: '0'
+        provider: navigation
+        title: ''
+        uri: ''
+        icon_class: ''
+    fallback_metadata:
+      slot_definitions: null
+  d2342aeb14a97f9d:
+    settings:
+      default_settings:
+        id: navigation_link
+        label: Linkki
+        label_display: '0'
+        provider: navigation
+        title: ''
+        uri: ''
+        icon_class: ''
+    fallback_metadata:
+      slot_definitions: null
+label: Linkki
+id: block.navigation_link
+provider: navigation
+source: block
+source_local_id: navigation_link

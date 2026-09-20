@@ -1,0 +1,40 @@
+uuid: 76051b11-4747-43ae-8f4c-60ae70c3aa77
+langcode: fi
+status: false
+dependencies:
+  module:
+    - help
+active_version: efaa31a1945a735a
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: help_block
+        label: Ohje
+        label_display: '0'
+        provider: help
+    fallback_metadata:
+      slot_definitions: null
+  af8568475f7526ac:
+    settings:
+      default_settings:
+        id: help_block
+        label: Help
+        label_display: '0'
+        provider: help
+    fallback_metadata:
+      slot_definitions: null
+  efaa31a1945a735a:
+    settings:
+      default_settings:
+        id: help_block
+        label: Ohje
+        label_display: '0'
+        provider: help
+    fallback_metadata:
+      slot_definitions: null
+label: Ohje
+id: block.help_block
+provider: help
+source: block
+source_local_id: help_block

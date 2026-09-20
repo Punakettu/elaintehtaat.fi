@@ -1,0 +1,26 @@
+uuid: 36f02a53-8bbf-4d86-ab93-4363e0d40e60
+langcode: fi
+status: false
+dependencies:
+  config:
+    - views.view.related_albums
+  module:
+    - views
+active_version: b170058c03127c10
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'views_block:related_albums-block_1'
+        label: 'Albums of the same project'
+        label_display: '0'
+        provider: views
+        views_label: ''
+        items_per_page: null
+    fallback_metadata:
+      slot_definitions: null
+label: 'Albums of the same project'
+id: block.views_block.related_albums-block_1
+provider: views
+source: block
+source_local_id: 'views_block:related_albums-block_1'

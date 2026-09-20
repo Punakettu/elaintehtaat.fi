@@ -1,0 +1,9 @@
+label: 'Projektin albumit'
+description: 'Projektin albumit, näytetään projektisivuilla sisällön alla.'
+display:
+  default:
+    display_options:
+      title: Albumit
+  block_1:
+    display_options:
+      block_description: 'Projektin albumit'

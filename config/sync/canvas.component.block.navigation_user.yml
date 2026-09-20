@@ -1,0 +1,40 @@
+uuid: 0c4e50d1-33f8-413a-8116-7f1a419db0f7
+langcode: fi
+status: false
+dependencies:
+  module:
+    - navigation
+active_version: 76143b508be5b129
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: navigation_user
+        label: Käyttäjä
+        label_display: '0'
+        provider: navigation
+    fallback_metadata:
+      slot_definitions: null
+  5d4be6131e6fe4a6:
+    settings:
+      default_settings:
+        id: navigation_user
+        label: User
+        label_display: '0'
+        provider: navigation
+    fallback_metadata:
+      slot_definitions: null
+  76143b508be5b129:
+    settings:
+      default_settings:
+        id: navigation_user
+        label: Käyttäjä
+        label_display: '0'
+        provider: navigation
+    fallback_metadata:
+      slot_definitions: null
+label: Käyttäjä
+id: block.navigation_user
+provider: navigation
+source: block
+source_local_id: navigation_user

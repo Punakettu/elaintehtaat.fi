@@ -1,0 +1,11 @@
+uuid: 928d4a91-a9b1-428a-971b-643b39921291
+langcode: fi
+status: true
+dependencies:
+  config:
+    - canvas.component.block.elaintehtaat_key_numbers
+name: Eläintehtaat
+configEntityTypeId: component
+weight: 0
+items:
+  - block.elaintehtaat_key_numbers

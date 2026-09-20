@@ -1,0 +1,48 @@
+uuid: f469d333-8aee-4754-81f3-69617a7064d9
+langcode: fi
+status: true
+dependencies:
+  config:
+    - views.view.albums
+  module:
+    - views
+active_version: 335b1cae11aa9efe
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'views_block:albums-block_1'
+        label: Albumit
+        label_display: '0'
+        provider: views
+        views_label: ''
+        items_per_page: null
+    fallback_metadata:
+      slot_definitions: null
+  afaf48238626ccd7:
+    settings:
+      default_settings:
+        id: 'views_block:albums-block_1'
+        label: Albums
+        label_display: visible
+        provider: views
+        views_label: ''
+        items_per_page: null
+    fallback_metadata:
+      slot_definitions: null
+  335b1cae11aa9efe:
+    settings:
+      default_settings:
+        id: 'views_block:albums-block_1'
+        label: Albumit
+        label_display: visible
+        provider: views
+        views_label: ''
+        items_per_page: null
+    fallback_metadata:
+      slot_definitions: null
+label: Albumit
+id: block.views_block.albums-block_1
+provider: views
+source: block
+source_local_id: 'views_block:albums-block_1'

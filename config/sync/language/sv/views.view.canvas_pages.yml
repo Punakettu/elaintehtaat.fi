@@ -1,0 +1,80 @@
+label: Sidor
+display:
+  default:
+    display_title: Förvald
+    display_options:
+      title: Sidor
+      fields:
+        edit_canvas_page:
+          label: Åtgärder
+          text: redigera
+        title:
+          label: Titel
+          separator: ', '
+        status:
+          label: Status
+          settings:
+            format_custom_false: 'Ej publicerad'
+            format_custom_true: Publicerad
+          separator: ', '
+        owner:
+          label: Författare
+          separator: ', '
+        changed:
+          label: Uppdaterad
+          separator: ', '
+      exposed_form:
+        options:
+          submit_button: Applicera
+          reset_button_label: Återställ
+          exposed_sorts_label: 'Sortera efter'
+          sort_asc_label: Stigande
+          sort_desc_label: Fallande
+      filters:
+        title:
+          expose:
+            label: Titel
+        status:
+          expose:
+            label: Publicerad
+          group_info:
+            label: Publicerad
+            group_items:
+              1:
+                title: Publicerad
+              2:
+                title: 'Ej publicerad'
+  page_1:
+    display_title: Sida
+    display_options:
+      fields:
+        title:
+          label: Titel
+          separator: ', '
+        status:
+          label: Status
+          settings:
+            format_custom_false: 'Ej publicerad'
+            format_custom_true: Publicerad
+          separator: ', '
+        owner:
+          label: Författare
+          separator: ', '
+        changed:
+          label: Uppdaterad
+          separator: ', '
+        operations:
+          label: Funktioner
+      pager:
+        options:
+          tags:
+            next: 'Nästa ›'
+            previous: '‹ Föregående'
+            first: '« Första'
+            last: 'Sista »'
+          expose:
+            items_per_page_label: 'Inlägg per sida'
+            items_per_page_options_all_label: '- Alla -'
+            offset_label: Kompensera
+      menu:
+        title: Sidor

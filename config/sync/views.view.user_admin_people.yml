@@ -669,7 +669,7 @@ display:
           exposed: true
           expose:
             operator_id: permission_op
-            label: Permission
+            label: Käyttöoikeus
             description: ''
             use_operator: false
             operator: permission_op
@@ -888,7 +888,7 @@ display:
       tags: {  }
   page_1:
     id: page_1
-    display_title: Page
+    display_title: Sivu
     display_plugin: page
     position: 1
     display_options:
