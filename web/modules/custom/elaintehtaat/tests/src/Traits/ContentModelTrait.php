@@ -69,8 +69,8 @@ trait ContentModelTrait {
     // Like the site's own types, none of these carries a body field.
     $this->createContentType(['type' => Project::BUNDLE], create_body: FALSE);
     $this->createContentType(['type' => Album::BUNDLE], create_body: FALSE);
-    // A type of the site that is neither an album nor a project.
-    $this->createContentType(['type' => 'page'], create_body: FALSE);
+    // A node type that is neither an album nor a project.
+    $this->createContentType(['type' => 'other'], create_body: FALSE);
     $this->createMediaType('image', ['id' => Image::BUNDLE]);
 
     $this->createField('node', Album::BUNDLE, 'field_project', 'entity_reference', ['target_type' => 'node']);

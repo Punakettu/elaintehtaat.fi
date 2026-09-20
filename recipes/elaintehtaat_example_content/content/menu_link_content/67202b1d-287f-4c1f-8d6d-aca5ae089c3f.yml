@@ -5,7 +5,7 @@ _meta:
   bundle: menu_link_content
   default_langcode: en
   depends:
-    44f4479a-101b-4c5d-9a9d-fb5d0ea81b48: node
+    a1b2c3d4-0000-4000-8000-00000000ab01: canvas_page
 translations:
   fi:
     enabled:
@@ -21,7 +21,7 @@ translations:
       -
         title: null
         options: {  }
-        target_uuid: 44f4479a-101b-4c5d-9a9d-fb5d0ea81b48
+        target_uuid: a1b2c3d4-0000-4000-8000-00000000ab01
     external:
       -
         value: false
@@ -63,7 +63,7 @@ default:
     -
       title: null
       options: {  }
-      target_uuid: 44f4479a-101b-4c5d-9a9d-fb5d0ea81b48
+      target_uuid: a1b2c3d4-0000-4000-8000-00000000ab01
   external:
     -
       value: false
@@ -85,6 +85,9 @@ default:
   content_translation_outdated:
     -
       value: false
+  content_translation_uid:
+    -
+      target_id: 1
   content_translation_status:
     -
       value: true

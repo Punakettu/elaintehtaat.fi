@@ -48,12 +48,12 @@ class BundleClassTest extends KernelTestBase {
   public function testNodesUseTheirBundleClass(): void {
     $album = $this->createNode(['type' => Album::BUNDLE]);
     $project = $this->createNode(['type' => Project::BUNDLE]);
-    $page = $this->createNode(['type' => 'page']);
+    $other = $this->createNode(['type' => 'other']);
 
     $this->assertInstanceOf(Album::class, $album);
     $this->assertInstanceOf(Project::class, $project);
-    $this->assertNotInstanceOf(Album::class, $page);
-    $this->assertNotInstanceOf(Project::class, $page);
+    $this->assertNotInstanceOf(Album::class, $other);
+    $this->assertNotInstanceOf(Project::class, $other);
 
     // Storage applies the class on load as well as on create.
     $storage = $this->container->get(EntityTypeManagerInterface::class)->getStorage('node');

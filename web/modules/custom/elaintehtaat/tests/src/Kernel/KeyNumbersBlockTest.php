@@ -37,8 +37,8 @@ class KeyNumbersBlockTest extends KernelTestBase {
   public function testCountsPublishedContent(): void {
     $this->createNodes('album', published: 2, unpublished: 1);
     $this->createNodes('project', published: 1, unpublished: 1);
-    // Pages are not part of the archive and must not be counted.
-    $this->createNodes('page', published: 3, unpublished: 0);
+    // Other node types are not part of the archive and must not be counted.
+    $this->createNodes('other', published: 3, unpublished: 0);
     for ($i = 0; $i < 2; $i++) {
       $this->createImageMedia("Media $i");
     }

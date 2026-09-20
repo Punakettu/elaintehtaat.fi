@@ -8,7 +8,7 @@ slogan: "The animals' side of the story"
 page:
   403: ''
   404: ''
-  front: /page/1
+  front: /front
 admin_compact_mode: false
 weight_select_max: 100
 default_langcode: fi
