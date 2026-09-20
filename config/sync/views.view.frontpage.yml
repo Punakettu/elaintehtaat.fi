@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.media.tile
-    - field.storage.media.field_date
   module:
     - datetime
     - media
@@ -133,18 +132,19 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        default_langcode:
-          id: default_langcode
+        langcode:
+          id: langcode
           table: media_field_data
-          field: default_langcode
+          field: langcode
           relationship: none
           group_type: group
           admin_label: ''
           entity_type: media
-          entity_field: default_langcode
-          plugin_id: boolean
-          operator: '='
-          value: '1'
+          entity_field: langcode
+          plugin_id: language
+          operator: in
+          value:
+            '***LANGUAGE_language_content***': '***LANGUAGE_language_content***'
           group: 1
           exposed: false
           expose:
@@ -161,6 +161,7 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
+            reduce: false
           is_grouped: false
           group_info:
             label: ''
@@ -205,7 +206,6 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
-        - 'languages:language_content'
         - 'languages:language_interface'
         - user.permissions
       tags: {  }
@@ -220,7 +220,6 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
-        - 'languages:language_content'
         - 'languages:language_interface'
         - user.permissions
       tags: {  }
