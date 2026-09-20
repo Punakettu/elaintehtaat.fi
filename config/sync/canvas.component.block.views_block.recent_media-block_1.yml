@@ -1,26 +1,26 @@
-uuid: 1668e0a8-e207-40d8-bd5c-9d1a4346fdc5
+uuid: 1fe2c305-1275-48f0-a530-7f310ab95035
 langcode: fi
 status: true
 dependencies:
   config:
-    - views.view.content_recent
+    - views.view.recent_media
   module:
     - views
-active_version: 1760ca0039cb39cf
+active_version: 2cddcc1518086375
 versioned_properties:
   active:
     settings:
       default_settings:
-        id: 'views_block:content_recent-block_1'
-        label: 'Recent content'
+        id: 'views_block:recent_media-block_1'
+        label: 'Recent media'
         label_display: '0'
         provider: views
         views_label: ''
         items_per_page: null
     fallback_metadata:
       slot_definitions: null
-label: 'Recent content'
-id: block.views_block.content_recent-block_1
+label: 'Recent media'
+id: block.views_block.recent_media-block_1
 provider: views
 source: block
-source_local_id: 'views_block:content_recent-block_1'
+source_local_id: 'views_block:recent_media-block_1'

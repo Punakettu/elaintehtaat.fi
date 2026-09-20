@@ -4,8 +4,10 @@ status: true
 dependencies:
   config:
     - canvas.component.block.elaintehtaat_key_numbers
+    - canvas.component.sdc.elaintehtaat.text
 name: Eläintehtaat
 configEntityTypeId: component
 weight: 0
 items:
   - block.elaintehtaat_key_numbers
+  - sdc.elaintehtaat.text

@@ -8,10 +8,10 @@ dependencies:
     - datetime
     - media
     - user
-id: frontpage
-label: Frontpage
+id: recent_media
+label: 'Recent media'
 module: views
-description: 'Media items listed on the front page.'
+description: 'Recent media items.'
 tag: default
 base_table: media_field_data
 base_field: mid
@@ -209,14 +209,14 @@ display:
         - 'languages:language_interface'
         - user.permissions
       tags: {  }
-  page_1:
-    id: page_1
-    display_title: Page
-    display_plugin: page
+  block_1:
+    id: block_1
+    display_title: Block
+    display_plugin: block
     position: 1
     display_options:
       display_extenders: {  }
-      path: node
+      block_description: 'Recent media'
     cache_metadata:
       max-age: -1
       contexts:

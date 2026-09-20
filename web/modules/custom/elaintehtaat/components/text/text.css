@@ -1,0 +1,46 @@
+/**
+ * @file
+ * Text: a block of formatted text in three sizes and three tones.
+ */
+
+.text {
+  max-width: 720px;
+}
+
+.text > :first-child {
+  margin-top: 0;
+}
+
+.text > :last-child {
+  margin-bottom: 0;
+}
+
+.text ul,
+.text ol {
+  margin: 0 0 1em;
+  padding-left: 1.25em;
+}
+
+.text li + li {
+  margin-top: 0.25em;
+}
+
+/* Lede: the large intro paragraph under a page title. */
+.text--lede {
+  max-width: 680px;
+  margin-top: 20px;
+  font-size: clamp(16px, 1.5vw, 19px);
+  line-height: 1.55;
+}
+
+.text--small {
+  font-size: 14px;
+}
+
+.text--tone-muted {
+  color: var(--color-text-muted, inherit);
+}
+
+.text--tone-faint {
+  color: var(--color-text-faint, inherit);
+}

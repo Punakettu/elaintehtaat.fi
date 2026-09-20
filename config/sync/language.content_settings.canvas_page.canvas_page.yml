@@ -1,18 +1,17 @@
-uuid: c3789387-320b-40e2-8156-ac3b914cade5
+uuid: 941f66e0-e8e0-4e4f-890d-eb1aee8a67c2
 langcode: en
 status: true
 dependencies:
-  config:
-    - node.type.album
   module:
+    - canvas
     - content_translation
 third_party_settings:
   content_translation:
     enabled: true
     bundle_settings:
       untranslatable_fields_hide: '0'
-id: node.album
-target_entity_type_id: node
-target_bundle: album
+id: canvas_page.canvas_page
+target_entity_type_id: canvas_page
+target_bundle: canvas_page
 default_langcode: site_default
 language_alterable: false

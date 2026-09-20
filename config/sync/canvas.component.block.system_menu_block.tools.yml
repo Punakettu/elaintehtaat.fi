@@ -32,6 +32,18 @@ versioned_properties:
         expand_all_items: false
     fallback_metadata:
       slot_definitions: null
+  35229c494f8146f3:
+    settings:
+      default_settings:
+        id: 'system_menu_block:tools'
+        label: Työkalut
+        label_display: '0'
+        provider: system
+        level: 1
+        depth: null
+        expand_all_items: false
+    fallback_metadata:
+      slot_definitions: null
 label: Työkalut
 id: block.system_menu_block.tools
 provider: system

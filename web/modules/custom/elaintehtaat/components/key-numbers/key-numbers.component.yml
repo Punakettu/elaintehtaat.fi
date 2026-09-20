@@ -15,6 +15,14 @@ props:
       type: array
       title: Items
       description: The figures to show, in display order.
+      minItems: 1
+      examples:
+        - - value: 8
+            label: albums
+          - value: 120
+            label: photos
+          - value: 3
+            label: species
       items:
         type: object
         required:
