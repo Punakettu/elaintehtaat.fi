@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Theme override for the media of an album.
+ *
+ * Lays the items out as a grid of tiles. Each tile links to the media page of
+ * the item within this album.
+ *
+ * @see \Drupal\elaintehtaat\Hook\MediaTileHooks
+ * @see field.html.twig
+ */
+#}
+{%
+  set classes = [
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+    'album-media',
+  ]
+%}
+{{ attach_library('elaintehtaat_theme/album-media') }}
+<div{{ attributes.addClass(classes) }}>
+  {% for item in items %}
+    <div{{ item.attributes.addClass('field__item') }}>{{ item.content }}</div>
+  {% endfor %}
+</div>

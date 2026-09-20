@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.media.tile
     - field.field.node.album.field_album_media
     - field.field.node.album.field_date
     - field.field.node.album.field_description
@@ -22,9 +23,9 @@ mode: default
 content:
   field_album_media:
     type: entity_reference_entity_view
-    label: above
+    label: hidden
     settings:
-      view_mode: default
+      view_mode: tile
       link: false
     third_party_settings: {  }
     weight: 104

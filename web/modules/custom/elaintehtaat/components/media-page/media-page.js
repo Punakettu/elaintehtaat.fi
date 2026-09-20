@@ -5,18 +5,14 @@
 
 ((Drupal, once) => {
   /**
-   * Follows the link matched by a selector inside the page, if present.
+   * Links the keyboard shortcuts lead to.
    *
-   * @param {HTMLElement} root
-   *   The media page element.
-   * @param {string} selector
-   *   Selector of the link to follow.
+   * @type {Object<string, string>}
    */
-  const follow = (root, selector) => {
-    const link = root.querySelector(selector);
-    if (link) {
-      window.location.assign(link.href);
-    }
+  const shortcuts = {
+    Escape: '[data-media-page-close]',
+    ArrowLeft: '[data-media-page-prev]',
+    ArrowRight: '[data-media-page-next]',
   };
 
   Drupal.behaviors.elaintehtaatMediaPage = {
@@ -31,13 +27,18 @@
           ) {
             return;
           }
-          if (event.key === 'Escape') {
-            follow(root, '[data-media-page-close]');
-          } else if (event.key === 'ArrowLeft') {
-            follow(root, '[data-media-page-prev]');
-          } else if (event.key === 'ArrowRight') {
-            follow(root, '[data-media-page-next]');
+          const selector = shortcuts[event.key];
+          if (!selector) {
+            return;
           }
+          const link = root.querySelector(selector);
+          if (!link) {
+            return;
+          }
+          // Escape also means "stop loading" in Firefox, which aborts the
+          // navigation started below unless the key is handled here.
+          event.preventDefault();
+          window.location.assign(link.href);
         });
 
         root.querySelectorAll('[data-media-page-copy]').forEach((button) => {

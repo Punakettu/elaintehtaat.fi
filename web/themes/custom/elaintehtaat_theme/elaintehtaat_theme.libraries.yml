@@ -140,6 +140,11 @@ album-card:
   css:
     component:
       css/components/album-card.css: {  }
+album-media:
+  version: VERSION
+  css:
+    component:
+      css/components/album-media.css: {  }
 related-albums:
   version: VERSION
   css:

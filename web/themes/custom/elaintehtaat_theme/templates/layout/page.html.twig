@@ -60,6 +60,12 @@
   <main class="page__main">
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
 
+    {% if page.breadcrumb %}
+      <div class="shell page__breadcrumb">
+        {{ page.breadcrumb }}
+      </div>
+    {% endif %}
+
     {% if page.hero %}
       <div class="hero">
         <div class="shell">
@@ -69,7 +75,6 @@
     {% endif %}
 
     <div class="shell page__pre-content">
-      {{ page.breadcrumb }}
       {{ page.highlighted }}
       {{ page.help }}
     </div>

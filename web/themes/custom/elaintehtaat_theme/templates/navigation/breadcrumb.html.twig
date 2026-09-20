@@ -3,6 +3,8 @@
  * @file
  * Theme override for a breadcrumb trail.
  *
+ * The last item is the current page and is not a link.
+ *
  * Available variables:
  * - breadcrumb: Breadcrumb trail items.
  */
@@ -10,13 +12,13 @@
 {% if breadcrumb %}
   <nav class="breadcrumb" aria-labelledby="system-breadcrumb">
     <h2 id="system-breadcrumb" class="visually-hidden">{{ 'Breadcrumb'|t }}</h2>
-    <ol>
+    <ol class="breadcrumb__list">
     {% for item in breadcrumb %}
-      <li>
+      <li class="breadcrumb__item">
         {% if item.url %}
-          <a href="{{ item.url }}">{{ item.text }}</a>
+          <a href="{{ item.url }}" class="breadcrumb__link">{{ item.text }}</a>
         {% else %}
-          {{ item.text }}
+          <span class="breadcrumb__current"{{ loop.last ? ' aria-current="page"' }}>{{ item.text }}</span>
         {% endif %}
       </li>
     {% endfor %}
