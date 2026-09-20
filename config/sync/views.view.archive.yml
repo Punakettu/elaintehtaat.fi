@@ -1,5 +1,5 @@
 uuid: 7f6cd2d4-c6c4-4e90-ace1-67d9d7e02c19
-langcode: en
+langcode: fi
 status: false
 dependencies:
   config:
@@ -19,7 +19,7 @@ base_field: nid
 display:
   default:
     id: default
-    display_title: Default
+    display_title: Oletus
     display_plugin: default
     position: 0
     display_options:
@@ -38,22 +38,22 @@ display:
             previous: ‹‹
           expose:
             items_per_page: false
-            items_per_page_label: 'Items per page'
+            items_per_page_label: 'Merkintöjä sivua kohti'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
+            items_per_page_options_all_label: '- Kaikki -'
             offset: false
-            offset_label: Offset
+            offset_label: Siirtymä
       exposed_form:
         type: basic
         options:
           submit_button: Apply
           reset_button: false
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
+          reset_button_label: Palauta
+          exposed_sorts_label: Lajittele
           expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          sort_asc_label: Nouseva
+          sort_desc_label: Laskeva
       access:
         type: perm
         options:
@@ -189,7 +189,7 @@ display:
       tags: {  }
   block_1:
     id: block_1
-    display_title: Block
+    display_title: Lohko
     display_plugin: block
     position: 1
     display_options:

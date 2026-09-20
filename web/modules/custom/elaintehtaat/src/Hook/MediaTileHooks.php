@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Drupal\elaintehtaat\Hook;
 
-use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
@@ -59,7 +58,9 @@ final readonly class MediaTileHooks {
       ];
     }
 
-    $cache->applyTo($build);
+    // Merge instead of applyTo(): the view builder has already put the media
+    // entity's own contexts and tags on $build, and applyTo() would wipe them.
+    CacheableMetadata::createFromRenderArray($build)->merge($cache)->applyTo($build);
   }
 
   /**

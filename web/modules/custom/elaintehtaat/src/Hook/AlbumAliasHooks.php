@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\elaintehtaat\Hook;
 
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\node\NodeInterface;
@@ -70,6 +71,9 @@ readonly class AlbumAliasHooks {
       foreach (array_keys($album->getTranslationLanguages()) as $langcode) {
         $this->pathautoGenerator->updateEntityAlias($album->getTranslation($langcode), 'update');
       }
+      // The album itself is not saved, so rendered pages that link to it or
+      // its media pages (see MediaPageController) would keep the old alias.
+      Cache::invalidateTags($album->getCacheTagsToInvalidate());
     }
   }
 

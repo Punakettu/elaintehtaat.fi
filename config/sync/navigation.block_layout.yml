@@ -1,6 +1,6 @@
 _core:
   default_config_hash: P5Y3iMx85NwT445BpYIe9fME9nXDF1AXmOJ_QmTnF34
-langcode: en
+langcode: fi
 sections:
   -
     layout_id: navigation_layout
@@ -22,7 +22,7 @@ sections:
         region: content
         configuration:
           id: 'navigation_menu:content'
-          label: Content
+          label: Sisältö
           label_display: '0'
           provider: navigation
           level: 1
@@ -34,7 +34,7 @@ sections:
         region: content
         configuration:
           id: 'navigation_menu:admin'
-          label: Administration
+          label: Ylläpito
           label_display: '0'
           provider: navigation
           level: 2
@@ -46,7 +46,7 @@ sections:
         region: footer
         configuration:
           id: navigation_user
-          label: User
+          label: Käyttäjä
           label_display: '0'
           provider: navigation
         weight: 0
@@ -56,11 +56,11 @@ sections:
         region: footer
         configuration:
           id: navigation_link
-          label: Help
+          label: Ohje
           label_display: '0'
           provider: navigation
           context_mapping: {  }
-          title: Help
+          title: Ohje
           uri: 'internal:/admin/help'
           icon_class: help
         weight: -2

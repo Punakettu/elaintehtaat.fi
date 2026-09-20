@@ -1,5 +1,5 @@
 uuid: c9bdcc2d-3d00-4175-9a54-1565435f5c6c
-langcode: en
+langcode: fi
 status: true
 dependencies:
   theme:
@@ -14,7 +14,7 @@ provider: null
 plugin: page_title_block
 settings:
   id: page_title_block
-  label: 'Page title'
+  label: 'Sivun otsikko'
   label_display: '0'
   provider: core
 visibility: {  }

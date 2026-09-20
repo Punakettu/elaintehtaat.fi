@@ -1,5 +1,5 @@
 uuid: 60bdb9f3-495d-4983-9fca-d7c7538461a1
-langcode: en
+langcode: fi
 status: true
 dependencies: {  }
 _core:
@@ -7,5 +7,5 @@ _core:
 id: und
 label: 'Not specified'
 direction: ltr
-weight: 2
+weight: 3
 locked: true

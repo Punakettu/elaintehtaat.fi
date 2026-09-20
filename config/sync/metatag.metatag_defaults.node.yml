@@ -1,11 +1,11 @@
 uuid: 86bf3d60-aa2c-43e6-8d72-c0137c6d3dc2
-langcode: en
+langcode: fi
 status: true
 dependencies: {  }
 _core:
   default_config_hash: rpwvgyEURXLz_JjgMCrkS1rUv-0k3L79BpO-ReN7fDI
 id: node
-label: Content
+label: Sisältö
 tags:
   title: '[node:title] | [site:name]'
   description: '[node:summary]'

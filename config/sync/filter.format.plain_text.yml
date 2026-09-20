@@ -1,10 +1,10 @@
 uuid: d1d70b5c-26d1-4dee-b3ae-825142c7364e
-langcode: en
+langcode: fi
 status: true
 dependencies: {  }
 _core:
   default_config_hash: JLMwODO0epnA_H-jFlH9ezVfa5YBJniRv3MmLqYNl_Q
-name: 'Plain text'
+name: 'Puhdas teksti'
 format: plain_text
 weight: -9
 filters:

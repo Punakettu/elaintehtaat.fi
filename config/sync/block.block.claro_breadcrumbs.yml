@@ -1,5 +1,5 @@
 uuid: 2e8abccc-ce34-42ed-b2e2-bb63c835e617
-langcode: en
+langcode: fi
 status: true
 dependencies:
   module:
@@ -16,7 +16,7 @@ provider: null
 plugin: system_breadcrumb_block
 settings:
   id: system_breadcrumb_block
-  label: Breadcrumbs
+  label: Murupolku
   label_display: '0'
   provider: system
 visibility: {  }

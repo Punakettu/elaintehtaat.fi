@@ -5,9 +5,14 @@ package: Custom
 core_version_requirement: ^11
 dependencies:
   - drupal:block
+  - drupal:file
+  - drupal:image
+  - drupal:link
   - drupal:media
   - drupal:node
   - drupal:path
+  - drupal:path_alias
+  - drupal:taxonomy
   - pathauto:pathauto
 'interface translation project': elaintehtaat
 'interface translation server pattern': modules/custom/elaintehtaat/translations/%project.%language.po

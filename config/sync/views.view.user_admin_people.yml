@@ -1,5 +1,5 @@
 uuid: d83b61c2-603b-44fe-8664-54d870dee443
-langcode: en
+langcode: fi
 status: true
 dependencies:
   module:
@@ -16,7 +16,7 @@ base_field: uid
 display:
   default:
     id: default
-    display_title: Default
+    display_title: Oletus
     display_plugin: default
     position: 0
     display_options:
@@ -31,7 +31,7 @@ display:
           admin_label: ''
           entity_type: user
           plugin_id: user_bulk_form
-          label: 'Bulk update'
+          label: Massapäivitys
           exclude: false
           alter:
             alter_text: false
@@ -82,7 +82,7 @@ display:
           entity_type: user
           entity_field: name
           plugin_id: field
-          label: Username
+          label: Käyttäjätunnus
           exclude: false
           alter:
             alter_text: false
@@ -134,7 +134,7 @@ display:
           entity_type: user
           entity_field: status
           plugin_id: field
-          label: Status
+          label: Tila
           exclude: false
           alter:
             alter_text: false
@@ -179,7 +179,7 @@ display:
           settings:
             format: custom
             format_custom_false: Blocked
-            format_custom_true: Active
+            format_custom_true: Voimassa
         roles_target_id:
           id: roles_target_id
           table: user__roles
@@ -188,7 +188,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: user_roles
-          label: Roles
+          label: Käyttäjäroolit
           exclude: false
           alter:
             alter_text: false
@@ -352,7 +352,7 @@ display:
           admin_label: ''
           entity_type: user
           plugin_id: entity_operations
-          label: Operations
+          label: Toimenpiteet
           exclude: false
           alter:
             alter_text: false
@@ -473,23 +473,23 @@ display:
             last: 'Last »'
           expose:
             items_per_page: false
-            items_per_page_label: 'Items per page'
+            items_per_page_label: 'Merkintöjä sivua kohti'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
+            items_per_page_options_all_label: '- Kaikki -'
             offset: false
-            offset_label: Offset
+            offset_label: Siirtymä
           quantity: 9
       exposed_form:
         type: basic
         options:
-          submit_button: Filter
+          submit_button: Suodatus
           reset_button: true
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
+          reset_button_label: Palauta
+          exposed_sorts_label: Lajittele
           expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          sort_asc_label: Nouseva
+          sort_desc_label: Laskeva
       access:
         type: perm
         options:
@@ -597,7 +597,7 @@ display:
               authenticated: authenticated
           is_grouped: true
           group_info:
-            label: Status
+            label: Tila
             description: ''
             identifier: status
             optional: true
@@ -608,7 +608,7 @@ display:
             default_group_multiple: {  }
             group_items:
               1:
-                title: Active
+                title: Voimassa
                 operator: '='
                 value: '1'
               2:

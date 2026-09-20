@@ -377,10 +377,10 @@ display:
     position: 1
     display_options:
       display_description: 'Placed on album pages below the main content.'
+      rendering_language: '***LANGUAGE_language_interface***'
       display_extenders: {  }
       block_description: 'Albums of the same project'
       block_hide_empty: true
-      rendering_language: '***LANGUAGE_language_interface***'
     cache_metadata:
       max-age: -1
       contexts:

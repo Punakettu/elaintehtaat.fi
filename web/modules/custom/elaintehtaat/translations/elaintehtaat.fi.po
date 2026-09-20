@@ -25,3 +25,51 @@ msgid "project"
 msgid_plural "projects"
 msgstr[0] "projekti"
 msgstr[1] "projektia"
+
+msgid "Photograph"
+msgstr "Valokuva"
+
+msgid "Album"
+msgstr "Albumi"
+
+msgid "Photographer"
+msgstr "Kuvaaja"
+
+msgid "Captured"
+msgstr "Kuvattu"
+
+msgid "License"
+msgstr "Lisenssi"
+
+msgid "Required attribution"
+msgstr "Vaadittu maininta"
+
+msgid "Copy attribution"
+msgstr "Kopioi maininta"
+
+msgid "Copied"
+msgstr "Kopioitu"
+
+msgid "Download media"
+msgstr "Lataa media"
+
+msgid "Close"
+msgstr "Sulje"
+
+msgid "Back to album"
+msgstr "Takaisin albumiin"
+
+msgid "Previous"
+msgstr "Edellinen"
+
+msgid "Next"
+msgstr "Seuraava"
+
+msgid "Photo: @organisation"
+msgstr "Kuva: @organisation"
+
+msgid "Photo: @author / @organisation"
+msgstr "Kuva: @author / @organisation"
+
+msgid "No separate caption. Part of the album <a href=\"@album_url\">@album_title</a>, see the album for details."
+msgstr "Ei erillistä kuvatekstiä. Osa albumia <a href=\"@album_url\">@album_title</a>, katso albumin kuvaus."

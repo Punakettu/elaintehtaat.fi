@@ -51,6 +51,6 @@ bundle: page
 mode: default
 content: {  }
 hidden:
+  field_body: true
   langcode: true
   links: true
-  field_body: true

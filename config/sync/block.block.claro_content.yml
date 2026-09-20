@@ -1,5 +1,5 @@
 uuid: 4891578e-604b-4048-bfbb-626662b0a919
-langcode: en
+langcode: fi
 status: true
 dependencies:
   module:
@@ -16,7 +16,7 @@ provider: null
 plugin: system_main_block
 settings:
   id: system_main_block
-  label: 'Main page content'
+  label: 'Pääsivun sisältö'
   label_display: '0'
   provider: system
 visibility: {  }

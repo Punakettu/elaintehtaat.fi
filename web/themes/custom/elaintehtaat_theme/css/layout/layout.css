@@ -62,3 +62,8 @@
 .region {
   min-width: 0;
 }
+
+/* The media page fills the viewport by itself; the document must not scroll. */
+.page--media {
+  overflow: hidden;
+}

@@ -12,10 +12,11 @@ use Drupal\node\NodeInterface;
  * Hook implementations for the Eläintehtaat theme.
  */
 class ElaintehtaatThemeHooks {
+
   /**
-   * @file
-   * Functions to support theming.
+   * Route of the full-screen media page, which is rendered without chrome.
    */
+  public const string MEDIA_PAGE_ROUTE = 'elaintehtaat.media_page';
 
   /**
    * Constructs the theme hook implementations.
@@ -24,6 +25,37 @@ class ElaintehtaatThemeHooks {
     protected readonly RouteMatchInterface $routeMatch,
     protected readonly EntityRepositoryInterface $entityRepository,
   ) {}
+
+  /**
+   * Implements hook_theme_suggestions_HOOK_alter() for page templates.
+   *
+   * The media page has no masthead or footer, see page--media.html.twig.
+   */
+  #[Hook('theme_suggestions_page_alter')]
+  public function themeSuggestionsPageAlter(array &$suggestions, array $variables): void {
+    if ($this->isMediaPage()) {
+      $suggestions[] = 'page__media';
+    }
+  }
+
+  /**
+   * Implements hook_preprocess_HOOK() for html templates.
+   *
+   * The body class lets the media page stop the document from scrolling.
+   */
+  #[Hook('preprocess_html')]
+  public function preprocessHtml(array &$variables): void {
+    if ($this->isMediaPage()) {
+      $variables['attributes']['class'][] = 'page--media';
+    }
+  }
+
+  /**
+   * Whether the current route is the media page.
+   */
+  protected function isMediaPage(): bool {
+    return $this->routeMatch->getRouteName() === self::MEDIA_PAGE_ROUTE;
+  }
 
   /**
    * Implements hook_preprocess_image_widget().

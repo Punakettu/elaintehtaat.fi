@@ -1,5 +1,5 @@
 uuid: a27f8a72-1e0f-4a56-bb92-b6b6d3a720f0
-langcode: en
+langcode: fi
 status: true
 dependencies:
   enforced:
@@ -8,6 +8,6 @@ dependencies:
 _core:
   default_config_hash: nqVwm91Uyib_rvFaNPF1MdYqHlmZ38w5rsOVVy4uWDw
 id: content
-label: Content
+label: Sisältö
 description: 'Content task links'
 locked: true
