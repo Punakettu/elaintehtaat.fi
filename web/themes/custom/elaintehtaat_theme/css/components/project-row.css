@@ -1,0 +1,102 @@
+/**
+ * @file
+ * Project row: the teaser view mode of project nodes.
+ *
+ * @see templates/content/node--project--teaser.html.twig
+ */
+
+.project-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 28px;
+  padding: 20px 4px;
+  border-top: 1px solid var(--color-line);
+  transition: background var(--transition-fast);
+}
+
+.project-row:hover,
+.project-row:focus-within {
+  background: var(--color-surface);
+}
+
+.project-row__year {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-text-faint);
+}
+
+.project-row__title {
+  margin: 0;
+  font-size: 20px;
+}
+
+/* Stretch the title link over the whole row. */
+.project-row__title a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.project-row__blurb {
+  max-width: 560px;
+  margin-top: 4px;
+  font-size: 13.5px;
+}
+
+.project-row__blurb p:last-child {
+  margin-bottom: 0;
+}
+
+.project-row__covers {
+  display: flex;
+  gap: 5px;
+}
+
+.project-row__covers img {
+  width: 40px;
+  height: 30px;
+  border-radius: 2px;
+  object-fit: cover;
+}
+
+.project-row__count {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  /* A floor wide enough for a three-digit count, so that the covers of every
+     row end at the same place however many albums a project has. */
+  min-width: 104px;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  transition: color var(--transition-fast);
+}
+
+.project-row:hover .project-row__count,
+.project-row:focus-within .project-row__count {
+  color: var(--color-text);
+}
+
+.project-row__chevron {
+  flex-shrink: 0;
+}
+
+/* The rows read as one divided list, so the last one is closed off too. */
+.views-row:last-child > .project-row {
+  border-bottom: 1px solid var(--color-line);
+}
+
+@media (max-width: 720px) {
+  .project-row {
+    grid-template-columns: 48px minmax(0, 1fr) auto;
+    gap: 16px;
+  }
+
+  .project-row__covers {
+    display: none;
+  }
+}

@@ -7,7 +7,8 @@ namespace Drupal\elaintehtaat\Hook;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Hook\Attribute\Hook;
-use Drupal\node\NodeInterface;
+use Drupal\elaintehtaat\Entity\Album;
+use Drupal\elaintehtaat\Entity\Project;
 use Drupal\path_alias\PathAliasInterface;
 use Drupal\pathauto\PathautoGeneratorInterface;
 
@@ -54,13 +55,13 @@ readonly class AlbumAliasHooks {
 
     $storage = $this->entityTypeManager->getStorage('node');
     $project = $storage->load($matches[1]);
-    if (!$project instanceof NodeInterface || $project->bundle() !== 'project') {
+    if (!$project instanceof Project) {
       return;
     }
 
     $album_ids = $storage->getQuery()
       ->accessCheck(FALSE)
-      ->condition('type', 'album')
+      ->condition('type', Album::BUNDLE)
       ->condition('field_project', $project->id())
       ->execute();
     if (!$album_ids) {

@@ -30,3 +30,6 @@ msgstr[1] "@count mediaa"
 
 msgid "Featured"
 msgstr "Esiin nostettua"
+
+msgid "Projects"
+msgstr "Projektit"

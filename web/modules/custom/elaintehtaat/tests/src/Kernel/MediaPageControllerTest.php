@@ -6,17 +6,12 @@ namespace Drupal\Tests\elaintehtaat\Kernel;
 
 use Drupal\Core\Url;
 use Drupal\elaintehtaat\Controller\MediaPageController;
-use Drupal\field\Entity\FieldConfig;
-use Drupal\field\Entity\FieldStorageConfig;
-use Drupal\file\Entity\File;
-use Drupal\media\Entity\Media;
+use Drupal\elaintehtaat\Entity\Album;
+use Drupal\elaintehtaat\Entity\Project;
 use Drupal\media\MediaInterface;
-use Drupal\node\Entity\Node;
-use Drupal\node\NodeInterface;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\taxonomy\Entity\Vocabulary;
-use Drupal\Tests\media\Traits\MediaTypeCreationTrait;
-use Drupal\Tests\node\Traits\ContentTypeCreationTrait;
+use Drupal\Tests\elaintehtaat\Traits\ContentModelTrait;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
@@ -29,35 +24,23 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 #[RunTestsInSeparateProcesses]
 class MediaPageControllerTest extends KernelTestBase {
 
-  use ContentTypeCreationTrait;
-  use MediaTypeCreationTrait;
+  use ContentModelTrait;
   use UserCreationTrait;
 
   /**
    * {@inheritdoc}
    */
-  protected static $modules = [
-    'system',
-    'user',
-    'field',
-    'text',
-    'file',
-    'image',
-    'node',
-    'media',
-    'taxonomy',
-    'link',
-  ];
+  protected static $modules = [...self::CONTENT_MODEL_MODULES, 'taxonomy', 'link'];
 
   /**
    * The project node.
    */
-  protected NodeInterface $project;
+  protected Project $project;
 
   /**
    * The album node.
    */
-  protected NodeInterface $album;
+  protected Album $album;
 
   /**
    * The licence term.
@@ -77,75 +60,13 @@ class MediaPageControllerTest extends KernelTestBase {
   protected function setUp(): void {
     parent::setUp();
 
-    $this->installEntitySchema('user');
-    $this->installEntitySchema('node');
-    $this->installEntitySchema('file');
-    $this->installSchema('file', ['file_usage']);
-    $this->installEntitySchema('media');
-    $this->installEntitySchema('path_alias');
+    $this->installContentModel();
     $this->installEntitySchema('taxonomy_term');
-    $this->installConfig(['system', 'node', 'image']);
 
-    $this->createContentType(['type' => 'project']);
-    $this->createContentType(['type' => 'album']);
-    $this->createMediaType('image', ['id' => 'image']);
-
-    FieldStorageConfig::create([
-      'field_name' => 'field_project',
-      'entity_type' => 'node',
-      'type' => 'entity_reference',
-      'settings' => ['target_type' => 'node'],
-    ])->save();
-    FieldConfig::create([
-      'field_name' => 'field_project',
-      'entity_type' => 'node',
-      'bundle' => 'album',
-    ])->save();
-    FieldStorageConfig::create([
-      'field_name' => 'field_album_media',
-      'entity_type' => 'node',
-      'type' => 'entity_reference',
-      'cardinality' => FieldStorageConfig::CARDINALITY_UNLIMITED,
-      'settings' => ['target_type' => 'media'],
-    ])->save();
-    FieldConfig::create([
-      'field_name' => 'field_album_media',
-      'entity_type' => 'node',
-      'bundle' => 'album',
-    ])->save();
-    FieldStorageConfig::create([
-      'field_name' => 'field_author',
-      'entity_type' => 'media',
-      'type' => 'string',
-    ])->save();
-    FieldConfig::create([
-      'field_name' => 'field_author',
-      'entity_type' => 'media',
-      'bundle' => 'image',
-    ])->save();
-
+    $this->createField('media', 'image', 'field_author', 'string');
     Vocabulary::create(['vid' => 'licence', 'name' => 'Licence'])->save();
-    FieldStorageConfig::create([
-      'field_name' => 'field_licence_link',
-      'entity_type' => 'taxonomy_term',
-      'type' => 'link',
-    ])->save();
-    FieldConfig::create([
-      'field_name' => 'field_licence_link',
-      'entity_type' => 'taxonomy_term',
-      'bundle' => 'licence',
-    ])->save();
-    FieldStorageConfig::create([
-      'field_name' => 'field_licence',
-      'entity_type' => 'media',
-      'type' => 'entity_reference',
-      'settings' => ['target_type' => 'taxonomy_term'],
-    ])->save();
-    FieldConfig::create([
-      'field_name' => 'field_licence',
-      'entity_type' => 'media',
-      'bundle' => 'image',
-    ])->save();
+    $this->createField('taxonomy_term', 'licence', 'field_licence_link', 'link');
+    $this->createField('media', 'image', 'field_licence', 'entity_reference', ['target_type' => 'taxonomy_term']);
     $this->licence = Term::create([
       'vid' => 'licence',
       'name' => 'CC BY 4.0',
@@ -155,22 +76,20 @@ class MediaPageControllerTest extends KernelTestBase {
 
     $this->setUpCurrentUser(permissions: ['access content', 'view media']);
 
-    $this->project = Node::create(['type' => 'project', 'title' => 'Tehotuotanto']);
-    $this->project->save();
+    $this->project = $this->createProject(['title' => 'Tehotuotanto']);
 
     for ($i = 1; $i <= 3; $i++) {
-      $this->media[] = $this->createImageMedia("Kuva $i", $i === 2 ? 'Jane Doe' : '', licence: $i === 2);
+      $credits = $i === 2 ? ['field_author' => 'Jane Doe', 'field_licence' => $this->licence] : [];
+      $this->media[] = $this->createImageMedia("Kuva $i", $credits);
     }
     // Unpublished media is not shown to users without special permissions.
-    $hidden = $this->createImageMedia('Piilotettu', '', FALSE);
+    $hidden = $this->createImageMedia('Piilotettu', ['status' => 0]);
 
-    $this->album = Node::create([
-      'type' => 'album',
+    $this->album = $this->createAlbum([
       'title' => 'Sikala 2024',
       'field_project' => $this->project,
       'field_album_media' => [$this->media[0], $hidden, $this->media[1], $this->media[2]],
     ]);
-    $this->album->save();
   }
 
   /**
@@ -234,13 +153,11 @@ class MediaPageControllerTest extends KernelTestBase {
    * An album with a single item has no previous/next links.
    */
   public function testSingleItem(): void {
-    $album = Node::create([
-      'type' => 'album',
+    $album = $this->createAlbum([
       'title' => 'Yksi',
       'field_project' => $this->project,
       'field_album_media' => [$this->media[0]],
     ]);
-    $album->save();
 
     $props = $this->controller()->build($album, $this->media[0])['#props'];
     $this->assertSame(1, $props['total']);
@@ -283,34 +200,6 @@ class MediaPageControllerTest extends KernelTestBase {
       'node' => $this->album->id(),
       'media' => $media->id(),
     ])->toString();
-  }
-
-  /**
-   * Creates an image media item backed by a test image.
-   */
-  protected function createImageMedia(string $name, string $author = '', bool $published = TRUE, bool $licence = FALSE): MediaInterface {
-    $this->container->get('file_system')->copy(
-      $this->root . '/core/tests/fixtures/files/image-test.png',
-      'public://image-test.png',
-    );
-    $file = File::create(['uri' => 'public://image-test.png', 'filename' => 'image-test.png']);
-    $file->save();
-
-    $media = Media::create([
-      'bundle' => 'image',
-      'name' => $name,
-      'status' => $published,
-      'field_media_image' => [
-        'target_id' => $file->id(),
-        'alt' => $name,
-        'width' => 40,
-        'height' => 20,
-      ],
-      'field_author' => $author,
-      'field_licence' => $licence ? $this->licence : NULL,
-    ]);
-    $media->save();
-    return $media;
   }
 
 }

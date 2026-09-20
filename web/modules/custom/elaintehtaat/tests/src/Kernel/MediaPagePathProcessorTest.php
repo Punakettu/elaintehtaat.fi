@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\elaintehtaat\Kernel;
 
+use Drupal\Core\Routing\RouteBuilderInterface;
 use Drupal\Core\Url;
 use Drupal\path_alias\Entity\PathAlias;
 use PHPUnit\Framework\Attributes\Group;
@@ -41,7 +42,7 @@ class MediaPagePathProcessorTest extends KernelTestBase {
     $this->installEntitySchema('node');
     $this->installEntitySchema('path_alias');
     // The alias prefix list only considers path roots known to the router.
-    $this->container->get('router.builder')->rebuild();
+    $this->container->get(RouteBuilderInterface::class)->rebuild();
     PathAlias::create([
       'path' => '/node/5',
       'alias' => '/tehotuotanto/sikala-2024',

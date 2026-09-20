@@ -16,6 +16,11 @@ msgid_plural "albums"
 msgstr[0] "albumi"
 msgstr[1] "albumia"
 
+msgid "1 album"
+msgid_plural "@count albums"
+msgstr[0] "1 albumi"
+msgstr[1] "@count albumia"
+
 msgid "media item"
 msgid_plural "media"
 msgstr[0] "mediatiedosto"

@@ -1,0 +1,51 @@
+{#
+/**
+ * @file
+ * Theme override for a project rendered in the teaser view mode.
+ *
+ * Renders the project as a row of an index: the year it was last worked on,
+ * the title and a trimmed description, the covers of its newest albums and
+ * how many albums it holds. The title link is stretched over the whole row.
+ *
+ * Additional content (added by
+ * \Drupal\elaintehtaat\Hook\ProjectTeaserHooks):
+ * - content.year: The year of the project's newest album, when it has one.
+ * - content.covers: Thumbnails of the newest albums, at most four.
+ * - content.album_count: How many albums belong to the project.
+ *
+ * @see node.html.twig
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    not node.isPublished() ? 'node--unpublished',
+    'node--view-mode-' ~ view_mode|clean_class,
+    'project-row',
+  ]
+%}
+{{ attach_library('elaintehtaat_theme/project-row') }}
+<article{{ attributes.addClass(classes) }}>
+  <div class="project-row__year">{{ content.year }}</div>
+
+  <div class="project-row__main">
+    {{ title_prefix }}
+    <h3{{ title_attributes.addClass('project-row__title') }}>
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h3>
+    {{ title_suffix }}
+    <div class="project-row__blurb muted">{{ content.field_description }}</div>
+  </div>
+
+  {% if content.covers %}
+    <div class="project-row__covers" aria-hidden="true">{{ content.covers }}</div>
+  {% endif %}
+
+  <div class="project-row__count">
+    {{ content.album_count }}
+    <svg class="project-row__chevron" width="13" height="13" viewBox="0 0 16 16" aria-hidden="true">
+      <path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</article>

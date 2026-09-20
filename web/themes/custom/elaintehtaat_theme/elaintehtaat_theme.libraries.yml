@@ -154,3 +154,13 @@ featured:
   css:
     component:
       css/components/featured.css: {  }
+projects:
+  version: VERSION
+  css:
+    component:
+      css/components/projects.css: {  }
+project-row:
+  version: VERSION
+  css:
+    component:
+      css/components/project-row.css: {  }

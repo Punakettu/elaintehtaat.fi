@@ -1,0 +1,100 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+# Cancel superseded runs on the same branch/PR.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  PHP_VERSION: '8.5'
+  PHP_EXTENSIONS: apcu, bcmath, gd, intl, mbstring, opcache, pdo_mysql, zip
+
+jobs:
+  coding-style:
+    name: Coding style
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          extensions: ${{ env.PHP_EXTENSIONS }}
+          coverage: none
+          tools: composer:v2, cs2pr
+
+      - name: Install Composer dependencies
+        uses: ramsey/composer-install@v4
+
+      - name: Run phpcs
+        shell: bash
+        run: vendor/bin/phpcs --no-cache -q --report=checkstyle | cs2pr
+
+      - name: Run phpstan
+        # Report phpstan findings even when phpcs already failed.
+        if: success() || failure()
+        run: vendor/bin/phpstan analyse --no-progress --memory-limit=1G --error-format=github
+
+  phpunit:
+    name: PHPUnit
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mariadb:12.3
+        env:
+          MARIADB_ROOT_PASSWORD: root
+          MARIADB_DATABASE: drupal
+          MARIADB_USER: drupal
+          MARIADB_PASSWORD: drupal
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd "healthcheck.sh --connect --innodb_initialized"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
+    env:
+      SIMPLETEST_DB: mysql://drupal:drupal@127.0.0.1:3306/drupal
+      SIMPLETEST_BASE_URL: http://localhost
+      BROWSERTEST_OUTPUT_DIRECTORY: ${{ github.workspace }}/web/sites/simpletest/browser_output
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          extensions: ${{ env.PHP_EXTENSIONS }}
+          coverage: none
+          tools: composer:v2
+          ini-values: memory_limit=-1, error_reporting=E_ALL, display_errors=On
+
+      - name: Install Composer dependencies
+        uses: ramsey/composer-install@v4
+
+      - name: Prepare test directories
+        run: mkdir -p web/sites/simpletest/browser_output
+
+      # Functional suites need a web server in front of web/; add one (and
+      # extend the suite list) when the first Functional test is written.
+      - name: Run phpunit
+        run: vendor/bin/phpunit --testsuite unit,kernel
+
+      - name: Upload browser output
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: browser_output
+          path: web/sites/simpletest/browser_output
+          if-no-files-found: ignore

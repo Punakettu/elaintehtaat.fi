@@ -9,6 +9,7 @@ use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Hook\Attribute\Hook;
+use Drupal\elaintehtaat\Entity\Album;
 use Drupal\media\MediaInterface;
 use Drupal\node\NodeInterface;
 
@@ -18,7 +19,7 @@ use Drupal\node\NodeInterface;
  * Media items have no page of their own, so a tile in a listing opens
  * the album that contains the item.
  *
- * @TODO: change this wen we add standalone media route.
+ * @todo Change this when we add a standalone media route.
  */
 final readonly class MediaTileHooks {
 
@@ -47,7 +48,7 @@ final readonly class MediaTileHooks {
     $cache->addCacheTags(['node_list:album']);
 
     $album = $this->findAlbum($media);
-    if ($album instanceof NodeInterface) {
+    if ($album !== NULL) {
       $album = $this->entityRepository->getTranslationFromContext($album);
       $cache->addCacheableDependency($album);
       $build['album'] = [
@@ -66,11 +67,11 @@ final readonly class MediaTileHooks {
   /**
    * Finds the newest published album containing the media item.
    */
-  private function findAlbum(MediaInterface $media): ?NodeInterface {
+  private function findAlbum(MediaInterface $media): ?Album {
     $storage = $this->entityTypeManager->getStorage('node');
     $ids = $storage->getQuery()
       ->accessCheck(FALSE)
-      ->condition('type', 'album')
+      ->condition('type', Album::BUNDLE)
       ->condition('status', NodeInterface::PUBLISHED)
       ->condition('field_album_media.target_id', $media->id())
       ->sort('created', 'DESC')
@@ -79,8 +80,8 @@ final readonly class MediaTileHooks {
     if (!$ids) {
       return NULL;
     }
-    $album = $storage->load(reset($ids));
-    return $album instanceof NodeInterface ? $album : NULL;
+    $album = $storage->load($ids[array_key_first($ids)]);
+    return $album instanceof Album ? $album : NULL;
   }
 
 }

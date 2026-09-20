@@ -10,24 +10,25 @@ use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\DependencyInjection\AutowireTrait;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\File\FileUrlGeneratorInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Url;
-use Drupal\file\FileInterface;
-use Drupal\link\LinkItemInterface;
+use Drupal\elaintehtaat\Entity\Album;
+use Drupal\elaintehtaat\Entity\Image;
 use Drupal\media\MediaInterface;
 use Drupal\node\NodeInterface;
-use Drupal\taxonomy\TermInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Shows one media item of an album full screen.
  *
- * The page is reached at /<project>/<album>/<media id>, see
- * \Drupal\elaintehtaat\PathProcessor\MediaPagePathProcessor.
+ * The page is reached at /<project>/<album>/<media id>.
+ *
+ * @see \Drupal\elaintehtaat\PathProcessor\MediaPagePathProcessor
  */
 final class MediaPageController implements ContainerInjectionInterface {
 
@@ -60,7 +61,7 @@ final class MediaPageController implements ContainerInjectionInterface {
    * Checks access: the node must be a viewable album and the media viewable.
    */
   public function access(NodeInterface $node, MediaInterface $media, AccountInterface $account): AccessResultInterface {
-    return AccessResult::allowedIf($node->bundle() === 'album')
+    return AccessResult::allowedIf($node instanceof Album)
       ->addCacheableDependency($node)
       ->andIf($node->access('view', $account, TRUE))
       ->andIf($media->access('view', $account, TRUE));
@@ -70,23 +71,29 @@ final class MediaPageController implements ContainerInjectionInterface {
    * Page title: the media label in the current language.
    */
   public function title(NodeInterface $node, MediaInterface $media): string {
-    $media = $this->entityRepository->getTranslationFromContext($media);
-    return (string) $media->label();
+    return (string) $this->translated($media)->label();
   }
 
   /**
    * Builds the media page.
    */
   public function build(NodeInterface $node, MediaInterface $media): array {
-    $album = $this->entityRepository->getTranslationFromContext($node);
-    $media = $this->entityRepository->getTranslationFromContext($media);
+    $album = $this->translated($node);
+    $media = $this->translated($media);
+    if (!$album instanceof Album || !$media instanceof Image) {
+      throw new NotFoundHttpException();
+    }
 
     $cache = new CacheableMetadata();
-    $cache->addCacheContexts(['languages:language_interface', 'languages:language_content', 'user.permissions']);
+    $cache->addCacheContexts([
+      'languages:language_interface',
+      'languages:language_content',
+      'user.permissions',
+    ]);
     $cache->addCacheableDependency($album);
     $cache->addCacheableDependency($media);
 
-    $items = $this->albumMedia($album, $cache);
+    $items = $album->getViewableMedia($cache);
     $index = NULL;
     foreach ($items as $delta => $item) {
       if ($item->id() === $media->id()) {
@@ -106,50 +113,40 @@ final class MediaPageController implements ContainerInjectionInterface {
       $next_url = $this->mediaUrl($album, $items[($index + 1) % $total]);
     }
 
-    $project = $album->hasField('field_project') ? $album->get('field_project')->entity : NULL;
-    if ($project instanceof NodeInterface) {
-      $project = $this->entityRepository->getTranslationFromContext($project);
+    $project = $album->getProject();
+    if ($project !== NULL) {
+      $project = $this->translated($project);
       $cache->addCacheableDependency($project);
     }
 
+    $caption = $media->getCaption();
     $slots = [
       'image' => $this->image($media, self::IMAGE_STYLE, $cache, ['loading' => 'eager', 'fetchpriority' => 'high']),
       'album_thumbnail' => $this->image($items[0], self::THUMBNAIL_STYLE, $cache),
-      'caption' => [],
+      'caption' => $caption?->view(['label' => 'hidden', 'type' => 'text_default']) ?? [],
     ];
-    if ($media->hasField('field_caption') && !$media->get('field_caption')->isEmpty()) {
-      $slots['caption'] = $media->get('field_caption')->view(['label' => 'hidden', 'type' => 'text_default']);
-    }
 
-    $date = '';
-    if ($media->hasField('field_date') && !$media->get('field_date')->isEmpty()) {
-      $date_value = $media->get('field_date')->first()?->get('date')->getValue();
-      if ($date_value !== NULL) {
-        $date = $this->dateFormatter->format($date_value->getTimestamp(), 'custom', 'j.n.Y');
-      }
-    }
+    $taken = $media->getDate();
+    $date = $taken === NULL ? '' : $this->dateFormatter->format($taken->getTimestamp(), 'custom', 'j.n.Y');
 
-    $author = $media->hasField('field_author') ? (string) ($media->get('field_author')->value ?? '') : '';
+    $author = $media->getAuthor();
     $attribution = $author === ''
       ? $this->t('Photo: @organisation', ['@organisation' => self::ORGANISATION])
       : $this->t('Photo: @author / @organisation', ['@author' => $author, '@organisation' => self::ORGANISATION]);
 
     $licence_name = '';
     $licence_url = '';
-    $term = $media->hasField('field_licence') ? $media->get('field_licence')->entity : NULL;
-    if ($term instanceof TermInterface) {
-      $term = $this->entityRepository->getTranslationFromContext($term);
-      $cache->addCacheableDependency($term);
-      $licence_name = (string) $term->label();
-      $link = $term->hasField('field_licence_link') ? $term->get('field_licence_link')->first() : NULL;
-      if ($link instanceof LinkItemInterface && !$link->isEmpty()) {
-        $licence_url = $link->getUrl()->toString();
-      }
+    $licence = $media->getLicence();
+    if ($licence !== NULL) {
+      $licence = $this->translated($licence);
+      $cache->addCacheableDependency($licence);
+      $licence_name = (string) $licence->label();
+      $licence_url = $licence->getUrl()?->toString() ?? '';
     }
 
     $download_url = '';
     $download_filename = '';
-    $file = $this->sourceFile($media);
+    $file = $media->getSourceFile();
     if ($file !== NULL) {
       $download_url = $this->fileUrlGenerator->generateString($file->getFileUri());
       $download_filename = (string) $file->getFilename();
@@ -168,7 +165,7 @@ final class MediaPageController implements ContainerInjectionInterface {
         'date' => $date,
         'album_title' => (string) $album->label(),
         'album_url' => $album->toUrl()->toString(),
-        'project_title' => $project instanceof NodeInterface ? (string) $project->label() : '',
+        'project_title' => $project === NULL ? '' : (string) $project->label(),
         'author' => $author,
         'licence_name' => $licence_name,
         'licence_url' => $licence_url,
@@ -181,30 +178,6 @@ final class MediaPageController implements ContainerInjectionInterface {
     $cache->applyTo($build);
 
     return $build;
-  }
-
-  /**
-   * The album's media the current user may view, in album order.
-   *
-   * @return list<\Drupal\media\MediaInterface>
-   *   The media items, keyed by their position in the album.
-   */
-  private function albumMedia(NodeInterface $album, CacheableMetadata $cache): array {
-    if (!$album->hasField('field_album_media')) {
-      return [];
-    }
-    $items = [];
-    foreach ($album->get('field_album_media')->referencedEntities() as $item) {
-      if (!$item instanceof MediaInterface) {
-        continue;
-      }
-      $access = $item->access('view', NULL, TRUE);
-      $cache->addCacheableDependency($access);
-      if ($access->isAllowed()) {
-        $items[] = $item;
-      }
-    }
-    return $items;
   }
 
   /**
@@ -221,13 +194,12 @@ final class MediaPageController implements ContainerInjectionInterface {
    * Renders the media's source image in an image style.
    */
   private function image(MediaInterface $media, string $style_name, CacheableMetadata $cache, array $attributes = []): array {
-    $source_field = $media->getSource()->getConfiguration()['source_field'] ?? NULL;
-    if ($source_field === NULL || !$media->hasField($source_field) || $media->get($source_field)->isEmpty()) {
+    if (!$media instanceof Image) {
       return [];
     }
-    $item = $media->get($source_field)->first();
-    $file = $item?->get('entity')->getValue();
-    if (!$file instanceof FileInterface) {
+    $item = $media->getSourceItem();
+    $file = $media->getSourceFile();
+    if ($item === NULL || $file === NULL) {
       return [];
     }
     $cache->addCacheableDependency($file);
@@ -250,15 +222,21 @@ final class MediaPageController implements ContainerInjectionInterface {
   }
 
   /**
-   * The file behind the media's source field, if any.
+   * The entity as it reads in the language the page is shown in.
+   *
+   * @param T $entity
+   *   The entity to translate.
+   *
+   * @return T
+   *   The translation, or the entity itself when it has none.
+   *
+   * @template T of \Drupal\Core\Entity\EntityInterface
    */
-  private function sourceFile(MediaInterface $media): ?FileInterface {
-    $source_field = $media->getSource()->getConfiguration()['source_field'] ?? NULL;
-    if ($source_field === NULL || !$media->hasField($source_field)) {
-      return NULL;
-    }
-    $file = $media->get($source_field)->first()?->get('entity')->getValue();
-    return $file instanceof FileInterface ? $file : NULL;
+  private function translated(EntityInterface $entity): EntityInterface {
+    /** @var T $translation */
+    $translation = $this->entityRepository->getTranslationFromContext($entity);
+
+    return $translation;
   }
 
 }

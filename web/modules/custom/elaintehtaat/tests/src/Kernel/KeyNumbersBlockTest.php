@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\elaintehtaat\Kernel;
 
-use Drupal\media\Entity\Media;
-use Drupal\node\Entity\Node;
-use Drupal\Tests\media\Traits\MediaTypeCreationTrait;
-use Drupal\Tests\node\Traits\ContentTypeCreationTrait;
+use Drupal\Tests\elaintehtaat\Traits\ContentModelTrait;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
@@ -18,23 +15,12 @@ use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 #[RunTestsInSeparateProcesses]
 class KeyNumbersBlockTest extends KernelTestBase {
 
-  use ContentTypeCreationTrait;
-  use MediaTypeCreationTrait;
+  use ContentModelTrait;
 
   /**
    * {@inheritdoc}
    */
-  protected static $modules = [
-    'system',
-    'user',
-    'field',
-    'text',
-    'file',
-    'image',
-    'node',
-    'media',
-    'media_test_source',
-  ];
+  protected static $modules = self::CONTENT_MODEL_MODULES;
 
   /**
    * {@inheritdoc}
@@ -42,17 +28,7 @@ class KeyNumbersBlockTest extends KernelTestBase {
   protected function setUp(): void {
     parent::setUp();
 
-    $this->installEntitySchema('user');
-    $this->installEntitySchema('node');
-    $this->installEntitySchema('file');
-    $this->installSchema('file', ['file_usage']);
-    $this->installEntitySchema('media');
-    $this->installEntitySchema('path_alias');
-
-    $this->createContentType(['type' => 'album']);
-    $this->createContentType(['type' => 'project']);
-    $this->createContentType(['type' => 'page']);
-    $this->createMediaType('test', ['id' => 'image']);
+    $this->installContentModel();
   }
 
   /**
@@ -64,9 +40,9 @@ class KeyNumbersBlockTest extends KernelTestBase {
     // Pages are not part of the archive and must not be counted.
     $this->createNodes('page', published: 3, unpublished: 0);
     for ($i = 0; $i < 2; $i++) {
-      Media::create(['bundle' => 'image', 'name' => "Media $i", 'status' => 1])->save();
+      $this->createImageMedia("Media $i");
     }
-    Media::create(['bundle' => 'image', 'name' => 'Draft', 'status' => 0])->save();
+    $this->createImageMedia('Draft', ['status' => 0]);
 
     $block = $this->container->get('plugin.manager.block')->createInstance('elaintehtaat_key_numbers');
     $build = $block->build();
@@ -85,10 +61,10 @@ class KeyNumbersBlockTest extends KernelTestBase {
    */
   protected function createNodes(string $type, int $published, int $unpublished): void {
     for ($i = 0; $i < $published; $i++) {
-      Node::create(['type' => $type, 'title' => "$type $i", 'status' => 1])->save();
+      $this->createNode(['type' => $type, 'status' => 1]);
     }
     for ($i = 0; $i < $unpublished; $i++) {
-      Node::create(['type' => $type, 'title' => "$type draft $i", 'status' => 0])->save();
+      $this->createNode(['type' => $type, 'status' => 0]);
     }
   }
 
