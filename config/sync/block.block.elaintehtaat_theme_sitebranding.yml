@@ -1,4 +1,4 @@
-uuid: 1ac013fe-49dc-4dbc-a99b-060aead26aa8
+uuid: 56b8a3d8-9a88-4ece-99e4-aab5902df650
 langcode: en
 status: true
 dependencies:
@@ -20,4 +20,8 @@ settings:
   use_site_logo: false
   use_site_name: false
   use_site_slogan: true
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

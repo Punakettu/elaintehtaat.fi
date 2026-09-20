@@ -4,7 +4,7 @@ langcode: fi
 uuid: 648ac619-27d8-4654-94d5-f6201ffeb114
 name: Eläintehtaat
 mail: info@elaintehtaat.fi
-slogan: "The animals' side of the story"
+slogan: 'Eläinten puoli tarinasta'
 page:
   403: ''
   404: ''

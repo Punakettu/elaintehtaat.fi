@@ -24,18 +24,26 @@
   max-width: var(--max-width-wide);
 }
 
-.page__pre-content {
-  padding-top: 24px;
-}
-
-.page__pre-content:empty {
-  display: none;
+/*
+ * The pre-content wrapper (messages, help) is always printed, and on Canvas
+ * pages so is the highlighted region with an empty messages placeholder in it.
+ * The wrapper therefore reserves no space itself: only real content does.
+ */
+.page__pre-content [data-drupal-messages],
+.page__pre-content .region-help > * {
+  margin-top: 24px;
 }
 
 .layout {
   display: grid;
   gap: 36px;
   padding-block: clamp(28px, 4vh, 48px) clamp(48px, 6vh, 72px);
+}
+
+/* When the hero carries the page title, the content that follows is its lede:
+   keep the two as close as a title and lede inside the content region. */
+.hero:has(.page-title) ~ .layout {
+  padding-top: var(--space-md);
 }
 
 .layout--has-sidebar {
@@ -66,22 +74,22 @@
 /*
  * Vertical rhythm.
  *
- * Canvas places components as direct children of the content region, so the
- * gap between them is set here once. Components must not carry outer margins
- * of their own; a component that needs to sit closer to the one before it
- * gets a rule below.
+ * Components stack either as direct children of the content region, or, on a
+ * Canvas page, inside the main content block that renders the page entity —
+ * one level deeper. Both levels get the same gap. Components must not carry
+ * outer margins of their own; a component that needs to sit closer to the one
+ * before it gets a rule below.
  */
-.region-content > * + * {
+.region-content > * + *,
+.region-content > .block-system-main-block > * + * {
   margin-top: var(--space-section);
 }
 
-/* The intro: the lede and what follows it stay close to the page title. */
-.region-content > .block-page-title-block + * {
-  margin-top: var(--space-md);
-}
-
+/* The intro: what follows the lede stays close to it. */
 .region-content > .text--lede + *,
-.region-content > .block:has(> .text--lede) + * {
+.region-content > .block:has(> .text--lede) + *,
+.region-content > .block-system-main-block > .text--lede + *,
+.region-content > .block-system-main-block > .block:has(> .text--lede) + * {
   margin-top: var(--space-lg);
 }
 

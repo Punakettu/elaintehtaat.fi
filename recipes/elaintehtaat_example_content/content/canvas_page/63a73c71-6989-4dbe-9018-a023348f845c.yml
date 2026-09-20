@@ -58,9 +58,6 @@ default:
         label_display: '0'
         views_label: ''
         items_per_page: null
-  page_variant:
-    -
-      value: landing_page
   path:
     -
       alias: /front
@@ -137,13 +134,85 @@ translations:
           label_display: '0'
           views_label: ''
           items_per_page: null
-    page_variant:
-      -
-        value: landing_page
     path:
       -
         alias: /front
         langcode: en
+    image:
+      -
+        entity: 25fb4cff-28ee-40a3-8bdf-c1aa43ee73f0
+    revision_translation_affected:
+      -
+        value: true
+    metatags:
+      -
+        value: '{"canonical_url":"[canvas_page:url]","description":"[canvas_page:description]","image_src":"[canvas_page:image:entity:field_media_image:entity:url]","title":"[canvas_page:title] | [site:name]"}'
+    content_translation_source:
+      -
+        value: fi
+    content_translation_outdated:
+      -
+        value: false
+    content_translation_uid:
+      -
+        target_id: 0
+  sv:
+    revision_user:
+      -
+        target_id: 1
+    status:
+      -
+        value: true
+    owner:
+      -
+        target_id: 1
+    title:
+      -
+        value: Bllalakjflskef
+    components:
+      -
+        uuid: 001d9f11-5358-49e2-91f9-8fc89f511cb2
+        component_id: sdc.elaintehtaat.text
+        inputs:
+          text:
+            value: '<p>afljekajflkajlksefjae</p>'
+            format: canvas_html_block
+          style: lede
+          tone: muted
+      -
+        uuid: 871b8e1a-e664-4774-b9f9-d0f56d5fd3bb
+        component_id: block.elaintehtaat_key_numbers
+        inputs:
+          label: Avainluvut
+          label_display: '0'
+      -
+        uuid: 578536a9-cb65-417a-bc65-6f3a0a8ba662
+        component_id: block.views_block.recent_media-block_1
+        inputs:
+          label: 'Recent media'
+          label_display: '0'
+          views_label: ''
+          items_per_page: null
+      -
+        uuid: f4a15a69-fb43-4ec9-af6d-30201d060c80
+        component_id: block.views_block.albums-block_1
+        inputs:
+          label: Albumit
+          label_display: visible
+          views_label: ''
+          items_per_page: null
+      -
+        uuid: 1057d9ec-b797-40dc-9b1c-9fdd481eca2d
+        component_id: block.views_block.projects-block_1
+        inputs:
+          label: Projektit
+          label_display: '0'
+          views_label: ''
+          items_per_page: null
+    path:
+      -
+        alias: /front
+        langcode: sv
     image:
       -
         entity: 25fb4cff-28ee-40a3-8bdf-c1aa43ee73f0

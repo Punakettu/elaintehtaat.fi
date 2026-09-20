@@ -1,28 +1,63 @@
-{% extends "field.html.twig" %}
 {#
 /**
  * @file
- * Default theme implementation for a text field.
+ * Theme override for a formatted text field.
  *
- * A 'clearfix' class is added, because 'text' fields have a 'format' property
- * that allows a Text Format to be associated with the entered text, which then
- * applies filtering on output. A common use case is to align images to the left
- * or right, and without this 'clearfix' class, such aligned images may be
- * rendered outside of the 'text' field formatter's boundaries, and hence
- * overlap with other fields. By setting the 'clearfix' class on all 'text'
- * fields, we prevent that.
+ * Each item renders through the Text component so that editor-entered text
+ * on entity pages (album and project descriptions) is set the same way as the
+ * text on Canvas pages: same measure, same list styling.
  *
- * @see https://www.drupal.org/node/2358529
+ * The 'clearfix' and 'text-formatted' classes of the core template are kept
+ * for aligned images and for default styling of base elements.
  *
- * A 'text-formatted' class is added to assist with default styling of base
- * elements such as paragraphs and lists that may not have classes assigned to
- * them. This allows user entered content to have default styling without
- * interfering with the styles of other UI components such as system generated
- * lists or other dynamic content.
- *
- * @see https://www.drupal.org/node/2539860
- *
- * @ingroup themeable
+ * @see field.html.twig
+ * @see modules/custom/elaintehtaat/components/text
  */
 #}
-{% set attributes = attributes.addClass('clearfix', 'text-formatted') %}
+{%
+  set classes = [
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+    'clearfix',
+    'text-formatted',
+  ]
+%}
+{%
+  set title_classes = [
+    'field__label',
+    label_display == 'visually_hidden' ? 'visually-hidden',
+  ]
+%}
+
+{% if label_hidden and not multiple %}
+  {% for item in items %}
+    {% include 'elaintehtaat:text' with {
+      attributes: attributes.addClass(classes, 'field__item'),
+      text: item.content,
+      style: 'body',
+      tone: 'default',
+    } only %}
+  {% endfor %}
+{% else %}
+  <div{{ attributes.addClass(classes) }}>
+    {% if not label_hidden %}
+      <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
+    {% endif %}
+    {% if multiple %}
+      <div class="field__items">
+    {% endif %}
+    {% for item in items %}
+      {% include 'elaintehtaat:text' with {
+        attributes: item.attributes.addClass('field__item'),
+        text: item.content,
+        style: 'body',
+        tone: 'default',
+      } only %}
+    {% endfor %}
+    {% if multiple %}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}
