@@ -1,0 +1,11 @@
+uuid: f7fe37a4-cfa2-494f-9457-182f1680eb8b
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.tile
+label: Tile
+description: 'Image tile for gallery listings such as the front page.'
+targetEntityType: media
+cache: true

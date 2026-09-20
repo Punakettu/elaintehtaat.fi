@@ -1,0 +1,79 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 49938397-cbf9-427f-8180-328cfe38fbbf
+  bundle: project
+  default_langcode: en
+translations:
+  fi:
+    revision_uid:
+      -
+        target_id: 1
+    status:
+      -
+        value: true
+    uid:
+      -
+        target_id: 1
+    title:
+      -
+        value: 'Eläintehtaat 2024'
+    promote:
+      -
+        value: true
+    sticky:
+      -
+        value: false
+    revision_translation_affected:
+      -
+        value: true
+    path:
+      -
+        alias: /elaintehtaat-2024
+        langcode: fi
+    content_translation_source:
+      -
+        value: und
+    content_translation_outdated:
+      -
+        value: false
+    field_description:
+      -
+        value: '<p>Eläintehtaat 2024 on arkiston ensimmäinen dokumentointiprojekti. Kevään ja syksyn 2024 välillä riippumattomat kuvaajat vierailivat sikaloissa, broilerihalleissa ja turkistarhoilla eri puolilla Etelä- ja Länsi-Suomea ja tallensivat tavallisten, luvallisten tuotantotilojen arkea: eläintiheyttä, lattiarakenteita, virikkeitä ja eläinten kuntoa. Aineisto julkaistaan albumi kerrallaan, jotta toimittajat, tutkijat ja kansalaiset voivat nähdä, miltä suomalaisen eläintuotannon luvut näyttävät käytännössä.</p>'
+        format: basic_html
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Eläintehtaat 2024'
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /elaintehtaat-2024
+      langcode: en
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  field_description:
+    -
+      value: '<p>Eläintehtaat 2024 is the archive’s first documentation project. Between spring and autumn 2024, independent photographers visited pig, broiler and fur farms across southern and western Finland and recorded everyday conditions on ordinary, permitted production sites: stocking density, flooring, enrichment and the state of the animals. The material is published album by album so that journalists, researchers and the public can see what the figures behind Finnish animal production look like in practice.</p>'
+      format: basic_html

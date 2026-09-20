@@ -1,0 +1,24 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 99cab6e5-061c-44b7-a7d1-3707b2afeaaf
+  default_langcode: fi
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 55470979241_a8f5a5e8c8_k.jpg
+  uri:
+    -
+      value: 'public://2026-09/55470979241_a8f5a5e8c8_k.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 603127
+  status:
+    -
+      value: true

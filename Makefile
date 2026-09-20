@@ -23,6 +23,8 @@ install:       ## Fresh Drupal install from config/sync (drops existing DB!)
 	$(PHP) drush site:install --existing-config --account-name=admin --account-pass=admin -y
 	$(PHP) drush s3fs:refresh-cache
 	$(PHP) drush cache:rebuild
+	$(PHP) drush recipe:apply /var/www/html/recipes/elaintehtaat_example_content
+	$(PHP) drush pathauto:aliases-generate all canonical_entities:node -y
 	$(PHP) drush uli
 
 config-export: ## Export active config to config/sync

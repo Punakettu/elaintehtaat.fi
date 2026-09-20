@@ -1,8 +1,12 @@
 name: 'Eläintehtaat example content'
-description: 'Example content for local development: the About page in English and Finnish, species, use and licence taxonomy terms, and the main and footer menu links.'
+description: 'Example content for local development: the About page in English and Finnish, species, use and licence taxonomy terms, the main and footer menu links, and an example project with two albums and their images.'
 type: 'Content'
 install:
   - content_translation
+  - datetime
+  - file
+  - image
+  - media
   - menu_link_content
   - node
   - taxonomy

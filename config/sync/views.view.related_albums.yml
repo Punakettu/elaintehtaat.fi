@@ -335,7 +335,7 @@ display:
         options:
           query_comment: ''
           disable_sql_rewrite: false
-          distinct: false
+          distinct: true
           replica: false
           query_tags: {  }
       relationships:
@@ -380,6 +380,7 @@ display:
       display_extenders: {  }
       block_description: 'Albums of the same project'
       block_hide_empty: true
+      rendering_language: '***LANGUAGE_language_interface***'
     cache_metadata:
       max-age: -1
       contexts:

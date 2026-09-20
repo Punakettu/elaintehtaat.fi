@@ -1,0 +1,24 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 81695ca9-8e3c-47f3-a4b4-4d3f31e9eb00
+  default_langcode: fi
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: akaa-6116.jpg
+  uri:
+    -
+      value: 'public://2026-09/akaa-6116.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 508565
+  status:
+    -
+      value: true

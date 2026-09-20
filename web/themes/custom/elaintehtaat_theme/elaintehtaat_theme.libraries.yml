@@ -144,3 +144,13 @@ related-albums:
   css:
     component:
       css/components/related-albums.css: {  }
+media-tile:
+  version: VERSION
+  css:
+    component:
+      css/components/media-tile.css: {  }
+featured:
+  version: VERSION
+  css:
+    component:
+      css/components/featured.css: {  }

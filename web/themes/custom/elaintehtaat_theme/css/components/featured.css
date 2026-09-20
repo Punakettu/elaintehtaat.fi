@@ -1,0 +1,42 @@
+/**
+ * @file
+ * "Featured" media listing on the front page.
+ *
+ * @see templates/views/views-view--frontpage--page-1.html.twig
+ */
+
+.featured {
+  margin-bottom: clamp(40px, 6vh, 72px);
+}
+
+.featured__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.featured__title {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: -0.015em;
+}
+
+.featured__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+@media (max-width: 1080px) {
+  .featured__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .featured__grid {
+    grid-template-columns: 1fr;
+  }
+}

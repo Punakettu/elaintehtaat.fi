@@ -27,3 +27,6 @@ msgid "@count media item"
 msgid_plural "@count media"
 msgstr[0] "@count mediatiedosto"
 msgstr[1] "@count mediaa"
+
+msgid "Featured"
+msgstr "Esiin nostettua"
