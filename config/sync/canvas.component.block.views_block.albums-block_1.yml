@@ -6,25 +6,14 @@ dependencies:
     - views.view.albums
   module:
     - views
-active_version: 335b1cae11aa9efe
+active_version: afaf48238626ccd7
 versioned_properties:
   active:
     settings:
       default_settings:
         id: 'views_block:albums-block_1'
-        label: Albumit
-        label_display: '0'
-        provider: views
-        views_label: ''
-        items_per_page: null
-    fallback_metadata:
-      slot_definitions: null
-  afaf48238626ccd7:
-    settings:
-      default_settings:
-        id: 'views_block:albums-block_1'
         label: Albums
-        label_display: visible
+        label_display: '0'
         provider: views
         views_label: ''
         items_per_page: null
@@ -41,7 +30,18 @@ versioned_properties:
         items_per_page: null
     fallback_metadata:
       slot_definitions: null
-label: Albumit
+  afaf48238626ccd7:
+    settings:
+      default_settings:
+        id: 'views_block:albums-block_1'
+        label: Albums
+        label_display: visible
+        provider: views
+        views_label: ''
+        items_per_page: null
+    fallback_metadata:
+      slot_definitions: null
+label: Albums
 id: block.views_block.albums-block_1
 provider: views
 source: block

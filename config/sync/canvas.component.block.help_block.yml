@@ -4,18 +4,9 @@ status: false
 dependencies:
   module:
     - help
-active_version: efaa31a1945a735a
+active_version: af8568475f7526ac
 versioned_properties:
   active:
-    settings:
-      default_settings:
-        id: help_block
-        label: Ohje
-        label_display: '0'
-        provider: help
-    fallback_metadata:
-      slot_definitions: null
-  af8568475f7526ac:
     settings:
       default_settings:
         id: help_block
@@ -33,7 +24,16 @@ versioned_properties:
         provider: help
     fallback_metadata:
       slot_definitions: null
-label: Ohje
+  af8568475f7526ac:
+    settings:
+      default_settings:
+        id: help_block
+        label: Help
+        label_display: '0'
+        provider: help
+    fallback_metadata:
+      slot_definitions: null
+label: Help
 id: block.help_block
 provider: help
 source: block

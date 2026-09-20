@@ -78,3 +78,21 @@ msgstr "Kuva: @author / @organisation"
 
 msgid "No separate caption. Part of the album <a href=\"@album_url\">@album_title</a>, see the album for details."
 msgstr "Ei erillistä kuvatekstiä. Osa albumia <a href=\"@album_url\">@album_title</a>, katso albumin kuvaus."
+
+msgid "Date"
+msgstr "Päivämäärä"
+
+msgid "Species"
+msgstr "Laji"
+
+msgid "Use"
+msgstr "Käyttö"
+
+msgid "Project"
+msgstr "Projekti"
+
+msgid "Metadata card"
+msgstr "Metatietokortti"
+
+msgid "The date, species, use, project and licence of the album, as one card."
+msgstr "Albumin päivämäärä, laji, käyttö, projekti ja lisenssi yhtenä korttina."

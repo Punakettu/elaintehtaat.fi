@@ -4,18 +4,9 @@ status: true
 dependencies:
   module:
     - elaintehtaat
-active_version: c741add0e71c4510
+active_version: 39bdc99c20cdcd66
 versioned_properties:
   active:
-    settings:
-      default_settings:
-        id: elaintehtaat_key_numbers
-        label: Avainluvut
-        label_display: '0'
-        provider: elaintehtaat
-    fallback_metadata:
-      slot_definitions: null
-  39bdc99c20cdcd66:
     settings:
       default_settings:
         id: elaintehtaat_key_numbers
@@ -33,7 +24,16 @@ versioned_properties:
         provider: elaintehtaat
     fallback_metadata:
       slot_definitions: null
-label: Avainluvut
+  39bdc99c20cdcd66:
+    settings:
+      default_settings:
+        id: elaintehtaat_key_numbers
+        label: 'Key numbers'
+        label_display: '0'
+        provider: elaintehtaat
+    fallback_metadata:
+      slot_definitions: null
+label: 'Key numbers'
 id: block.elaintehtaat_key_numbers
 provider: elaintehtaat
 source: block

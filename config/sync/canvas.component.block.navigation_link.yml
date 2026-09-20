@@ -4,21 +4,9 @@ status: false
 dependencies:
   module:
     - navigation
-active_version: d2342aeb14a97f9d
+active_version: d20fb2310aabc41e
 versioned_properties:
   active:
-    settings:
-      default_settings:
-        id: navigation_link
-        label: Linkki
-        label_display: '0'
-        provider: navigation
-        title: ''
-        uri: ''
-        icon_class: ''
-    fallback_metadata:
-      slot_definitions: null
-  d20fb2310aabc41e:
     settings:
       default_settings:
         id: navigation_link
@@ -42,7 +30,19 @@ versioned_properties:
         icon_class: ''
     fallback_metadata:
       slot_definitions: null
-label: Linkki
+  d20fb2310aabc41e:
+    settings:
+      default_settings:
+        id: navigation_link
+        label: Link
+        label_display: '0'
+        provider: navigation
+        title: ''
+        uri: ''
+        icon_class: ''
+    fallback_metadata:
+      slot_definitions: null
+label: Link
 id: block.navigation_link
 provider: navigation
 source: block

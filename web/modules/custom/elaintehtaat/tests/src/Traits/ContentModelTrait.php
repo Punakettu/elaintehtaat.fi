@@ -53,6 +53,16 @@ trait ContentModelTrait {
   ];
 
   /**
+   * The vocabulary of the species an album documents.
+   */
+  public const string SPECIES_VOCABULARY = 'species';
+
+  /**
+   * The vocabulary of the kinds of production an album documents.
+   */
+  public const string USE_VOCABULARY = 'use';
+
+  /**
    * Installs the schemas and config the content model needs, then builds it.
    */
   protected function installContentModel(): void {
@@ -79,6 +89,12 @@ trait ContentModelTrait {
 
     Vocabulary::create(['vid' => Licence::BUNDLE, 'name' => 'Licence'])->save();
     $this->createField('taxonomy_term', Licence::BUNDLE, 'field_licence_link', 'link');
+    Vocabulary::create(['vid' => self::SPECIES_VOCABULARY, 'name' => 'Species'])->save();
+    Vocabulary::create(['vid' => self::USE_VOCABULARY, 'name' => 'Use'])->save();
+
+    $this->createField('node', Album::BUNDLE, 'field_license', 'entity_reference', ['target_type' => 'taxonomy_term']);
+    $this->createField('node', Album::BUNDLE, 'field_species', 'entity_reference', ['target_type' => 'taxonomy_term'], FieldStorageConfig::CARDINALITY_UNLIMITED);
+    $this->createField('node', Album::BUNDLE, 'field_use', 'entity_reference', ['target_type' => 'taxonomy_term'], FieldStorageConfig::CARDINALITY_UNLIMITED);
 
     $this->createField('media', Image::BUNDLE, 'field_caption', 'text');
     $this->createField('media', Image::BUNDLE, 'field_date', 'datetime', ['datetime_type' => 'date']);
@@ -146,6 +162,15 @@ trait ContentModelTrait {
     $media->save();
     $this->assertInstanceOf(Image::class, $media);
     return $media;
+  }
+
+  /**
+   * Creates a term in one of the site's vocabularies.
+   */
+  protected function createTerm(string $vid, string $name): Term {
+    $term = Term::create(['vid' => $vid, 'name' => $name]);
+    $term->save();
+    return $term;
   }
 
   /**

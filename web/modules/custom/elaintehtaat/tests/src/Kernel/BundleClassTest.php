@@ -11,8 +11,6 @@ use Drupal\elaintehtaat\Entity\Image;
 use Drupal\elaintehtaat\Entity\Licence;
 use Drupal\elaintehtaat\Entity\Project;
 use Drupal\media\MediaInterface;
-use Drupal\taxonomy\Entity\Term;
-use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\Tests\elaintehtaat\Traits\ContentModelTrait;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 use PHPUnit\Framework\Attributes\Group;
@@ -66,9 +64,7 @@ class BundleClassTest extends KernelTestBase {
    * Image media and licence terms are loaded as their bundle class too.
    */
   public function testMediaAndTermsUseTheirBundleClass(): void {
-    Vocabulary::create(['vid' => 'species', 'name' => 'Species'])->save();
-    $species = Term::create(['vid' => 'species', 'name' => 'Fox']);
-    $species->save();
+    $species = $this->createTerm(self::SPECIES_VOCABULARY, 'Fox');
 
     $media = $this->createImageMedia();
     $licence = $this->createLicence();

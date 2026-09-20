@@ -4,18 +4,9 @@ status: false
 dependencies:
   module:
     - language
-active_version: 3ef7370feb269390
+active_version: c711bf90981bea7d
 versioned_properties:
   active:
-    settings:
-      default_settings:
-        id: 'language_block:language_interface'
-        label: 'Language switcher (Käyttöliittymän teksti)'
-        label_display: '0'
-        provider: language
-    fallback_metadata:
-      slot_definitions: null
-  c711bf90981bea7d:
     settings:
       default_settings:
         id: 'language_block:language_interface'
@@ -33,7 +24,16 @@ versioned_properties:
         provider: language
     fallback_metadata:
       slot_definitions: null
-label: 'Language switcher (Käyttöliittymän teksti)'
+  c711bf90981bea7d:
+    settings:
+      default_settings:
+        id: 'language_block:language_interface'
+        label: 'Language switcher (Interface text)'
+        label_display: '0'
+        provider: language
+    fallback_metadata:
+      slot_definitions: null
+label: 'Language switcher (Interface text)'
 id: block.language_block.language_interface
 provider: language
 source: block

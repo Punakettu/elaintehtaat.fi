@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.media.tile
     - field.field.node.album.field_album_media
     - field.field.node.album.field_date
     - field.field.node.album.field_description
@@ -13,7 +12,6 @@ dependencies:
     - field.field.node.album.field_use
     - node.type.album
   module:
-    - datetime
     - text
     - user
 id: node.album.default
@@ -21,67 +19,36 @@ targetEntityType: node
 bundle: album
 mode: default
 content:
+  album_meta:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
   field_album_media:
     type: entity_reference_entity_view
-    label: hidden
+    label: above
     settings:
       view_mode: tile
       link: false
     third_party_settings: {  }
-    weight: 104
-    region: content
-  field_date:
-    type: datetime_default
-    label: above
-    settings:
-      timezone_override: ''
-      format_type: medium
-    third_party_settings: {  }
-    weight: 103
+    weight: 3
     region: content
   field_description:
     type: text_default
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 101
-    region: content
-  field_license:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 102
-    region: content
-  field_project:
-    type: entity_reference_label
-    label: inline
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 99
-    region: content
-  field_species:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 105
-    region: content
-  field_use:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 106
+    weight: 1
     region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 0
     region: content
 hidden:
+  field_date: true
+  field_license: true
+  field_project: true
+  field_species: true
+  field_use: true
   langcode: true

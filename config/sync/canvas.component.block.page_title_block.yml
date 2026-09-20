@@ -2,18 +2,9 @@ uuid: 8959b970-5a07-47a4-b80f-2783e5259e6e
 langcode: fi
 status: false
 dependencies: {  }
-active_version: daa4f90b2d7912e5
+active_version: 5605369e3b7553a1
 versioned_properties:
   active:
-    settings:
-      default_settings:
-        id: page_title_block
-        label: 'Sivun otsikko'
-        label_display: '0'
-        provider: core
-    fallback_metadata:
-      slot_definitions: null
-  5605369e3b7553a1:
     settings:
       default_settings:
         id: page_title_block
@@ -31,7 +22,16 @@ versioned_properties:
         provider: core
     fallback_metadata:
       slot_definitions: null
-label: 'Sivun otsikko'
+  5605369e3b7553a1:
+    settings:
+      default_settings:
+        id: page_title_block
+        label: 'Page title'
+        label_display: '0'
+        provider: core
+    fallback_metadata:
+      slot_definitions: null
+label: 'Page title'
 id: block.page_title_block
 provider: core
 source: block
