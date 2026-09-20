@@ -1,0 +1,19 @@
+uuid: afc82b4d-7ccb-4f37-b78a-07fe01cb49c1
+langcode: en
+status: true
+dependencies:
+  module:
+    - canvas
+    - path
+id: canvas_page.canvas_page.path
+field_name: path
+entity_type: canvas_page
+bundle: canvas_page
+label: 'URL alias'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

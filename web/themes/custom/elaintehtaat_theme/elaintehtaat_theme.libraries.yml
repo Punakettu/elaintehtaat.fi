@@ -18,6 +18,7 @@ global:
     component:
       css/components/masthead.css: {  }
       css/components/hero.css: {  }
+      css/components/block.css: {  }
       css/components/footer.css: {  }
       css/components/buttons.css: {  }
       css/components/lang-toggle.css: {  }

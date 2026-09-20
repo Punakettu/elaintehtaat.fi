@@ -36,6 +36,13 @@
   --gutter: clamp(20px, 4vw, 64px);
   --masthead-height: 64px;
 
+  /* Spacing. --space-section separates the components stacked on a page. */
+  --space-xs: 8px;
+  --space-sm: 14px;
+  --space-md: 20px;
+  --space-lg: 30px;
+  --space-section: clamp(44px, 7vh, 84px);
+
   /* Shape & motion. */
   --radius-sm: 7px;
   --radius-md: 9px;

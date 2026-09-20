@@ -5,10 +5,6 @@
  * @see templates/views/views-view--recent-media--block-1.html.twig
  */
 
-.featured {
-  margin-bottom: clamp(40px, 6vh, 72px);
-}
-
 .featured__head {
   display: flex;
   align-items: flex-end;

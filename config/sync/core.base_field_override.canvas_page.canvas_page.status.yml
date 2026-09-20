@@ -1,0 +1,22 @@
+uuid: b46cba69-9548-476a-8eb9-049f7d5d77d1
+langcode: en
+status: true
+dependencies:
+  module:
+    - canvas
+id: canvas_page.canvas_page.status
+field_name: status
+entity_type: canvas_page
+bundle: canvas_page
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: true
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

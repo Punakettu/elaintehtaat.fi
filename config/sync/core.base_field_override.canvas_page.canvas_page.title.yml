@@ -1,0 +1,18 @@
+uuid: 70122a13-7ac4-428b-949c-6f3b0700d3e6
+langcode: en
+status: true
+dependencies:
+  module:
+    - canvas
+id: canvas_page.canvas_page.title
+field_name: title
+entity_type: canvas_page
+bundle: canvas_page
+label: Title
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

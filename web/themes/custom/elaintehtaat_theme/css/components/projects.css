@@ -5,10 +5,6 @@
  * @see templates/views/views-view--projects--block-1.html.twig
  */
 
-.projects {
-  margin-top: clamp(44px, 7vh, 84px);
-}
-
 .projects__head {
   display: flex;
   align-items: baseline;

@@ -1,0 +1,21 @@
+uuid: 047fc205-29d2-4cb9-9e80-276342b510bd
+langcode: en
+status: true
+dependencies:
+  module:
+    - canvas
+    - metatag
+id: canvas_page.canvas_page.metatags
+field_name: metatags
+entity_type: canvas_page
+bundle: canvas_page
+label: Metatags
+description: 'The meta tags for the entity.'
+required: false
+translatable: true
+default_value:
+  -
+    value: '{"title":"[canvas_page:title] | [site:name]","description":"[canvas_page:description]","canonical_url":"[canvas_page:url]","image_src":"[canvas_page:image:entity:field_media_image:entity:url]"}'
+default_value_callback: ''
+settings: {  }
+field_type: metatag

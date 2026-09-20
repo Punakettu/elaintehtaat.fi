@@ -11,10 +11,12 @@ dependencies:
     - taxonomy.vocabulary.use
   module:
     - canvas
+    - canvas_translate
     - content_translation
     - contextual
     - file
     - media
+    - menu_admin_per_menu
     - menu_link_content
     - node
     - system
@@ -34,6 +36,8 @@ permissions:
   - 'access files overview'
   - 'access media overview'
   - 'access taxonomy overview'
+  - 'administer footer menu items'
+  - 'administer main menu items'
   - 'change own username'
   - 'create album content'
   - 'create canvas_page'
@@ -75,6 +79,7 @@ permissions:
   - 'revert term revisions in species'
   - 'revert term revisions in use'
   - 'translate album node'
+  - 'translate canvas content'
   - 'translate editable entities'
   - 'translate image media'
   - 'translate licence taxonomy_term'

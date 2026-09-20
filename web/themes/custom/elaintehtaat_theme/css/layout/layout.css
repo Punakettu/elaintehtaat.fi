@@ -63,6 +63,28 @@
   min-width: 0;
 }
 
+/*
+ * Vertical rhythm.
+ *
+ * Canvas places components as direct children of the content region, so the
+ * gap between them is set here once. Components must not carry outer margins
+ * of their own; a component that needs to sit closer to the one before it
+ * gets a rule below.
+ */
+.region-content > * + * {
+  margin-top: var(--space-section);
+}
+
+/* The intro: the lede and what follows it stay close to the page title. */
+.region-content > .block-page-title-block + * {
+  margin-top: var(--space-md);
+}
+
+.region-content > .text--lede + *,
+.region-content > .block:has(> .text--lede) + * {
+  margin-top: var(--space-lg);
+}
+
 /* The media page fills the viewport by itself; the document must not scroll. */
 .page--media {
   overflow: hidden;
