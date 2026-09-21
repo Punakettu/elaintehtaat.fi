@@ -135,6 +135,11 @@ user:
     component:
       css/components/user.css:
         weight: -10
+browse:
+  version: VERSION
+  css:
+    component:
+      css/components/browse.css: {  }
 album-card:
   version: VERSION
   css:

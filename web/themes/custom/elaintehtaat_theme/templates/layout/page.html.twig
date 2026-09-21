@@ -38,6 +38,11 @@
  * - page.footer: Items for the footer region.
  * - page.breadcrumb: Items for the breadcrumb region.
  *
+ * Other variables:
+ * - layout_modifier: Extra classes for the main content wrapper, set by
+ *   \Drupal\elaintehtaat_theme\Hook\ElaintehtaatThemeHooks for pages whose
+ *   layout differs from the standard content-plus-sidebar one.
+ *
  * @see \Drupal\Core\Theme\ThemePreprocess::preprocessPage()
  * @see html.html.twig
  */
@@ -79,7 +84,7 @@
       {{ page.help }}
     </div>
 
-    <div class="shell layout{{ page.sidebar ? ' layout--has-sidebar' }}">
+    <div class="shell layout{{ page.sidebar ? ' layout--has-sidebar' }}{{ layout_modifier ? ' ' ~ layout_modifier }}">
       <div class="layout__content">
         {{ page.content }}
       </div>

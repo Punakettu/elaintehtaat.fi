@@ -18,6 +18,9 @@ abstract class KernelTestBase extends CoreKernelTestBase {
     'path_alias',
     'token',
     'pathauto',
+    // A dependency of the module: it provides the album data processor and the
+    // index the album hooks mark items as changed on.
+    'search_api',
     'elaintehtaat',
   ];
 

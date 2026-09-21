@@ -1,0 +1,5 @@
+name: Suodattimet
+processor_configs:
+  reset_facets:
+    settings:
+      link_text: 'Tyhjennä suodattimet'

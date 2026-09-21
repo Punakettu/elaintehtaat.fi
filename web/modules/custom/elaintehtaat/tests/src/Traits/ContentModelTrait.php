@@ -96,7 +96,7 @@ trait ContentModelTrait {
     $this->createField('node', Album::BUNDLE, 'field_species', 'entity_reference', ['target_type' => 'taxonomy_term'], FieldStorageConfig::CARDINALITY_UNLIMITED);
     $this->createField('node', Album::BUNDLE, 'field_use', 'entity_reference', ['target_type' => 'taxonomy_term'], FieldStorageConfig::CARDINALITY_UNLIMITED);
 
-    $this->createField('media', Image::BUNDLE, 'field_caption', 'text');
+    $this->createField('media', Image::BUNDLE, 'field_caption', 'text', translatable: TRUE);
     $this->createField('media', Image::BUNDLE, 'field_date', 'datetime', ['datetime_type' => 'date']);
     $this->createField('media', Image::BUNDLE, 'field_author', 'string');
     $this->createField('media', Image::BUNDLE, 'field_licence', 'entity_reference', ['target_type' => 'taxonomy_term']);
@@ -104,8 +104,12 @@ trait ContentModelTrait {
 
   /**
    * Creates a configurable field, storage included, on one bundle.
+   *
+   * Fields are created untranslatable, as all of the site's own fields are
+   * except the ones holding prose: a translation of an album shares its
+   * species, use, project and date with the original.
    */
-  protected function createField(string $entity_type, string $bundle, string $name, string $type, array $settings = [], int $cardinality = 1): void {
+  protected function createField(string $entity_type, string $bundle, string $name, string $type, array $settings = [], int $cardinality = 1, bool $translatable = FALSE): void {
     FieldStorageConfig::create([
       'field_name' => $name,
       'entity_type' => $entity_type,
@@ -117,6 +121,7 @@ trait ContentModelTrait {
       'field_name' => $name,
       'entity_type' => $entity_type,
       'bundle' => $bundle,
+      'translatable' => $translatable,
     ])->save();
   }
 

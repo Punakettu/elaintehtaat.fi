@@ -33,3 +33,9 @@ msgstr "Esiin nostettua"
 
 msgid "Projects"
 msgstr "Projektit"
+
+msgid "Browse the archive"
+msgstr "Selaa arkistoa"
+
+msgid "The whole library"
+msgstr "Koko aineisto"

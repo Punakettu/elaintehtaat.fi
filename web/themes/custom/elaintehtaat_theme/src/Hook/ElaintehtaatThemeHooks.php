@@ -19,6 +19,16 @@ class ElaintehtaatThemeHooks {
   public const string MEDIA_PAGE_ROUTE = 'elaintehtaat.media_page';
 
   /**
+   * Route of the browse page, whose filter sidebar sits on the left.
+   */
+  public const string BROWSE_ROUTE = 'view.browse.page_1';
+
+  /**
+   * Layout classes the browse page adds to the main content wrapper.
+   */
+  public const string BROWSE_LAYOUT = 'shell--wide layout--browse';
+
+  /**
    * Constructs the theme hook implementations.
    */
   public function __construct(
@@ -51,10 +61,32 @@ class ElaintehtaatThemeHooks {
   }
 
   /**
+   * Implements hook_preprocess_HOOK() for page templates.
+   *
+   * The browse page puts its filters in the sidebar region, but the design
+   * wants them narrower and to the left of the results rather than in the
+   * standard right-hand sidebar, so the layout wrapper gets its own class.
+   *
+   * @see page.html.twig
+   * @see css/components/browse.css
+   */
+  #[Hook('preprocess_page')]
+  public function preprocessPage(array &$variables): void {
+    $variables['layout_modifier'] = $this->isBrowsePage() ? self::BROWSE_LAYOUT : '';
+  }
+
+  /**
    * Whether the current route is the media page.
    */
   protected function isMediaPage(): bool {
     return $this->routeMatch->getRouteName() === self::MEDIA_PAGE_ROUTE;
+  }
+
+  /**
+   * Whether the current route is the browse page.
+   */
+  protected function isBrowsePage(): bool {
+    return $this->routeMatch->getRouteName() === self::BROWSE_ROUTE;
   }
 
   /**

@@ -7,12 +7,11 @@ namespace Drupal\elaintehtaat\Hook;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Url;
+use Drupal\elaintehtaat\Album\AlbumLookup;
 use Drupal\elaintehtaat\Entity\Album;
 use Drupal\media\MediaInterface;
-use Drupal\node\NodeInterface;
 
 /**
  * Links media tiles to the media page of the album they belong to.
@@ -32,7 +31,7 @@ final readonly class MediaTileHooks {
   public const string VIEW_MODE = 'tile';
 
   public function __construct(
-    private EntityTypeManagerInterface $entityTypeManager,
+    private AlbumLookup $albumLookup,
     private EntityRepositoryInterface $entityRepository,
   ) {}
 
@@ -51,7 +50,7 @@ final readonly class MediaTileHooks {
     if ($album === NULL) {
       // Saving any album may add this item to an album or remove it from one.
       $cache->addCacheTags(['node_list:album']);
-      $album = $this->findAlbum($media);
+      $album = $this->albumLookup->newestAlbumOf($media);
     }
     if ($album !== NULL) {
       $album = $this->entityRepository->getTranslationFromContext($album);
@@ -89,26 +88,6 @@ final readonly class MediaTileHooks {
     $parent = $media->_referringItem?->getEntity();
 
     return $parent instanceof Album ? $parent : NULL;
-  }
-
-  /**
-   * Finds the newest published album containing the media item.
-   */
-  private function findAlbum(MediaInterface $media): ?Album {
-    $storage = $this->entityTypeManager->getStorage('node');
-    $ids = $storage->getQuery()
-      ->accessCheck(FALSE)
-      ->condition('type', Album::BUNDLE)
-      ->condition('status', NodeInterface::PUBLISHED)
-      ->condition('field_album_media.target_id', $media->id())
-      ->sort('created', 'DESC')
-      ->range(0, 1)
-      ->execute();
-    if (!$ids) {
-      return NULL;
-    }
-    $album = $storage->load($ids[array_key_first($ids)]);
-    return $album instanceof Album ? $album : NULL;
   }
 
 }

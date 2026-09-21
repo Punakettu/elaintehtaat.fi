@@ -1,0 +1,236 @@
+/**
+ * @file
+ * The browse page: the whole media library with a facet filter sidebar.
+ *
+ * The filters are facet blocks in the sidebar region. The standard layout puts
+ * that region to the right at 320px, so the browse layout narrows it and moves
+ * it in front of the results; the sidebar stays after the content in the
+ * document, where it reads in the right order without CSS.
+ *
+ * @see templates/views/views-view--browse--page-1.html.twig
+ * @see \Drupal\elaintehtaat_theme\Hook\ElaintehtaatThemeHooks::preprocessPage()
+ */
+
+/*
+ * Both selectors are needed to outweigh the standard sidebar layout, which
+ * .layout--has-sidebar sizes the other way round and drops to one column at
+ * 1080px. The filters are narrow enough to keep their column further down than
+ * that, so they follow the reference design and break at 900px instead.
+ */
+.layout--browse.layout--has-sidebar {
+  grid-template-columns: 248px minmax(0, 1fr);
+  gap: 36px;
+}
+
+.layout--browse .layout__sidebar {
+  order: -1;
+  position: sticky;
+}
+
+/* The filter groups are separate blocks, so the region does the spacing. */
+.layout--browse .layout__sidebar .region-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+@media (max-width: 900px) {
+  .layout--browse.layout--has-sidebar {
+    grid-template-columns: 1fr;
+  }
+
+  .layout--browse .layout__sidebar {
+    position: static;
+  }
+}
+
+/* The heading, with the result count beside it. */
+.browse__head {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 22px;
+}
+
+.browse__headline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.browse__title {
+  margin: 0;
+  font-size: 28px;
+  letter-spacing: -0.015em;
+}
+
+.browse__count {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 14px;
+}
+
+.browse__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+@media (max-width: 600px) {
+  .browse__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.browse__empty {
+  padding: 60px 0;
+  color: var(--color-text-muted);
+}
+
+/*
+ * Facet blocks.
+ *
+ * Each block is one filter group: its label is the group heading and its
+ * widget the chips. The blocks carry no card styling of their own, so the
+ * sidebar reads as one panel.
+ */
+.region-sidebar .block-facets,
+.region-sidebar .block-facets-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.region-sidebar .block-facets > h2,
+.region-sidebar .block-facets-summary > h2 {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+
+/*
+ * The summary block heads the whole filter panel, so it stays put; only its
+ * reset link comes and goes with the active filters.
+ */
+
+.facets-widget-links .item-list__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Chips: one per facet value, filled in when the filter is on. */
+.facets-widget-links .facet-item > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 28px;
+  padding: 3px 11px;
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  background: var(--color-surface);
+  font-size: 12.5px;
+  line-height: 1.3;
+  color: var(--color-text-muted);
+  border-bottom: 1px solid var(--color-line);
+  transition: border-color var(--transition-fast), color var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.facets-widget-links .facet-item > a:hover {
+  border-color: var(--color-line-strong);
+  color: var(--color-text);
+}
+
+.facets-widget-links .facet-item > a.is-active {
+  background: var(--color-accent-soft);
+  border-color: var(--color-accent-line);
+  color: var(--color-accent-text);
+}
+
+/*
+ * Facets writes the count and a "(-)" remove marker into the link. The design
+ * shows neither: an active chip is marked by a tick and removed by clicking
+ * it, which the link already does.
+ */
+.facets-widget-links .facet-item__count,
+.facets-widget-links .facet-item__status {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  width: 1px;
+  height: 1px;
+  word-wrap: normal;
+}
+
+.facets-widget-links .facet-item > a.is-active::before {
+  content: "\2713";
+  font-size: 11px;
+  line-height: 1;
+}
+
+/*
+ * The summary block: every active filter as a chip that removes itself, and a
+ * link that clears the lot. It heads the panel, so the reset link sits last.
+ */
+.block-facets-summary ul[data-drupal-facets-summary-id] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.block-facets-summary .facet-summary-item--facet > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 28px;
+  padding: 3px 11px;
+  border: 1px solid var(--color-accent-line);
+  border-radius: 999px;
+  background: var(--color-accent-soft);
+  font-size: 12.5px;
+  line-height: 1.3;
+  color: var(--color-accent-text);
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.block-facets-summary .facet-summary-item--facet > a:hover {
+  border-color: var(--color-accent-text);
+}
+
+/* The "(-)" marker facets writes into the link, read as a close icon. */
+.block-facets-summary .facet-item__status {
+  font-size: 0;
+}
+
+.block-facets-summary .facet-item__status::after {
+  content: "\00D7";
+  font-size: 13px;
+  line-height: 1;
+}
+
+.block-facets-summary .facet-summary-item--clear {
+  order: 1;
+  width: 100%;
+}
+
+.block-facets-summary .facet-summary-item--clear a {
+  font-size: 12px;
+  color: var(--color-accent-text);
+  border-bottom: 0;
+}
+
+.block-facets-summary .facet-summary-item--clear a:hover {
+  text-decoration: underline;
+}

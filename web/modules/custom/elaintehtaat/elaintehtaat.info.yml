@@ -14,5 +14,6 @@ dependencies:
   - drupal:path_alias
   - drupal:taxonomy
   - pathauto:pathauto
+  - search_api:search_api
 'interface translation project': elaintehtaat
 'interface translation server pattern': modules/custom/elaintehtaat/translations/%project.%language.po

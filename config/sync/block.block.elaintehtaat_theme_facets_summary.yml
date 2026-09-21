@@ -1,0 +1,29 @@
+uuid: f2d6af82-b98e-4535-8001-157ae9d7b659
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets_summary.facets_summary.browse_filters
+  module:
+    - facets_summary
+    - system
+  theme:
+    - elaintehtaat_theme
+id: elaintehtaat_theme_facets_summary
+theme: elaintehtaat_theme
+region: sidebar
+weight: -1
+provider: null
+plugin: 'facets_summary_block:browse_filters'
+settings:
+  id: 'facets_summary_block:browse_filters'
+  label: Filters
+  label_display: visible
+  provider: facets_summary
+  block_id: browse_filters
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /selaa
+

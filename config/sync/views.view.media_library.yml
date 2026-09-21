@@ -779,7 +779,7 @@ display:
       tags: {  }
   widget:
     id: widget
-    display_title: Widget
+    display_title: Widgetti
     display_plugin: page
     position: 2
     display_options:
