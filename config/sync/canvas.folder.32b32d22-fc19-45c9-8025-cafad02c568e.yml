@@ -1,0 +1,15 @@
+uuid: 32b32d22-fc19-45c9-8025-cafad02c568e
+langcode: fi
+status: true
+dependencies:
+  config:
+    - canvas.component.block.facet_block.album_species
+    - canvas.component.block.facet_block.album_use
+    - canvas.component.block.facet_block.album_year
+name: Facets
+configEntityTypeId: component
+weight: 0
+items:
+  - block.facet_block.album_species
+  - block.facet_block.album_use
+  - block.facet_block.album_year

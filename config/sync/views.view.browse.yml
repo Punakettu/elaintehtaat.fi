@@ -201,4 +201,3 @@ display:
         - 'config:facets.facet.album_species'
         - 'config:search_api.index.media'
         - 'search_api_list:media'
-

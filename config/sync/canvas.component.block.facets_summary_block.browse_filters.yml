@@ -1,0 +1,33 @@
+uuid: 5975c0a8-b67d-4323-900e-c7d6c88f8717
+langcode: fi
+status: true
+dependencies:
+  config:
+    - facets_summary.facets_summary.browse_filters
+  module:
+    - facets_summary
+active_version: a481b74e842bee9e
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'facets_summary_block:browse_filters'
+        label: Suodattimet
+        label_display: '0'
+        provider: facets_summary
+    fallback_metadata:
+      slot_definitions: null
+  90807d38f98ba792:
+    settings:
+      default_settings:
+        id: 'facets_summary_block:browse_filters'
+        label: 'Active filters'
+        label_display: '0'
+        provider: facets_summary
+    fallback_metadata:
+      slot_definitions: null
+label: Suodattimet
+id: block.facets_summary_block.browse_filters
+provider: facets_summary
+source: block
+source_local_id: 'facets_summary_block:browse_filters'

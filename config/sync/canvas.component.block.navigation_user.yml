@@ -4,18 +4,9 @@ status: false
 dependencies:
   module:
     - navigation
-active_version: 5d4be6131e6fe4a6
+active_version: 76143b508be5b129
 versioned_properties:
   active:
-    settings:
-      default_settings:
-        id: navigation_user
-        label: User
-        label_display: '0'
-        provider: navigation
-    fallback_metadata:
-      slot_definitions: null
-  76143b508be5b129:
     settings:
       default_settings:
         id: navigation_user
@@ -33,7 +24,16 @@ versioned_properties:
         provider: navigation
     fallback_metadata:
       slot_definitions: null
-label: User
+  76143b508be5b129:
+    settings:
+      default_settings:
+        id: navigation_user
+        label: Käyttäjä
+        label_display: '0'
+        provider: navigation
+    fallback_metadata:
+      slot_definitions: null
+label: Käyttäjä
 id: block.navigation_user
 provider: navigation
 source: block

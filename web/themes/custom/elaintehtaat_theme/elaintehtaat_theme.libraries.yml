@@ -175,3 +175,8 @@ project-row:
   css:
     component:
       css/components/project-row.css: {  }
+project-card:
+  version: VERSION
+  css:
+    component:
+      css/components/project-card.css: {  }

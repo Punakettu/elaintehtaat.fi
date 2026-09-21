@@ -4,18 +4,9 @@ status: false
 dependencies:
   module:
     - system
-active_version: 86a25cdac9ce0ae8
+active_version: fcb839ff78e55a5f
 versioned_properties:
   active:
-    settings:
-      default_settings:
-        id: system_breadcrumb_block
-        label: Breadcrumbs
-        label_display: '0'
-        provider: system
-    fallback_metadata:
-      slot_definitions: null
-  fcb839ff78e55a5f:
     settings:
       default_settings:
         id: system_breadcrumb_block
@@ -33,7 +24,16 @@ versioned_properties:
         provider: system
     fallback_metadata:
       slot_definitions: null
-label: Breadcrumbs
+  fcb839ff78e55a5f:
+    settings:
+      default_settings:
+        id: system_breadcrumb_block
+        label: Murupolku
+        label_display: '0'
+        provider: system
+    fallback_metadata:
+      slot_definitions: null
+label: Murupolku
 id: block.system_breadcrumb_block
 provider: system
 source: block

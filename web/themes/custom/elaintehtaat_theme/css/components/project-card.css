@@ -1,0 +1,147 @@
+/**
+ * @file
+ * The projects index page: its heading and the grid of project cards.
+ *
+ * @see templates/views/views-view--projects--page-1.html.twig
+ * @see templates/content/node--project--card.html.twig
+ */
+
+/* The heading, above the grid. */
+.projects-page__head {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 28px;
+}
+
+.projects-page__eyebrow {
+  margin: 0;
+}
+
+.projects-page__title {
+  margin: 0;
+  font-size: 30px;
+  letter-spacing: -0.015em;
+}
+
+.projects-page__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px 22px;
+}
+
+.projects-page__empty {
+  padding: 60px 0;
+  color: var(--color-text-muted);
+}
+
+.project-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/*
+ * The frame holds the card's proportions whatever the mosaic contains, clips
+ * the hover zoom, and is the backdrop a project without covers falls back to.
+ */
+.project-card__thumb {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-deep);
+}
+
+/*
+ * The zoom scales the mosaic rather than the images: overflow does not clip a
+ * replaced element, so scaling the images would push them over the gaps.
+ */
+.project-card__mosaic {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 4px;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+.project-card:hover .project-card__mosaic,
+.project-card:focus-within .project-card__mosaic {
+  transform: scale(1.045);
+}
+
+.project-card__mosaic > img {
+  width: 100%;
+  height: 100%;
+  /* Grid items are min-content wide by default, which a photo would stretch. */
+  min-width: 0;
+  min-height: 0;
+  object-fit: cover;
+}
+
+/*
+ * A project has as many covers as it has albums, up to three, and the mosaic
+ * fills the frame at every count rather than leaving a cell empty.
+ */
+
+/* One cover: the whole frame. */
+.project-card__mosaic > img:only-child {
+  grid-area: 1 / 1 / -1 / -1;
+}
+
+/* Two covers: a wide one beside a narrow one, both full height. */
+.project-card__mosaic > img:first-child:nth-last-child(2),
+.project-card__mosaic > img:first-child:nth-last-child(2) ~ img {
+  grid-row: 1 / -1;
+}
+
+/* Three covers: a wide one beside two stacked. */
+.project-card__mosaic > img:first-child:nth-last-child(3) {
+  grid-row: 1 / -1;
+}
+
+.project-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.project-card__eyebrow {
+  margin: 0;
+}
+
+.project-card__title {
+  margin: 0;
+  font-size: 19px;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+/* Stretch the title link over the whole card. */
+.project-card__title a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.project-card__blurb {
+  font-size: 13.5px;
+}
+
+.project-card__blurb p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 1080px) {
+  .projects-page__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .projects-page__grid {
+    grid-template-columns: 1fr;
+  }
+}

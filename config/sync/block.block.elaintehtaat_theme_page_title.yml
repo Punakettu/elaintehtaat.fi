@@ -21,5 +21,6 @@ visibility:
   request_path:
     id: request_path
     negate: true
-    pages: /selaa
-
+    pages: |-
+      /selaa
+      /projektit

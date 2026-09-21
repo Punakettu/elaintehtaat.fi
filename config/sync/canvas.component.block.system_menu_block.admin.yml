@@ -6,21 +6,9 @@ dependencies:
     - system.menu.admin
   module:
     - system
-active_version: 3405615e4b6a8ad1
+active_version: 811ef0cbb42bd597
 versioned_properties:
   active:
-    settings:
-      default_settings:
-        id: 'system_menu_block:admin'
-        label: Administration
-        label_display: '0'
-        provider: system
-        level: 1
-        depth: null
-        expand_all_items: false
-    fallback_metadata:
-      slot_definitions: null
-  811ef0cbb42bd597:
     settings:
       default_settings:
         id: 'system_menu_block:admin'
@@ -44,7 +32,19 @@ versioned_properties:
         expand_all_items: false
     fallback_metadata:
       slot_definitions: null
-label: Administration
+  811ef0cbb42bd597:
+    settings:
+      default_settings:
+        id: 'system_menu_block:admin'
+        label: Ylläpito
+        label_display: '0'
+        provider: system
+        level: 1
+        depth: null
+        expand_all_items: false
+    fallback_metadata:
+      slot_definitions: null
+label: Ylläpito
 id: block.system_menu_block.admin
 provider: system
 source: block

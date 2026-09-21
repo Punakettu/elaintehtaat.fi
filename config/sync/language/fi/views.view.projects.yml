@@ -7,3 +7,6 @@ display:
   block_1:
     display_options:
       block_description: Projektit
+  page_1:
+    display_options:
+      title: Dokumentointiprojektit

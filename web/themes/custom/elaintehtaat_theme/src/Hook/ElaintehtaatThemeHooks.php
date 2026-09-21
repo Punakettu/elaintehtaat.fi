@@ -29,6 +29,16 @@ class ElaintehtaatThemeHooks {
   public const string BROWSE_LAYOUT = 'shell--wide layout--browse';
 
   /**
+   * Route of the projects page, whose card grid wants the wide shell.
+   */
+  public const string PROJECTS_ROUTE = 'view.projects.page_1';
+
+  /**
+   * Layout class the projects page adds to the main content wrapper.
+   */
+  public const string PROJECTS_LAYOUT = 'shell--wide';
+
+  /**
    * Constructs the theme hook implementations.
    */
   public function __construct(
@@ -66,13 +76,19 @@ class ElaintehtaatThemeHooks {
    * The browse page puts its filters in the sidebar region, but the design
    * wants them narrower and to the left of the results rather than in the
    * standard right-hand sidebar, so the layout wrapper gets its own class.
+   * The projects page has no sidebar but wants the same wide shell.
    *
    * @see page.html.twig
    * @see css/components/browse.css
+   * @see css/components/project-card.css
    */
   #[Hook('preprocess_page')]
   public function preprocessPage(array &$variables): void {
-    $variables['layout_modifier'] = $this->isBrowsePage() ? self::BROWSE_LAYOUT : '';
+    $variables['layout_modifier'] = match ($this->routeMatch->getRouteName()) {
+      self::BROWSE_ROUTE => self::BROWSE_LAYOUT,
+      self::PROJECTS_ROUTE => self::PROJECTS_LAYOUT,
+      default => '',
+    };
   }
 
   /**
@@ -80,13 +96,6 @@ class ElaintehtaatThemeHooks {
    */
   protected function isMediaPage(): bool {
     return $this->routeMatch->getRouteName() === self::MEDIA_PAGE_ROUTE;
-  }
-
-  /**
-   * Whether the current route is the browse page.
-   */
-  protected function isBrowsePage(): bool {
-    return $this->routeMatch->getRouteName() === self::BROWSE_ROUTE;
   }
 
   /**

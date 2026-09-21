@@ -10,7 +10,7 @@ use Drupal\node\Entity\Node;
  * Bundle class for project nodes.
  *
  * @see \Drupal\elaintehtaat\Hook\BundleClassHooks
- * @see \Drupal\elaintehtaat\Hook\ProjectTeaserHooks
+ * @see \Drupal\elaintehtaat\Hook\ProjectSummaryHooks
  */
 class Project extends Node {
 

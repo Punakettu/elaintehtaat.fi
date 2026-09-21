@@ -1,0 +1,33 @@
+uuid: 162b1d8b-7f1e-4416-b3a3-eba38b376ef4
+langcode: fi
+status: true
+dependencies:
+  config:
+    - facets.facet.album_year
+  module:
+    - facets
+active_version: 2097b457efa7750e
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'facet_block:album_year'
+        label: Vuosi
+        label_display: '0'
+        provider: facets
+    fallback_metadata:
+      slot_definitions: null
+  621d22fb9109781f:
+    settings:
+      default_settings:
+        id: 'facet_block:album_year'
+        label: Year
+        label_display: '0'
+        provider: facets
+    fallback_metadata:
+      slot_definitions: null
+label: Vuosi
+id: block.facet_block.album_year
+provider: facets
+source: block
+source_local_id: 'facet_block:album_year'
