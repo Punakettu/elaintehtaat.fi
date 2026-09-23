@@ -26,6 +26,9 @@
   justify-content: center;
   min-width: 0;
   padding: 40px;
+  overflow: hidden;
+  /* Horizontal drags are swipes between images, see media-page.js. */
+  touch-action: pan-y pinch-zoom;
 }
 
 .media-page__frame {
@@ -34,6 +37,44 @@
   justify-content: center;
   width: min(1100px, 100%);
   max-height: 100%;
+  transition:
+    transform 0.25s cubic-bezier(0.2, 0.7, 0.3, 1),
+    opacity 0.25s ease-out;
+  will-change: transform;
+}
+
+.media-page__frame.is-dragging {
+  transition: none;
+}
+
+/* Swiped here from the neighbouring image. */
+
+.media-page__frame.is-entering-next {
+  animation: media-page-enter-next 0.3s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+.media-page__frame.is-entering-prev {
+  animation: media-page-enter-prev 0.3s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+@keyframes media-page-enter-next {
+  from {
+    opacity: 0;
+    transform: translateX(30%);
+  }
+}
+
+@keyframes media-page-enter-prev {
+  from {
+    opacity: 0;
+    transform: translateX(-30%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .media-page__frame {
+    transition: none;
+  }
 }
 
 .media-page__frame img {
