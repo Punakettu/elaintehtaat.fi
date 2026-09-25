@@ -1,0 +1,24 @@
+uuid: edaa5fc9-6449-43eb-8790-a08a69ef0481
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.image
+  module:
+    - canvas
+id: canvas_page.canvas_page.image
+field_name: image
+entity_type: canvas_page
+bundle: canvas_page
+label: Image
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: default
+  handler_settings:
+    target_bundles:
+      - image
+field_type: entity_reference

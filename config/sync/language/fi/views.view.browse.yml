@@ -1,0 +1,8 @@
+label: Selaa
+display:
+  default:
+    display_options:
+      title: 'Koko aineisto'
+      empty:
+        area_text_custom:
+          content: 'Ei tuloksia näillä suodattimilla.'

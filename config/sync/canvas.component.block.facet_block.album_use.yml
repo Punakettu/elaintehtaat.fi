@@ -1,0 +1,33 @@
+uuid: 24eceb24-1e4d-4ee6-bf56-0840feeb5f4c
+langcode: fi
+status: true
+dependencies:
+  config:
+    - facets.facet.album_use
+  module:
+    - facets
+active_version: bd2f124d16b644a6
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'facet_block:album_use'
+        label: Käyttötarkoitus
+        label_display: '0'
+        provider: facets
+    fallback_metadata:
+      slot_definitions: null
+  0340e94e8a600c81:
+    settings:
+      default_settings:
+        id: 'facet_block:album_use'
+        label: Use
+        label_display: '0'
+        provider: facets
+    fallback_metadata:
+      slot_definitions: null
+label: Käyttötarkoitus
+id: block.facet_block.album_use
+provider: facets
+source: block
+source_local_id: 'facet_block:album_use'

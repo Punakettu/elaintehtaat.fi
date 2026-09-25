@@ -1,0 +1,22 @@
+uuid: d945ec48-82a4-451d-836a-ca51d78b4d72
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.album
+id: node.album.status
+field_name: status
+entity_type: node
+bundle: album
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

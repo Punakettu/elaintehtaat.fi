@@ -1,0 +1,77 @@
+_meta:
+  version: '1.0'
+  entity_type: taxonomy_term
+  uuid: 471fbe01-890b-4085-888a-9b1c35a63e5a
+  bundle: licence
+  default_langcode: en
+translations:
+  fi:
+    status:
+      -
+        value: true
+    name:
+      -
+        value: 'CC BY-NC-ND 4.0'
+    description:
+      -
+        value: '<p>Ei-kaupallinen, ei muokkauksia</p>'
+        format: basic_html
+    weight:
+      -
+        value: 0
+    revision_translation_affected:
+      -
+        value: true
+    path:
+      -
+        langcode: fi
+        alias: null
+    content_translation_source:
+      -
+        value: und
+    content_translation_outdated:
+      -
+        value: false
+    content_translation_uid:
+      -
+        target_id: 0
+    field_licence_link:
+      -
+        uri: 'https://creativecommons.org/licenses/by-nc-nd/4.0/'
+        title: 'Licence text'
+        options: {  }
+default:
+  status:
+    -
+      value: true
+  name:
+    -
+      value: 'CC BY-NC-ND 4.0'
+  description:
+    -
+      value: '<p>Non-commercial, no derivatives</p>'
+      format: basic_html
+  weight:
+    -
+      value: 0
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      langcode: en
+      alias: null
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  content_translation_uid:
+    -
+      target_id: 0
+  field_licence_link:
+    -
+      uri: 'https://creativecommons.org/licenses/by-nc-nd/4.0/'
+      title: 'Licence text'
+      options: {  }

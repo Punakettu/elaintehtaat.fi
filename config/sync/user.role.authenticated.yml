@@ -1,0 +1,25 @@
+uuid: da3464c1-81bc-4189-8d16-08d13efe2269
+langcode: fi
+status: true
+dependencies:
+  config:
+    - filter.format.basic_html
+  module:
+    - file
+    - filter
+    - media
+    - navigation
+    - system
+_core:
+  default_config_hash: wkW7P5A53YhGmsgamrmTbfwpZrqdnPYiJdoAZQtdmJg
+id: authenticated
+label: 'Authenticated user'
+weight: 1
+is_admin: false
+permissions:
+  - 'access content'
+  - 'access navigation'
+  - 'delete own files'
+  - 'use text format basic_html'
+  - 'view media'
+  - 'view the administration theme'

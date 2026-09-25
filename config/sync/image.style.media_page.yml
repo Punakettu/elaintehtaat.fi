@@ -1,0 +1,21 @@
+uuid: fdb238b4-2529-4fd6-b965-99baa4d5c98b
+langcode: en
+status: true
+dependencies: {  }
+name: media_page
+label: 'Media page (2000×1400)'
+effects:
+  10eaf606-c6eb-4e47-92ba-5e70ce0bc869:
+    uuid: 10eaf606-c6eb-4e47-92ba-5e70ce0bc869
+    id: image_scale
+    weight: 1
+    data:
+      width: 2000
+      height: 1400
+      upscale: false
+  20d3e252-0170-4f89-91a7-3c5f44fef45f:
+    uuid: 20d3e252-0170-4f89-91a7-3c5f44fef45f
+    id: image_convert_avif
+    weight: 2
+    data:
+      extension: webp

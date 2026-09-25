@@ -1,0 +1,36 @@
+uuid: c4d36da1-2193-48de-88b6-d13304f68a12
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.card
+    - image.style.card
+    - media.type.image
+  module:
+    - image
+id: media.image.card
+targetEntityType: media
+bundle: image
+mode: card
+content:
+  thumbnail:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: card
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  field_author: true
+  field_caption: true
+  field_date: true
+  field_licence: true
+  field_media_image: true
+  langcode: true
+  name: true
+  uid: true

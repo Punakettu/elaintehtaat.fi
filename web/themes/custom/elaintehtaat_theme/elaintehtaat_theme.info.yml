@@ -1,0 +1,43 @@
+name: Eläintehtaat
+type: theme
+'base theme': false
+libraries:
+  - core/normalize
+  - elaintehtaat_theme/fonts
+  - elaintehtaat_theme/global
+  - elaintehtaat_theme/base
+  - elaintehtaat_theme/messages
+regions:
+  header: Header
+  primary_menu: 'Primary menu'
+  secondary_menu: 'Secondary menu'
+  hero: Hero
+  breadcrumb: Breadcrumb
+  highlighted: Highlighted
+  help: Help
+  content: Content
+  sidebar: Sidebar
+  footer_top: 'Footer top'
+  footer: Footer
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+libraries-extend:
+  user/drupal.user:
+    - elaintehtaat_theme/user
+  core/drupal.dropbutton:
+    - elaintehtaat_theme/dropbutton
+  core/drupal.dialog:
+    - elaintehtaat_theme/dialog
+  file/drupal.file:
+    - elaintehtaat_theme/file
+  core/drupal.item-list:
+    - elaintehtaat_theme/item-list
+  core/drupal.progress:
+    - elaintehtaat_theme/progress
+  core/drupal.tablesort:
+    - elaintehtaat_theme/drupal.tablesort
+description: 'Custom theme for elaintehtaat.fi'
+core_version_requirement: ^11
+generator: 'starterkit_theme:11.4.7'
+'interface translation project': elaintehtaat_theme
+'interface translation server pattern': themes/custom/elaintehtaat_theme/translations/%project.%language.po

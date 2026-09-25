@@ -1,0 +1,19 @@
+uuid: a253fc27-e4ee-4083-bad4-e7921d094a81
+langcode: fi
+status: true
+dependencies:
+  config:
+    - canvas.component.marker.page_content
+    - canvas.component.sdc.elaintehtaat.text
+    - canvas.component.sdc.navigation.message
+    - canvas.component.sdc.navigation.title
+    - canvas.component.theme_page_template.elaintehtaat_theme
+name: Other
+configEntityTypeId: component
+weight: 0
+items:
+  - marker.page_content
+  - sdc.elaintehtaat.text
+  - sdc.navigation.message
+  - sdc.navigation.title
+  - theme_page_template.elaintehtaat_theme

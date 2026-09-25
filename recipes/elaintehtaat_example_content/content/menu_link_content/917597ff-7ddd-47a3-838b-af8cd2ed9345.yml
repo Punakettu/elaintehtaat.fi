@@ -1,0 +1,99 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: 917597ff-7ddd-47a3-838b-af8cd2ed9345
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    dcec2a24-8b48-4fa8-a5f7-9d2b2976ab61: menu_link_content
+translations:
+  fi:
+    enabled:
+      -
+        value: true
+    title:
+      -
+        value: Tuoreimmat
+    menu_name:
+      -
+        value: footer
+    link:
+      -
+        uri: 'route:<nolink>'
+        title: null
+        options: {  }
+    external:
+      -
+        value: false
+    rediscover:
+      -
+        value: false
+    weight:
+      -
+        value: 2
+    expanded:
+      -
+        value: false
+    parent:
+      -
+        value: 'menu_link_content:dcec2a24-8b48-4fa8-a5f7-9d2b2976ab61'
+    revision_translation_affected:
+      -
+        value: true
+    content_translation_source:
+      -
+        value: und
+    content_translation_outdated:
+      -
+        value: false
+    content_translation_uid:
+      -
+        target_id: 0
+    content_translation_status:
+      -
+        value: true
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: Latest
+  menu_name:
+    -
+      value: footer
+  link:
+    -
+      uri: 'route:<nolink>'
+      title: null
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: 2
+  expanded:
+    -
+      value: false
+  parent:
+    -
+      value: 'menu_link_content:dcec2a24-8b48-4fa8-a5f7-9d2b2976ab61'
+  revision_translation_affected:
+    -
+      value: true
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  content_translation_uid:
+    -
+      target_id: 0
+  content_translation_status:
+    -
+      value: true

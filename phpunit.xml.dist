@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- PHPUnit configuration for custom code, based on web/core/phpunit.xml.dist.
+     Copy to phpunit.xml for local overrides (ignored by git).
+
+     Run from the project root inside the app container: `phpunit` for
+     everything under web/*/custom, `phpunit web/modules/custom/foo` for one
+     module, or select a suite with the testsuite option (unit, kernel,
+     functional, functional-javascript).
+
+     SIMPLETEST_DB and SIMPLETEST_BASE_URL are set in compose.yaml for the app
+     container; the values below are fallbacks that match .env.example. -->
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.5/phpunit.xsd"
+         bootstrap="web/core/tests/bootstrap.php"
+         colors="true"
+         beStrictAboutTestsThatDoNotTestAnything="true"
+         beStrictAboutOutputDuringTests="true"
+         beStrictAboutChangesToGlobalState="true"
+         failOnRisky="true"
+         failOnWarning="true"
+         failOnPhpunitWarning="true"
+         displayDetailsOnTestsThatTriggerErrors="true"
+         displayDetailsOnTestsThatTriggerWarnings="true"
+         displayDetailsOnTestsThatTriggerDeprecations="true"
+         cacheResult="false"
+         cacheDirectory=".phpunit.cache">
+  <php>
+    <ini name="error_reporting" value="32767"/>
+    <ini name="memory_limit" value="-1"/>
+    <!-- Internal URL of the nginx container (bypasses Varnish). -->
+    <env name="SIMPLETEST_BASE_URL" value="http://nginx"/>
+    <env name="SIMPLETEST_DB" value="mysql://drupal:drupal@mysql/drupal"/>
+    <!-- Host-reachable URL used for the links in browser test output. -->
+    <env name="BROWSERTEST_OUTPUT_BASE_URL" value="http://localhost:8081"/>
+    <env name="MINK_DRIVER_CLASS" value=""/>
+    <env name="MINK_DRIVER_ARGS" value=""/>
+    <env name="MINK_DRIVER_ARGS_WEBDRIVER" value=""/>
+  </php>
+
+  <extensions>
+    <!-- Functional tests HTML output logging. -->
+    <bootstrap class="Drupal\TestTools\Extension\HtmlLogging\HtmlOutputLogger">
+      <parameter name="outputDirectory" value="web/sites/simpletest/browser_output"/>
+      <parameter name="verbose" value="true"/>
+    </bootstrap>
+    <!-- Debug dump() printer. -->
+    <bootstrap class="Drupal\TestTools\Extension\Dump\DebugDump">
+      <parameter name="colors" value="true"/>
+      <parameter name="printCaller" value="true"/>
+    </bootstrap>
+  </extensions>
+
+  <testsuites>
+    <testsuite name="unit">
+      <directory>web/modules/custom/*/tests/src/Unit</directory>
+      <directory>web/modules/custom/*/modules/*/tests/src/Unit</directory>
+      <directory>web/themes/custom/*/tests/src/Unit</directory>
+    </testsuite>
+    <testsuite name="kernel">
+      <directory>web/modules/custom/*/tests/src/Kernel</directory>
+      <directory>web/modules/custom/*/modules/*/tests/src/Kernel</directory>
+      <directory>web/themes/custom/*/tests/src/Kernel</directory>
+      <directory>recipes/*/tests/src/Kernel</directory>
+    </testsuite>
+    <testsuite name="functional">
+      <directory>web/modules/custom/*/tests/src/Functional</directory>
+      <directory>web/modules/custom/*/modules/*/tests/src/Functional</directory>
+      <directory>web/themes/custom/*/tests/src/Functional</directory>
+      <directory>recipes/*/tests/src/Functional</directory>
+    </testsuite>
+    <testsuite name="functional-javascript">
+      <directory>web/modules/custom/*/tests/src/FunctionalJavascript</directory>
+      <directory>web/modules/custom/*/modules/*/tests/src/FunctionalJavascript</directory>
+      <directory>web/themes/custom/*/tests/src/FunctionalJavascript</directory>
+      <directory>recipes/*/tests/src/FunctionalJavascript</directory>
+    </testsuite>
+  </testsuites>
+
+  <!-- Settings for coverage reports. -->
+  <source ignoreSuppressionOfDeprecations="true">
+    <include>
+      <directory>web/modules/custom</directory>
+      <directory>web/themes/custom</directory>
+    </include>
+    <exclude>
+      <directory>web/modules/custom/*/tests</directory>
+      <directory>web/modules/custom/*/modules/*/tests</directory>
+      <directory>web/themes/custom/*/tests</directory>
+    </exclude>
+  </source>
+</phpunit>

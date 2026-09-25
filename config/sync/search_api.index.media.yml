@@ -1,0 +1,195 @@
+uuid: da5830bf-bca5-4ba5-9321-1adf2feb00a4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_author
+    - field.storage.media.field_caption
+    - field.storage.media.field_date
+    - field.storage.node.field_date
+    - field.storage.node.field_species
+    - field.storage.node.field_use
+    - search_api.server.default
+  module:
+    - elaintehtaat
+    - media
+    - node
+    - search_api
+id: media
+name: Media
+description: 'Image media, indexed with the data of the albums holding it.'
+read_only: false
+field_settings:
+  album_date:
+    label: 'Album » Album date'
+    datasource_id: 'entity:media'
+    property_path: 'album:field_date'
+    type: date
+    dependencies:
+      config:
+        - field.storage.node.field_date
+      module:
+        - elaintehtaat
+  album_species:
+    label: 'Album » Species'
+    datasource_id: 'entity:media'
+    property_path: 'album:field_species'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_species
+      module:
+        - elaintehtaat
+  album_title:
+    label: 'Album » Title'
+    datasource_id: 'entity:media'
+    property_path: 'album:title'
+    type: text
+    boost: 2.0
+    dependencies:
+      module:
+        - elaintehtaat
+        - node
+  album_use:
+    label: 'Album » Use'
+    datasource_id: 'entity:media'
+    property_path: 'album:field_use'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_use
+      module:
+        - elaintehtaat
+  author:
+    label: Author
+    datasource_id: 'entity:media'
+    property_path: field_author
+    type: text
+    dependencies:
+      config:
+        - field.storage.media.field_author
+  caption:
+    label: Caption
+    datasource_id: 'entity:media'
+    property_path: field_caption
+    type: text
+    dependencies:
+      config:
+        - field.storage.media.field_caption
+  created:
+    label: 'Authored on'
+    datasource_id: 'entity:media'
+    property_path: created
+    type: date
+    dependencies:
+      module:
+        - media
+  date:
+    label: Date
+    datasource_id: 'entity:media'
+    property_path: field_date
+    type: date
+    dependencies:
+      config:
+        - field.storage.media.field_date
+  language_with_fallback:
+    label: 'Item language (with fallback)'
+    property_path: language_with_fallback
+    type: string
+  name:
+    label: Name
+    datasource_id: 'entity:media'
+    property_path: name
+    type: text
+    boost: 3.0
+    dependencies:
+      module:
+        - media
+datasource_settings:
+  'entity:media':
+    bundles:
+      default: false
+      selected:
+        - image
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  custom_value: {  }
+  elaintehtaat_album_data: {  }
+  entity_status: {  }
+  entity_type: {  }
+  html_filter:
+    weights:
+      preprocess_index: -15
+      preprocess_query: -15
+    all_fields: false
+    fields:
+      - album_title
+      - caption
+      - name
+    title: true
+    alt: true
+    tags:
+      b: 2.0
+      em: 1.0
+      h1: 5.0
+      h2: 3.0
+      h3: 2.0
+      strong: 2.0
+  ignorecase:
+    weights:
+      preprocess_index: -20
+      preprocess_query: -20
+    all_fields: false
+    fields:
+      - album_title
+      - author
+      - caption
+      - name
+  language_with_fallback: {  }
+  rendered_item: {  }
+  stemmer:
+    weights:
+      preprocess_index: 0
+      preprocess_query: 0
+    all_fields: false
+    fields:
+      - album_title
+      - caption
+      - name
+    exceptions: {  }
+  tokenizer:
+    weights:
+      preprocess_index: -6
+      preprocess_query: -6
+    all_fields: false
+    fields:
+      - album_title
+      - author
+      - caption
+      - name
+    spaces: ''
+    overlap_cjk: 1
+    minimum_word_size: '3'
+  transliteration:
+    weights:
+      preprocess_index: -20
+      preprocess_query: -20
+    all_fields: false
+    fields:
+      - album_title
+      - author
+      - caption
+      - name
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  cron_limit: 50
+  delete_on_fail: true
+  index_directly: true
+  track_changes_in_references: true
+server: default

@@ -1,0 +1,13 @@
+/**
+ * @file
+ * Blocks: the wrapper Canvas and block layout render around a component.
+ *
+ * Spacing between blocks lives in layout/layout.css.
+ */
+
+/* A block label is a section head, like the ones the view templates draw. */
+.block > h2 {
+  margin: 0 0 18px;
+  font-size: 22px;
+  letter-spacing: -0.015em;
+}

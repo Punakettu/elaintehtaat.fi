@@ -1,0 +1,13 @@
+uuid: eb4da288-98a0-4ea1-8779-79f8055127de
+langcode: fi
+status: true
+dependencies:
+  config:
+    - canvas.component.block.language_block.language_content
+    - canvas.component.block.language_block.language_interface
+name: Järjestelmä
+configEntityTypeId: component
+weight: 0
+items:
+  - block.language_block.language_content
+  - block.language_block.language_interface

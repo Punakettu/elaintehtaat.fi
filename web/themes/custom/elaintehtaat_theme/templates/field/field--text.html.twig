@@ -1,0 +1,63 @@
+{#
+/**
+ * @file
+ * Theme override for a formatted text field.
+ *
+ * Each item renders through the Text component so that editor-entered text
+ * on entity pages (album and project descriptions) is set the same way as the
+ * text on Canvas pages: same measure, same list styling.
+ *
+ * The 'clearfix' and 'text-formatted' classes of the core template are kept
+ * for aligned images and for default styling of base elements.
+ *
+ * @see field.html.twig
+ * @see modules/custom/elaintehtaat/components/text
+ */
+#}
+{%
+  set classes = [
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+    'clearfix',
+    'text-formatted',
+  ]
+%}
+{%
+  set title_classes = [
+    'field__label',
+    label_display == 'visually_hidden' ? 'visually-hidden',
+  ]
+%}
+
+{% if label_hidden and not multiple %}
+  {% for item in items %}
+    {% include 'elaintehtaat:text' with {
+      attributes: attributes.addClass(classes, 'field__item'),
+      text: item.content,
+      style: 'body',
+      tone: 'default',
+    } only %}
+  {% endfor %}
+{% else %}
+  <div{{ attributes.addClass(classes) }}>
+    {% if not label_hidden %}
+      <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
+    {% endif %}
+    {% if multiple %}
+      <div class="field__items">
+    {% endif %}
+    {% for item in items %}
+      {% include 'elaintehtaat:text' with {
+        attributes: item.attributes.addClass('field__item'),
+        text: item.content,
+        style: 'body',
+        tone: 'default',
+      } only %}
+    {% endfor %}
+    {% if multiple %}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}

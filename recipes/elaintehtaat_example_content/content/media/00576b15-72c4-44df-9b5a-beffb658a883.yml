@@ -1,0 +1,77 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 00576b15-72c4-44df-9b5a-beffb658a883
+  bundle: image
+  default_langcode: fi
+  depends:
+    81695ca9-8e3c-47f3-a4b4-4d3f31e9eb00: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Sika, jolla on kasvovaurioita'
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      langcode: fi
+      alias: null
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  field_caption:
+    -
+      value: '<p>Useilla sioilla näkyi ihovaurioita ja naarmuja.</p>'
+      format: basic_html
+  field_media_image:
+    -
+      alt: 'Lähikuva lihasiasta, jonka kasvoissa on haavoja ja naarmuja'
+      title: ''
+      width: 2500
+      height: 1667
+      entity: 81695ca9-8e3c-47f3-a4b4-4d3f31e9eb00
+translations:
+  en:
+    status:
+      -
+        value: true
+    uid:
+      -
+        target_id: 1
+    name:
+      -
+        value: 'Pig with facial lesions'
+    revision_translation_affected:
+      -
+        value: true
+    path:
+      -
+        langcode: en
+        alias: null
+    content_translation_source:
+      -
+        value: und
+    content_translation_outdated:
+      -
+        value: false
+    field_caption:
+      -
+        value: '<p>Skin lesions and scratches were visible on several pigs.</p>'
+        format: basic_html
+    field_media_image:
+      -
+        alt: 'Close-up of a fattening pig with sores and scratches on its face'
+        title: ''
+        width: 2500
+        height: 1667
+        entity: 81695ca9-8e3c-47f3-a4b4-4d3f31e9eb00

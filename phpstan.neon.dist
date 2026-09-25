@@ -1,0 +1,23 @@
+# PHPStan configuration for custom code. See https://phpstan.org/config-reference
+# and https://github.com/mglaman/phpstan-drupal. The Drupal, PHPUnit and
+# deprecation-rules extensions are registered automatically by
+# phpstan/extension-installer.
+#
+# Copy to phpstan.neon for local overrides (ignored by git).
+parameters:
+  level: 6
+
+  paths:
+    - web/modules/custom
+    - web/themes/custom
+
+  excludePaths:
+    - */node_modules/*
+
+  # Ignored patterns may legitimately match nothing while there is little custom code.
+  reportUnmatchedIgnoredErrors: false
+
+  ignoreErrors:
+    # Drupal passes untyped arrays (render arrays, form arrays, ...) everywhere;
+    # requiring iterable value types on all of them is more noise than signal.
+    - identifier: missingType.iterableValue

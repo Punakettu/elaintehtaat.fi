@@ -1,0 +1,22 @@
+uuid: f166cd9a-f6b9-4e0e-8c00-fef1fb61598f
+langcode: fi
+status: true
+dependencies:
+  theme:
+    - gin
+_core:
+  default_config_hash: BCWhood0xXFQYqxFgL1spXdb9KeIuXH1YvTdjIEedDg
+id: gin_secondary_local_tasks
+theme: gin
+region: pre_content
+weight: 0
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Toissijaiset välilehdet'
+  label_display: '0'
+  provider: core
+  primary: false
+  secondary: true
+visibility: {  }

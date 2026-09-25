@@ -1,0 +1,25 @@
+/**
+ * @file
+ * Grid of media tiles on an album page.
+ *
+ * @see templates/field/field--node--field-album-media.html.twig
+ */
+
+.album-media {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: clamp(20px, 3vh, 32px);
+}
+
+@media (max-width: 1080px) {
+  .album-media {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .album-media {
+    grid-template-columns: 1fr;
+  }
+}

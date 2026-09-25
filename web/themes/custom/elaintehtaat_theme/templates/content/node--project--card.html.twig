@@ -1,0 +1,53 @@
+{#
+/**
+ * @file
+ * Theme override for a project rendered in the card view mode.
+ *
+ * Renders the project as a tile of the projects index: a mosaic of the covers
+ * of its newest albums, the year it was last worked on and how many albums it
+ * holds, the title and a trimmed description. The title link is stretched over
+ * the whole card.
+ *
+ * The mosaic lays itself out from how many covers there are, in CSS, so there
+ * is nothing to count here: the covers are a render array, whose length counts
+ * the "#" properties too.
+ *
+ * Additional content (added by
+ * \Drupal\elaintehtaat\Hook\ProjectSummaryHooks):
+ * - content.year: The year of the project's newest album, when it has one.
+ * - content.covers: Thumbnails of the newest albums, at most three.
+ * - content.album_count: How many albums belong to the project.
+ *
+ * @see node.html.twig
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    not node.isPublished() ? 'node--unpublished',
+    'node--view-mode-' ~ view_mode|clean_class,
+    'project-card',
+  ]
+%}
+{{ attach_library('elaintehtaat_theme/project-card') }}
+<article{{ attributes.addClass(classes) }}>
+  {# The covers repeat the title and the count, so they are decorative. #}
+  <div class="project-card__thumb" aria-hidden="true">
+    <div class="project-card__mosaic">{{ content.covers }}</div>
+  </div>
+
+  <div class="project-card__body">
+    {{ title_prefix }}
+    <p class="project-card__eyebrow eyebrow">
+      {{- content.year -}}
+      {% if content.year %} · {% endif %}
+      {{- content.album_count -}}
+    </p>
+    <h3{{ title_attributes.addClass('project-card__title') }}>
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h3>
+    {{ title_suffix }}
+    <div class="project-card__blurb muted">{{ content.field_description }}</div>
+  </div>
+</article>

@@ -1,0 +1,40 @@
+uuid: 04a1934a-7149-4eed-82f6-a9fa01e399ee
+langcode: fi
+status: false
+dependencies:
+  module:
+    - language
+active_version: b61752d9d9eeb613
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'language_block:language_content'
+        label: 'Language switcher (Sisältö)'
+        label_display: '0'
+        provider: language
+    fallback_metadata:
+      slot_definitions: null
+  27fc01e5b04dd712:
+    settings:
+      default_settings:
+        id: 'language_block:language_content'
+        label: 'Language switcher (Content)'
+        label_display: '0'
+        provider: language
+    fallback_metadata:
+      slot_definitions: null
+  b61752d9d9eeb613:
+    settings:
+      default_settings:
+        id: 'language_block:language_content'
+        label: 'Language switcher (Sisältö)'
+        label_display: '0'
+        provider: language
+    fallback_metadata:
+      slot_definitions: null
+label: 'Language switcher (Sisältö)'
+id: block.language_block.language_content
+provider: language
+source: block
+source_local_id: 'language_block:language_content'

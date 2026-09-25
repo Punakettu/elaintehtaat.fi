@@ -1,0 +1,36 @@
+uuid: ee2b43f3-95bf-437e-bb8c-2fa34ae6da38
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.licence.field_licence_link
+    - taxonomy.vocabulary.licence
+  module:
+    - link
+    - text
+id: taxonomy_term.licence.default
+targetEntityType: taxonomy_term
+bundle: licence
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_licence_link:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  langcode: true

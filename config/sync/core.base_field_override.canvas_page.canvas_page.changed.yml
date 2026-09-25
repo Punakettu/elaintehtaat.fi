@@ -1,0 +1,18 @@
+uuid: a78eeadd-a691-41bc-a8c8-42682e17973a
+langcode: en
+status: true
+dependencies:
+  module:
+    - canvas
+id: canvas_page.canvas_page.changed
+field_name: changed
+entity_type: canvas_page
+bundle: canvas_page
+label: Changed
+description: 'The time the page was last edited.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

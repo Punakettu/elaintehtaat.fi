@@ -1,0 +1,46 @@
+{#
+/**
+ * @file
+ * Theme override for the block display of the "Recent media" view.
+ *
+ * Lists the newest media items as tiles under a "Featured" section header.
+ *
+ * Named after the display on purpose, so the suggestion stays specific to this
+ * view and display.
+ *
+ * @see views-view.html.twig
+ */
+#}
+{%
+  set classes = [
+    'view',
+    'view-' ~ id|clean_class,
+    'view-id-' ~ id,
+    'view-display-id-' ~ display_id,
+    dom_id ? 'js-view-dom-id-' ~ dom_id,
+    'featured',
+  ]
+%}
+{{ attach_library('elaintehtaat_theme/featured') }}
+<section{{ attributes.addClass(classes) }} aria-labelledby="featured-heading">
+  {{ title_prefix }}
+  {{ title_suffix }}
+
+  <header class="featured__head">
+    <h2 id="featured-heading" class="featured__title">{{ 'Featured'|t }}</h2>
+  </header>
+
+  {% if rows %}
+    <div class="view-content featured__grid">
+      {{ rows }}
+    </div>
+  {% elseif empty %}
+    <div class="view-empty">
+      {{ empty }}
+    </div>
+  {% endif %}
+
+  {% if pager %}
+    {{ pager }}
+  {% endif %}
+</section>

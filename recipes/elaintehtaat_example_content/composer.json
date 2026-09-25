@@ -1,0 +1,6 @@
+{
+    "name": "elaintehtaat/example-content",
+    "description": "Example content for the elaintehtaat.fi site.",
+    "type": "drupal-recipe",
+    "license": "GPL-2.0-or-later"
+}

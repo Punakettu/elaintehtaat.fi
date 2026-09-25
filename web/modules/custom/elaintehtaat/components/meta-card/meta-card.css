@@ -1,0 +1,86 @@
+/**
+ * @file
+ * Meta card: a bordered card of label/value metadata rows.
+ *
+ * Mirrors the .al-meta-card of the reference design. The tokens carry
+ * fallbacks because the component lives in a module, not in the theme.
+ *
+ * @see https://punakettu.github.io/elaintehtaat.fi/
+ */
+
+.meta-card {
+  margin-top: clamp(20px, 3vh, 32px);
+  padding: 24px;
+  border: 1px solid var(--color-line, rgb(255 255 255 / 0.1));
+  border-radius: var(--radius-lg, 14px);
+  background: var(--color-surface, #262320);
+}
+
+/* Definition list. */
+
+.meta-card__dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 9px 18px;
+  align-items: baseline;
+  margin: 0;
+}
+
+.meta-card__dl dt {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--color-text-faint, #8a8681);
+}
+
+.meta-card__dl dd {
+  margin: 0;
+  font-size: 14px;
+}
+
+.meta-card__note {
+  display: block;
+  margin-top: 3px;
+  font-size: 11.5px;
+  color: var(--color-text-faint, #8a8681);
+}
+
+/* Accent pill, used for licences. */
+
+.meta-card__chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border: 1px solid var(--color-accent-line, rgb(163 49 43 / 0.45));
+  border-radius: var(--radius-sm, 7px);
+  background: var(--color-accent-soft, rgb(163 49 43 / 0.16));
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  color: var(--color-accent-text, #c9645c);
+  text-decoration: none;
+}
+
+a.meta-card__chip:hover {
+  border-color: var(--color-accent, #a3312b);
+  color: var(--color-accent-text, #c9645c);
+}
+
+/* Too narrow for two columns: the label sits above its values. */
+
+@media (max-width: 600px) {
+  .meta-card {
+    padding: 18px;
+  }
+
+  .meta-card__dl {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  .meta-card__dl dt + dd {
+    margin-bottom: 10px;
+  }
+}

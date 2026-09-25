@@ -1,0 +1,20 @@
+uuid: 2de8cd92-18f6-49f9-bdca-bfd854796d30
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - elaintehtaat_theme
+id: elaintehtaat_theme_poweredbydrupal
+theme: elaintehtaat_theme
+region: footer
+weight: 0
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  label_display: '0'
+  provider: system
+visibility: {  }

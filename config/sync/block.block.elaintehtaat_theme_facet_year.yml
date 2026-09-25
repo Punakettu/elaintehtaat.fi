@@ -1,0 +1,28 @@
+uuid: d2694628-4361-41df-810d-bef41a21e8e2
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.album_year
+  module:
+    - facets
+    - system
+  theme:
+    - elaintehtaat_theme
+id: elaintehtaat_theme_facet_year
+theme: elaintehtaat_theme
+region: sidebar
+weight: 2
+provider: null
+plugin: 'facet_block:album_year'
+settings:
+  id: 'facet_block:album_year'
+  label: Year
+  label_display: visible
+  provider: facets
+  block_id: album_year
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /selaa

@@ -1,0 +1,40 @@
+uuid: a60b9687-40f9-46b5-b026-ee33ceb46f42
+langcode: fi
+status: false
+dependencies:
+  module:
+    - language
+active_version: 3ef7370feb269390
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'language_block:language_interface'
+        label: 'Language switcher (Käyttöliittymän teksti)'
+        label_display: '0'
+        provider: language
+    fallback_metadata:
+      slot_definitions: null
+  c711bf90981bea7d:
+    settings:
+      default_settings:
+        id: 'language_block:language_interface'
+        label: 'Language switcher (Interface text)'
+        label_display: '0'
+        provider: language
+    fallback_metadata:
+      slot_definitions: null
+  3ef7370feb269390:
+    settings:
+      default_settings:
+        id: 'language_block:language_interface'
+        label: 'Language switcher (Käyttöliittymän teksti)'
+        label_display: '0'
+        provider: language
+    fallback_metadata:
+      slot_definitions: null
+label: 'Language switcher (Käyttöliittymän teksti)'
+id: block.language_block.language_interface
+provider: language
+source: block
+source_local_id: 'language_block:language_interface'

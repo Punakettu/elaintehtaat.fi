@@ -1,0 +1,48 @@
+uuid: d3143f9d-1176-485b-8528-1871fcc4b1ab
+langcode: fi
+status: true
+dependencies:
+  config:
+    - views.view.projects
+  module:
+    - views
+active_version: 305ac4659a605f50
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'views_block:projects-block_1'
+        label: Projektit
+        label_display: '0'
+        provider: views
+        views_label: ''
+        items_per_page: null
+    fallback_metadata:
+      slot_definitions: null
+  387cb434bbae0e3d:
+    settings:
+      default_settings:
+        id: 'views_block:projects-block_1'
+        label: Projects
+        label_display: '0'
+        provider: views
+        views_label: ''
+        items_per_page: null
+    fallback_metadata:
+      slot_definitions: null
+  305ac4659a605f50:
+    settings:
+      default_settings:
+        id: 'views_block:projects-block_1'
+        label: Projektit
+        label_display: '0'
+        provider: views
+        views_label: ''
+        items_per_page: null
+    fallback_metadata:
+      slot_definitions: null
+label: Projektit
+id: block.views_block.projects-block_1
+provider: views
+source: block
+source_local_id: 'views_block:projects-block_1'

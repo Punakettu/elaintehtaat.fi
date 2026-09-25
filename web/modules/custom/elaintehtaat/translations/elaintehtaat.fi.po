@@ -1,0 +1,98 @@
+# Finnish translation of the Eläintehtaat module.
+msgid ""
+msgstr ""
+"Project-Id-Version: elaintehtaat\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fi\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Key numbers"
+msgstr "Avainluvut"
+
+msgid "album"
+msgid_plural "albums"
+msgstr[0] "albumi"
+msgstr[1] "albumia"
+
+msgid "1 album"
+msgid_plural "@count albums"
+msgstr[0] "1 albumi"
+msgstr[1] "@count albumia"
+
+msgid "media item"
+msgid_plural "media"
+msgstr[0] "mediatiedosto"
+msgstr[1] "mediaa"
+
+msgid "project"
+msgid_plural "projects"
+msgstr[0] "projekti"
+msgstr[1] "projektia"
+
+msgid "Photograph"
+msgstr "Valokuva"
+
+msgid "Album"
+msgstr "Albumi"
+
+msgid "Photographer"
+msgstr "Kuvaaja"
+
+msgid "Captured"
+msgstr "Kuvattu"
+
+msgid "License"
+msgstr "Lisenssi"
+
+msgid "Required attribution"
+msgstr "Vaadittu maininta"
+
+msgid "Copy attribution"
+msgstr "Kopioi maininta"
+
+msgid "Copied"
+msgstr "Kopioitu"
+
+msgid "Download media"
+msgstr "Lataa media"
+
+msgid "Close"
+msgstr "Sulje"
+
+msgid "Back to album"
+msgstr "Takaisin albumiin"
+
+msgid "Previous"
+msgstr "Edellinen"
+
+msgid "Next"
+msgstr "Seuraava"
+
+msgid "Photo: @organisation"
+msgstr "Kuva: @organisation"
+
+msgid "Photo: @author / @organisation"
+msgstr "Kuva: @author / @organisation"
+
+msgid "No separate caption. Part of the album <a href=\"@album_url\">@album_title</a>, see the album for details."
+msgstr "Ei erillistä kuvatekstiä. Osa albumia <a href=\"@album_url\">@album_title</a>, katso albumin kuvaus."
+
+msgid "Date"
+msgstr "Päivämäärä"
+
+msgid "Species"
+msgstr "Laji"
+
+msgid "Use"
+msgstr "Käyttö"
+
+msgid "Project"
+msgstr "Projekti"
+
+msgid "Metadata card"
+msgstr "Metatietokortti"
+
+msgid "The date, species, use, project and licence of the album, as one card."
+msgstr "Albumin päivämäärä, laji, käyttö, projekti ja lisenssi yhtenä korttina."

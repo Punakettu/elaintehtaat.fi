@@ -1,0 +1,83 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 496e86e0-f236-4740-8108-eef6819e8e9b
+  bundle: image
+  default_langcode: en
+  depends:
+    97c95c3b-238d-4f35-9048-38877f0d7ae7: file
+translations:
+  fi:
+    status:
+      -
+        value: true
+    uid:
+      -
+        target_id: 1
+    name:
+      -
+        value: 'Kettutarhan dokumentointia yöllä'
+    revision_translation_affected:
+      -
+        value: true
+    path:
+      -
+        langcode: fi
+        alias: null
+    content_translation_source:
+      -
+        value: und
+    content_translation_outdated:
+      -
+        value: false
+    field_caption:
+      -
+        value: '<p>Häkkikettujen kuvaamista varjotalossa. Eläimet elävät koko elämänsä verkkopohjalla.</p>'
+        format: basic_html
+    field_date:
+      -
+        value: '2025-01-01'
+    field_media_image:
+      -
+        alt: 'Suojapukuinen kuvaaja kuvaa kettua varjotalon häkin verkon läpi yöllä'
+        title: ''
+        width: 2500
+        height: 1667
+        entity: 97c95c3b-238d-4f35-9048-38877f0d7ae7
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Documenting a fox farm at night'
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      langcode: en
+      alias: null
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  field_caption:
+    -
+      value: '<p>Photographing caged foxes in an open-sided shed. The animals spend their whole lives on wire mesh.</p>'
+      format: basic_html
+  field_date:
+    -
+      value: '2025-01-01'
+  field_media_image:
+    -
+      alt: 'A photographer in a protective suit photographs a fox through the wire mesh of a shed cage at night'
+      title: ''
+      width: 2500
+      height: 1667
+      entity: 97c95c3b-238d-4f35-9048-38877f0d7ae7

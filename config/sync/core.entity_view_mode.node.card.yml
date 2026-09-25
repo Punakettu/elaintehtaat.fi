@@ -1,0 +1,11 @@
+uuid: a13b0934-93ee-4c6b-a109-c3b0744c53ae
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.card
+label: Card
+description: 'Project cards on the projects index.'
+targetEntityType: node
+cache: true

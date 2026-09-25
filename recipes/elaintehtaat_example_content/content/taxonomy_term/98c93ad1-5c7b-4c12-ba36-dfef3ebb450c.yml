@@ -1,0 +1,59 @@
+_meta:
+  version: '1.0'
+  entity_type: taxonomy_term
+  uuid: 98c93ad1-5c7b-4c12-ba36-dfef3ebb450c
+  bundle: species
+  default_langcode: en
+translations:
+  fi:
+    status:
+      -
+        value: true
+    name:
+      -
+        value: Nauta
+    weight:
+      -
+        value: 1
+    revision_translation_affected:
+      -
+        value: true
+    path:
+      -
+        langcode: fi
+        alias: null
+    content_translation_source:
+      -
+        value: und
+    content_translation_outdated:
+      -
+        value: false
+    content_translation_uid:
+      -
+        target_id: 0
+default:
+  status:
+    -
+      value: true
+  name:
+    -
+      value: Cattle
+  weight:
+    -
+      value: 1
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      langcode: en
+      alias: null
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  content_translation_uid:
+    -
+      target_id: 0

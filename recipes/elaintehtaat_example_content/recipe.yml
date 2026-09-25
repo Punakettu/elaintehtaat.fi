@@ -1,0 +1,13 @@
+name: 'Eläintehtaat example content'
+description: 'Example content for local development: the Canvas front page and About page in Finnish and English, species, use and licence taxonomy terms, the main and footer menu links, and an example project with two albums and their images.'
+type: 'Content'
+install:
+  - canvas
+  - content_translation
+  - datetime
+  - file
+  - image
+  - media
+  - menu_link_content
+  - node
+  - taxonomy

@@ -1,0 +1,15 @@
+elaintehtaat.media_page:
+  path: '/node/{node}/media/{media}'
+  defaults:
+    _controller: '\Drupal\elaintehtaat\Controller\MediaPageController::build'
+    _title_callback: '\Drupal\elaintehtaat\Controller\MediaPageController::title'
+  requirements:
+    _custom_access: '\Drupal\elaintehtaat\Controller\MediaPageController::access'
+    node: \d+
+    media: \d+
+  options:
+    parameters:
+      node:
+        type: 'entity:node'
+      media:
+        type: 'entity:media'

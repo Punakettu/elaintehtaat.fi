@@ -1,0 +1,15 @@
+_core:
+  default_config_hash: ijfbzDTN4CbE7Sr-6ubWzy_t1vH4OtU1doNCLssVz-4
+langcode: fi
+uuid: 648ac619-27d8-4654-94d5-f6201ffeb114
+name: Eläintehtaat
+mail: info@elaintehtaat.fi
+slogan: 'Eläinten puoli tarinasta'
+page:
+  403: ''
+  404: ''
+  front: /front
+admin_compact_mode: false
+weight_select_max: 100
+default_langcode: fi
+mail_notification: null

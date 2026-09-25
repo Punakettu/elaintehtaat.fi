@@ -1,0 +1,28 @@
+uuid: b535eac4-d10e-4a6e-839f-44fd5cdef855
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.album_use
+  module:
+    - facets
+    - system
+  theme:
+    - elaintehtaat_theme
+id: elaintehtaat_theme_facet_use
+theme: elaintehtaat_theme
+region: sidebar
+weight: 1
+provider: null
+plugin: 'facet_block:album_use'
+settings:
+  id: 'facet_block:album_use'
+  label: Use
+  label_display: visible
+  provider: facets
+  block_id: album_use
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /selaa

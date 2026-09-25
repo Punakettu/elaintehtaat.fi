@@ -1,0 +1,9 @@
+uuid: 64901834-fe32-4f50-bd32-7562fb2be1cc
+langcode: en
+status: true
+dependencies: {  }
+name: Licence
+vid: licence
+description: 'Content licence'
+weight: 0
+new_revision: false

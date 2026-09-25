@@ -1,0 +1,11 @@
+uuid: d0d37fab-1849-40ee-b775-3f487c0bcf75
+langcode: fi
+status: true
+dependencies:
+  config:
+    - canvas.component.block.facets_summary_block.browse_filters
+name: 'Facets summary (Experimental)'
+configEntityTypeId: component
+weight: 0
+items:
+  - block.facets_summary_block.browse_filters

@@ -1,0 +1,49 @@
+/**
+ * @file
+ * Language switcher: a segmented FI / EN toggle in the masthead tools.
+ */
+
+.lang-toggle {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  list-style: none;
+  border: 1px solid var(--color-line);
+  border-radius: 8px;
+}
+
+.lang-toggle__item {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.lang-toggle__link {
+  display: block;
+  padding: 6px 9px;
+  border: 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  color: var(--color-text-faint);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.lang-toggle__link:hover,
+.lang-toggle__link:focus-visible {
+  border: 0;
+  color: var(--color-text);
+}
+
+.lang-toggle__link:focus-visible {
+  outline-offset: -2px;
+}
+
+/* Beats `ul.links a.is-active` from links.css. */
+.lang-toggle .lang-toggle__link.is-active {
+  background: var(--color-surface-2);
+  color: var(--color-text);
+}

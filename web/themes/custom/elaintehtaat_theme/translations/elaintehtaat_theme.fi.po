@@ -1,0 +1,41 @@
+# Finnish translation of the Eläintehtaat theme.
+msgid ""
+msgstr ""
+"Project-Id-Version: elaintehtaat_theme\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fi\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "photo archive"
+msgstr "kuva-arkisto"
+
+msgid "An open image and video archive documenting conditions in animal production. Material is available to journalists, researchers and the public under its license terms."
+msgstr "Avoin kuva- ja videoarkisto eläintuotannon olosuhteista. Aineisto on toimittajien, tutkijoiden ja kansalaisten käytettävissä lisenssiehtojen mukaisesti."
+
+msgid "More from this project"
+msgstr "Saman projektin albumit"
+
+msgid "Whole project"
+msgstr "Koko projekti"
+
+msgid "Albums"
+msgstr "Albumit"
+
+msgid "@count media item"
+msgid_plural "@count media"
+msgstr[0] "@count mediatiedosto"
+msgstr[1] "@count mediaa"
+
+msgid "Featured"
+msgstr "Esiin nostettua"
+
+msgid "Projects"
+msgstr "Projektit"
+
+msgid "Browse the archive"
+msgstr "Selaa arkistoa"
+
+msgid "The whole library"
+msgstr "Koko aineisto"

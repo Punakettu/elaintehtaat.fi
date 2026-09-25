@@ -1,0 +1,24 @@
+uuid: b574279f-c886-4c50-9579-723c3c6a1db1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_description
+    - filter.format.basic_html
+    - node.type.album
+  module:
+    - text
+id: node.album.field_description
+field_name: field_description
+entity_type: node
+bundle: album
+label: Description
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+field_type: text_long

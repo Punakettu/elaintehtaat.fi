@@ -1,0 +1,97 @@
+{#
+/**
+ * @file
+ * Media page: full-screen stage on the left, metadata sidebar on the right.
+ *
+ * Under 720px the sidebar moves below the stage.
+ */
+#}
+{% set icon_close %}<svg class="media-page__icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>{% endset %}
+{% set icon_prev %}<svg class="media-page__icon" width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>{% endset %}
+{% set icon_next %}<svg class="media-page__icon" width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>{% endset %}
+{% set icon_chevron %}<svg class="media-page__icon" width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>{% endset %}
+{% set icon_copy %}<svg class="media-page__icon" width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M3.5 10.5V3.5h7"/></g></svg>{% endset %}
+{% set icon_download %}<svg class="media-page__icon" width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0 3.2-3.2M8 10 4.8 6.8M3 13h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>{% endset %}
+
+<div{{ attributes.addClass('media-page') }} data-media-page>
+  <div class="media-page__stage">
+    <a class="media-page__close" href="{{ close_url }}" data-media-page-close aria-label="{{ 'Close'|t }}" title="{{ 'Back to album'|t }}">{{ icon_close }}</a>
+    <span class="media-page__counter">{{ '%02d / %02d'|format(position, total) }}</span>
+
+    {% if prev_url %}
+      <a class="media-page__nav media-page__nav--prev" href="{{ prev_url }}" data-media-page-prev aria-label="{{ 'Previous'|t }}">{{ icon_prev }}</a>
+    {% endif %}
+
+    <div class="media-page__frame">
+      {% block image %}{% endblock %}
+    </div>
+
+    {% if next_url %}
+      <a class="media-page__nav media-page__nav--next" href="{{ next_url }}" data-media-page-next aria-label="{{ 'Next'|t }}">{{ icon_next }}</a>
+    {% endif %}
+  </div>
+
+  <aside class="media-page__panel">
+    <div class="media-page__panel-inner">
+      <div class="media-page__intro">
+        <div class="eyebrow">{{ type_label }}{% if date %} · {{ date }}{% endif %}</div>
+        {% if block('caption')|trim %}
+          <div class="media-page__caption">{% block caption %}{% endblock %}</div>
+        {% else %}
+          <p class="media-page__caption faint">
+            {% trans %}No separate caption. Part of the album <a href="{{ album_url }}">{{ album_title }}</a>, see the album for details.{% endtrans %}
+          </p>
+        {% endif %}
+      </div>
+
+      <a class="media-page__album" href="{{ album_url }}">
+        <span class="media-page__album-thumb">{% block album_thumbnail %}{% endblock %}</span>
+        <span class="media-page__album-text">
+          <span class="eyebrow">{{ 'Album'|t }}</span>
+          <span class="media-page__album-title">{{ album_title }}</span>
+          {% if project_title %}
+            <span class="media-page__album-project faint">{{ project_title }}</span>
+          {% endif %}
+        </span>
+        {{ icon_chevron }}
+      </a>
+
+      {% if author or date or licence_name %}
+        <dl class="media-page__dl">
+          {% if author %}
+            <dt>{{ 'Photographer'|t }}</dt>
+            <dd>{{ author }}</dd>
+          {% endif %}
+          {% if date %}
+            <dt>{{ 'Captured'|t }}</dt>
+            <dd>{{ date }}</dd>
+          {% endif %}
+          {% if licence_name %}
+            <dt>{{ 'License'|t }}</dt>
+            <dd>
+              {% if licence_url %}
+                <a class="media-page__licence" href="{{ licence_url }}" rel="license">{{ licence_name }}</a>
+              {% else %}
+                <span class="media-page__licence">{{ licence_name }}</span>
+              {% endif %}
+            </dd>
+          {% endif %}
+        </dl>
+      {% endif %}
+
+      <div class="media-page__attrib">
+        <div class="eyebrow">{{ 'Required attribution'|t }}</div>
+        <code class="media-page__attrib-text">{{ attribution }}</code>
+        <button type="button" class="media-page__copy" data-media-page-copy data-attribution="{{ attribution }}" data-copied-label="{{ 'Copied'|t }}">
+          {{ icon_copy }}<span class="media-page__copy-label">{{ 'Copy attribution'|t }}</span>
+        </button>
+      </div>
+
+      {% if download_url %}
+        <a class="btn btn--accent media-page__download" href="{{ download_url }}" download="{{ download_filename }}" target="_blank" rel="noopener">
+          {{ icon_download }}{{ 'Download media'|t }}
+        </a>
+      {% endif %}
+    </div>
+  </aside>
+</div>

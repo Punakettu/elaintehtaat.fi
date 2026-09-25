@@ -1,0 +1,99 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: 647662c9-2d57-4403-87c3-1fc73ee837fe
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    854fb0c1-ed0a-4f59-beb1-272035e7b0a7: menu_link_content
+translations:
+  fi:
+    enabled:
+      -
+        value: true
+    title:
+      -
+        value: arkisto@elaintehtaat.fi
+    menu_name:
+      -
+        value: footer
+    link:
+      -
+        uri: 'mailto:arkisto@elaintehtaat.fi'
+        title: null
+        options: {  }
+    external:
+      -
+        value: false
+    rediscover:
+      -
+        value: false
+    weight:
+      -
+        value: 1
+    expanded:
+      -
+        value: false
+    parent:
+      -
+        value: 'menu_link_content:854fb0c1-ed0a-4f59-beb1-272035e7b0a7'
+    revision_translation_affected:
+      -
+        value: true
+    content_translation_source:
+      -
+        value: und
+    content_translation_outdated:
+      -
+        value: false
+    content_translation_uid:
+      -
+        target_id: 0
+    content_translation_status:
+      -
+        value: true
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: arkisto@elaintehtaat.fi
+  menu_name:
+    -
+      value: footer
+  link:
+    -
+      uri: 'mailto:arkisto@elaintehtaat.fi'
+      title: null
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: 1
+  expanded:
+    -
+      value: false
+  parent:
+    -
+      value: 'menu_link_content:854fb0c1-ed0a-4f59-beb1-272035e7b0a7'
+  revision_translation_affected:
+    -
+      value: true
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  content_translation_uid:
+    -
+      target_id: 0
+  content_translation_status:
+    -
+      value: true

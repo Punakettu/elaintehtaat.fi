@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Text: a block of formatted text.
+ *
+ * Available variables:
+ * - attributes: Wrapper attributes.
+ * - text: Formatted HTML.
+ * - style: body, lede or small.
+ * - tone: default, muted or faint.
+ */
+#}
+{% set classes = [
+  'text',
+  'text--' ~ style|default('body'),
+  'text--tone-' ~ tone|default('default'),
+] %}
+<div{{ attributes.addClass(classes) }}>
+  {{ text }}
+</div>

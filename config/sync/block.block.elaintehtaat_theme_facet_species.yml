@@ -1,0 +1,28 @@
+uuid: e03246f6-0050-44f5-943f-7d9a521e9fc9
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.album_species
+  module:
+    - facets
+    - system
+  theme:
+    - elaintehtaat_theme
+id: elaintehtaat_theme_facet_species
+theme: elaintehtaat_theme
+region: sidebar
+weight: 0
+provider: null
+plugin: 'facet_block:album_species'
+settings:
+  id: 'facet_block:album_species'
+  label: Species
+  label_display: visible
+  provider: facets
+  block_id: album_species
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /selaa

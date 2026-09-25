@@ -1,0 +1,27 @@
+uuid: 0c41c1ee-2aec-4560-96f3-92dfc5b85bf6
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.card
+    - field.field.node.project.field_description
+    - node.type.project
+  module:
+    - text
+id: node.project.card
+targetEntityType: node
+bundle: project
+mode: card
+content:
+  field_description:
+    type: text_trimmed
+    label: hidden
+    settings:
+      trim_length: 170
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
+  links: true
+  search_api_excerpt: true

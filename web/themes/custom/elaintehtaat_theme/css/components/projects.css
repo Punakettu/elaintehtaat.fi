@@ -1,0 +1,23 @@
+/**
+ * @file
+ * "Projects" index on the front page.
+ *
+ * @see templates/views/views-view--projects--block-1.html.twig
+ */
+
+.projects__head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.projects__title {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: -0.015em;
+}
+
+.projects__count {
+  font-size: 14px;
+}

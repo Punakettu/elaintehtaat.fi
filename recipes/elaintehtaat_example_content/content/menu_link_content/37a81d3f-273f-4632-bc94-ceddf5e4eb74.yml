@@ -1,0 +1,100 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: 37a81d3f-273f-4632-bc94-ceddf5e4eb74
+  bundle: menu_link_content
+  default_langcode: en
+  depends:
+    854fb0c1-ed0a-4f59-beb1-272035e7b0a7: menu_link_content
+    a1b2c3d4-0000-4000-8000-00000000ab01: canvas_page
+translations:
+  fi:
+    enabled:
+      -
+        value: true
+    title:
+      -
+        value: Toimitus
+    menu_name:
+      -
+        value: footer
+    link:
+      -
+        title: null
+        options: {  }
+        target_uuid: a1b2c3d4-0000-4000-8000-00000000ab01
+    external:
+      -
+        value: false
+    rediscover:
+      -
+        value: false
+    weight:
+      -
+        value: 0
+    expanded:
+      -
+        value: false
+    parent:
+      -
+        value: 'menu_link_content:854fb0c1-ed0a-4f59-beb1-272035e7b0a7'
+    revision_translation_affected:
+      -
+        value: true
+    content_translation_source:
+      -
+        value: und
+    content_translation_outdated:
+      -
+        value: false
+    content_translation_uid:
+      -
+        target_id: 0
+    content_translation_status:
+      -
+        value: true
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: Editorial
+  menu_name:
+    -
+      value: footer
+  link:
+    -
+      title: null
+      options: {  }
+      target_uuid: a1b2c3d4-0000-4000-8000-00000000ab01
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: 0
+  expanded:
+    -
+      value: false
+  parent:
+    -
+      value: 'menu_link_content:854fb0c1-ed0a-4f59-beb1-272035e7b0a7'
+  revision_translation_affected:
+    -
+      value: true
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  content_translation_uid:
+    -
+      target_id: 0
+  content_translation_status:
+    -
+      value: true

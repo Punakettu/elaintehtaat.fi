@@ -1,0 +1,52 @@
+/**
+ * @file
+ * Breadcrumb trail: faint small text, slash separators, current page muted.
+ */
+
+.page__breadcrumb {
+  padding-top: clamp(32px, 6vh, 72px);
+}
+
+.page__breadcrumb + .hero {
+  padding-top: 22px;
+}
+
+.breadcrumb__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--color-text-faint);
+  list-style: none;
+}
+
+.breadcrumb__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0;
+  padding: 0;
+}
+
+.breadcrumb__item + .breadcrumb__item::before {
+  content: "/";
+  opacity: 0.5;
+}
+
+.breadcrumb__link {
+  border-bottom: 0;
+  color: inherit;
+  transition: color 0.15s;
+}
+
+.breadcrumb__link:hover {
+  color: var(--color-text);
+}
+
+.breadcrumb__current {
+  color: var(--color-text-muted);
+}

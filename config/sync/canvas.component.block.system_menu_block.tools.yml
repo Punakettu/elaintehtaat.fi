@@ -1,0 +1,51 @@
+uuid: c535f356-92bc-4bae-904b-68535256cb4b
+langcode: fi
+status: false
+dependencies:
+  config:
+    - system.menu.tools
+  module:
+    - system
+active_version: 35229c494f8146f3
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'system_menu_block:tools'
+        label: Työkalut
+        label_display: '0'
+        provider: system
+        level: 1
+        depth: null
+        expand_all_items: false
+    fallback_metadata:
+      slot_definitions: null
+  ac4b9b56e70be45c:
+    settings:
+      default_settings:
+        id: 'system_menu_block:tools'
+        label: Tools
+        label_display: '0'
+        provider: system
+        level: 1
+        depth: null
+        expand_all_items: false
+    fallback_metadata:
+      slot_definitions: null
+  35229c494f8146f3:
+    settings:
+      default_settings:
+        id: 'system_menu_block:tools'
+        label: Työkalut
+        label_display: '0'
+        provider: system
+        level: 1
+        depth: null
+        expand_all_items: false
+    fallback_metadata:
+      slot_definitions: null
+label: Työkalut
+id: block.system_menu_block.tools
+provider: system
+source: block
+source_local_id: 'system_menu_block:tools'

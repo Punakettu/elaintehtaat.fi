@@ -1,0 +1,40 @@
+uuid: 75c98862-70e8-4930-8274-6c51cea5cfbf
+langcode: fi
+status: true
+dependencies:
+  module:
+    - elaintehtaat
+active_version: c741add0e71c4510
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: elaintehtaat_key_numbers
+        label: Avainluvut
+        label_display: '0'
+        provider: elaintehtaat
+    fallback_metadata:
+      slot_definitions: null
+  39bdc99c20cdcd66:
+    settings:
+      default_settings:
+        id: elaintehtaat_key_numbers
+        label: 'Key numbers'
+        label_display: '0'
+        provider: elaintehtaat
+    fallback_metadata:
+      slot_definitions: null
+  c741add0e71c4510:
+    settings:
+      default_settings:
+        id: elaintehtaat_key_numbers
+        label: Avainluvut
+        label_display: '0'
+        provider: elaintehtaat
+    fallback_metadata:
+      slot_definitions: null
+label: Avainluvut
+id: block.elaintehtaat_key_numbers
+provider: elaintehtaat
+source: block
+source_local_id: elaintehtaat_key_numbers

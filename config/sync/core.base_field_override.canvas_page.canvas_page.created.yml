@@ -1,0 +1,18 @@
+uuid: ef32edc2-7221-4233-94d2-1b9038741b55
+langcode: en
+status: true
+dependencies:
+  module:
+    - canvas
+id: canvas_page.canvas_page.created
+field_name: created
+entity_type: canvas_page
+bundle: canvas_page
+label: 'Authored on'
+description: 'The time the page was created.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: 'Drupal\canvas\Entity\Page::getRequestTime'
+settings: {  }
+field_type: created

@@ -1,0 +1,51 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Text
+description: A block of formatted text. Use the lede style for the intro paragraph under a page title.
+status: stable
+props:
+  type: object
+  required:
+    - text
+    - style
+    - tone
+  properties:
+    attributes:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      description: Wrapper attributes.
+    text:
+      type: string
+      title: Text
+      description: Paragraphs, lists and links are allowed.
+      contentMediaType: text/html
+      x-formatting-context: block
+      examples:
+        - '<p>Arkisto kokoaa kuvat ja videot eläintuotannosta yhteen. Jokainen albumi kertoo yhden paikan tarinan — toimittajien, tutkijoiden ja kansalaisten käytettävissä.</p>'
+    style:
+      type: string
+      title: Style
+      description: How the text is set.
+      enum:
+        - body
+        - lede
+        - small
+      meta:enum:
+        body: Body text
+        lede: Lede (large intro under a title)
+        small: Small print
+      examples:
+        - body
+    tone:
+      type: string
+      title: Tone
+      description: Text colour.
+      enum:
+        - default
+        - muted
+        - faint
+      meta:enum:
+        default: Default
+        muted: Muted
+        faint: Faint
+      examples:
+        - default

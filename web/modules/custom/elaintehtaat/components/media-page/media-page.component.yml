@@ -1,0 +1,105 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Media page
+description: Full-screen view of one media item of an album, with a sidebar of its metadata.
+status: stable
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/once
+props:
+  type: object
+  required:
+    - close_url
+    - position
+    - total
+    - album_title
+    - album_url
+    - attribution
+  properties:
+    attributes:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      description: Wrapper attributes.
+    close_url:
+      type: string
+      title: Close URL
+      description: Where the close button leads, normally the album page.
+      examples:
+        - /project/album
+    prev_url:
+      type: string
+      title: Previous URL
+      description: Media page of the previous item in the album. Empty when there is only one item.
+    next_url:
+      type: string
+      title: Next URL
+      description: Media page of the next item in the album. Empty when there is only one item.
+    position:
+      type: integer
+      title: Position
+      description: 1-based position of this item in the album.
+      examples:
+        - 3
+    total:
+      type: integer
+      title: Total
+      description: Number of items in the album.
+      examples:
+        - 12
+    type_label:
+      type: string
+      title: Type label
+      description: Kind of media, shown in the eyebrow.
+      examples:
+        - Photograph
+    date:
+      type: string
+      title: Date
+      description: Formatted capture date, or empty.
+      examples:
+        - 12.3.2024
+    album_title:
+      type: string
+      title: Album title
+    album_url:
+      type: string
+      title: Album URL
+    project_title:
+      type: string
+      title: Project title
+    author:
+      type: string
+      title: Author
+      description: Photographer, or empty.
+    licence_name:
+      type: string
+      title: Licence name
+      examples:
+        - CC BY 4.0
+    licence_url:
+      type: string
+      title: Licence URL
+      description: Link to the licence text, or empty.
+    attribution:
+      type: string
+      title: Attribution
+      description: The attribution line users must reproduce.
+      examples:
+        - 'Photo: Jane Doe / Eläintehtaat'
+    download_url:
+      type: string
+      title: Download URL
+      description: URL of the original file, or empty to hide the button.
+    download_filename:
+      type: string
+      title: Download filename
+slots:
+  image:
+    title: Image
+    description: The stage image.
+  caption:
+    title: Caption
+    description: Caption of the media. When empty a link to the album is shown instead.
+  album_thumbnail:
+    title: Album thumbnail
+    description: Small image representing the album.

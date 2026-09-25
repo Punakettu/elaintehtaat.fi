@@ -1,0 +1,88 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Meta card
+description: A bordered card of metadata rows, each a small label against its values.
+status: stable
+props:
+  type: object
+  required:
+    - rows
+  properties:
+    attributes:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      description: Wrapper attributes.
+    rows:
+      type: array
+      title: Rows
+      description: The metadata rows, in display order.
+      minItems: 1
+      examples:
+        - - label: Date
+            items:
+              - text: 14.5.2022
+          - label: Species
+            items:
+              - text: Pig
+                url: /taxonomy/term/1
+          - label: License
+            items:
+              - text: CC BY-NC-ND 4.0
+                url: 'https://creativecommons.org/licenses/by-nc-nd/4.0/'
+                rel: license
+                chip: true
+      items:
+        type: object
+        required:
+          - label
+          - items
+        properties:
+          label:
+            type: string
+            title: Label
+            description: What the row holds, shown small and uppercase beside it.
+            examples:
+              - Species
+          items:
+            type: array
+            title: Items
+            description: The values of the row, joined by the separator.
+            minItems: 1
+            items:
+              type: object
+              required:
+                - text
+              properties:
+                text:
+                  type: string
+                  title: Text
+                  description: The value.
+                  examples:
+                    - Pig
+                url:
+                  type: string
+                  title: URL
+                  description: Where the value leads, or empty for plain text.
+                  examples:
+                    - /taxonomy/term/1
+                rel:
+                  type: string
+                  title: Rel
+                  description: The rel attribute of the link, when it needs one.
+                  examples:
+                    - license
+                chip:
+                  type: boolean
+                  title: Chip
+                  description: Whether to set the value off as an accent pill, as licences are.
+          separator:
+            type: string
+            title: Separator
+            description: What joins the values of the row. Defaults to a comma.
+            examples:
+              - ' · '
+          note:
+            type: string
+            title: Note
+            description: A small caption under the values, qualifying them.
+            examples:
+              - Coarse location

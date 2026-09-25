@@ -1,0 +1,43 @@
+uuid: f38ef2c2-7637-4f75-8666-839808fcfdff
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.album_species
+    - facets.facet.album_use
+    - facets.facet.album_year
+    - search_api.index.media
+    - views.view.browse
+  module:
+    - search_api
+id: browse_filters
+name: Filters
+facet_source_id: 'search_api:views_page__browse__page_1'
+only_visible_when_facet_source_is_visible: false
+processor_configs:
+  reset_facets:
+    processor_id: reset_facets
+    weights:
+      build: '30'
+    settings:
+      link_text: 'Clear filters'
+      position: before
+facets:
+  album_species:
+    checked: true
+    label: Species
+    separator: ', '
+    show_count: false
+    weight: 0
+  album_use:
+    checked: true
+    label: Use
+    separator: ', '
+    show_count: false
+    weight: 1
+  album_year:
+    checked: true
+    label: Year
+    separator: ', '
+    show_count: false
+    weight: 2

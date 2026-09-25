@@ -1,0 +1,11 @@
+uuid: f2064feb-34b8-4a71-abf7-a5801857cbc5
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.card
+label: Card
+description: 'Cover image used in album cards.'
+targetEntityType: media
+cache: true

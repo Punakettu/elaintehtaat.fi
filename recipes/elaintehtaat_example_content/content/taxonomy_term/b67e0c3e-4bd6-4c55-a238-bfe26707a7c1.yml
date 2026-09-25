@@ -1,0 +1,59 @@
+_meta:
+  version: '1.0'
+  entity_type: taxonomy_term
+  uuid: b67e0c3e-4bd6-4c55-a238-bfe26707a7c1
+  bundle: use
+  default_langcode: en
+translations:
+  fi:
+    status:
+      -
+        value: true
+    name:
+      -
+        value: Maidontuotanto
+    weight:
+      -
+        value: 1
+    revision_translation_affected:
+      -
+        value: true
+    path:
+      -
+        langcode: fi
+        alias: null
+    content_translation_source:
+      -
+        value: und
+    content_translation_outdated:
+      -
+        value: false
+    content_translation_uid:
+      -
+        target_id: 0
+default:
+  status:
+    -
+      value: true
+  name:
+    -
+      value: Dairy
+  weight:
+    -
+      value: 1
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      langcode: en
+      alias: null
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  content_translation_uid:
+    -
+      target_id: 0

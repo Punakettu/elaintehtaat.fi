@@ -1,0 +1,114 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: d082ddfe-55ad-4173-beb5-de85dac701ba
+  bundle: album
+  default_langcode: en
+  depends:
+    496e86e0-f236-4740-8108-eef6819e8e9b: media
+    49938397-cbf9-427f-8180-328cfe38fbbf: node
+    4038c5b0-ad89-45e0-ac63-7ba5f4610b40: taxonomy_term
+    fcbc5afc-f19a-4f8f-95c9-f298693dbcfd: taxonomy_term
+translations:
+  fi:
+    revision_uid:
+      -
+        target_id: 1
+    status:
+      -
+        value: true
+    uid:
+      -
+        target_id: 1
+    title:
+      -
+        value: 'Kettutarha, Kaustinen'
+    promote:
+      -
+        value: true
+    sticky:
+      -
+        value: false
+    revision_translation_affected:
+      -
+        value: true
+    path:
+      -
+        alias: /elaintehtaat-2024/kettutarha-kaustinen
+        langcode: fi
+    content_translation_source:
+      -
+        value: en
+    content_translation_outdated:
+      -
+        value: false
+    field_album_media:
+      -
+        entity: 496e86e0-f236-4740-8108-eef6819e8e9b
+    field_date:
+      -
+        value: '2024-09-02'
+    field_description:
+      -
+        value: '<p>Noin 1 500 eläimen kettutarha Keski-Pohjanmaalla, kuvattu yöllä avoimien varjotalojen ulkopuolelta. Ketut elävät pienissä verkkopohjaisissa häkeissä riveissä katon alla ilman kiinteää lattiaa tai kuivikkeita. Useat eläimet kulkivat häkissään edestakaisin tai kiertivät ympyrää, ja joillakin näkyi vääntyneitä tai vahingoittuneita jalkoja. Sarja dokumentoi varjotalorivit, häkkiolosuhteet ja yksittäisiä eläimiä.</p>'
+        format: basic_html
+    field_project:
+      -
+        entity: 49938397-cbf9-427f-8180-328cfe38fbbf
+    field_species:
+      -
+        entity: 4038c5b0-ad89-45e0-ac63-7ba5f4610b40
+    field_use:
+      -
+        entity: fcbc5afc-f19a-4f8f-95c9-f298693dbcfd
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Fox farm, Kaustinen'
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /elaintehtaat-2024/fox-farm-kaustinen
+      langcode: en
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  field_album_media:
+    -
+      entity: 496e86e0-f236-4740-8108-eef6819e8e9b
+  field_date:
+    -
+      value: '2024-09-02'
+  field_description:
+    -
+      value: '<p>A fox farm of roughly 1,500 animals in Central Ostrobothnia, photographed at night from outside the open-sided sheds. The foxes are kept in rows of small wire-mesh cages under a roof, with no solid floor or bedding. Several animals paced or circled repeatedly in their cages, and bent or injured feet were visible on some. The set documents the shed rows, cage conditions and individual animals.</p>'
+      format: basic_html
+  field_project:
+    -
+      entity: 49938397-cbf9-427f-8180-328cfe38fbbf
+  field_species:
+    -
+      entity: 4038c5b0-ad89-45e0-ac63-7ba5f4610b40
+  field_use:
+    -
+      entity: fcbc5afc-f19a-4f8f-95c9-f298693dbcfd

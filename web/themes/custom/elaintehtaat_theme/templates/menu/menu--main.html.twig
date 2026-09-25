@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Theme override for the main menu rendered in the masthead.
+ *
+ * Only the top level is rendered; the design has a flat primary navigation.
+ *
+ * Available variables:
+ * - menu_name: The machine name of the menu.
+ * - items: A nested list of menu items. Each menu item contains:
+ *   - attributes: HTML attributes for the menu item.
+ *   - below: The menu item child items.
+ *   - title: The menu link title.
+ *   - url: The menu link URL, instance of \Drupal\Core\Url
+ *   - in_active_trail: TRUE if the link is in the active trail.
+ */
+#}
+{% if items %}
+  <ul{{ attributes.addClass('menu', 'mast-nav') }}>
+    {% for item in items %}
+      <li{{ item.attributes.addClass('menu-item', item.in_active_trail ? 'menu-item--active-trail') }}>
+        {{ link(item.title, item.url, { class: [item.in_active_trail ? 'is-active'] }) }}
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}

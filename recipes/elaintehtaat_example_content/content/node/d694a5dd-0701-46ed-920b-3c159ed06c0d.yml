@@ -1,0 +1,124 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: d694a5dd-0701-46ed-920b-3c159ed06c0d
+  bundle: album
+  default_langcode: en
+  depends:
+    00576b15-72c4-44df-9b5a-beffb658a883: media
+    95872019-2d73-44f1-b1c4-4d5c57eb79d3: media
+    25fb4cff-28ee-40a3-8bdf-c1aa43ee73f0: media
+    49938397-cbf9-427f-8180-328cfe38fbbf: node
+    71e3587b-1ada-4b6e-8873-095db66b00f4: taxonomy_term
+    c9171a5d-9135-4404-96ff-0decb3e7fd42: taxonomy_term
+translations:
+  fi:
+    revision_uid:
+      -
+        target_id: 1
+    status:
+      -
+        value: true
+    uid:
+      -
+        target_id: 1
+    title:
+      -
+        value: 'Lihasikala, Jokioinen'
+    promote:
+      -
+        value: true
+    sticky:
+      -
+        value: false
+    revision_translation_affected:
+      -
+        value: true
+    path:
+      -
+        alias: /elaintehtaat-2024/lihasikala-jokioinen
+        langcode: fi
+    content_translation_source:
+      -
+        value: und
+    content_translation_outdated:
+      -
+        value: false
+    field_album_media:
+      -
+        entity: 00576b15-72c4-44df-9b5a-beffb658a883
+      -
+        entity: 95872019-2d73-44f1-b1c4-4d5c57eb79d3
+      -
+        entity: 25fb4cff-28ee-40a3-8bdf-c1aa43ee73f0
+    field_date:
+      -
+        value: '2024-05-14'
+    field_description:
+      -
+        value: '<p>Noin 2 200 lihasian tila Kanta-Hämeessä. Kuvat on otettu kasvatuksen loppuvaiheessa, kun eläimet ovat lähellä teuraspainoa. Karsinat ovat ritilälattiaisia ja kuivittamattomia; virikkeenä oli paikoin lyhyt ketju. Useilla eläimillä näkyi hännänpurentaa ja ihovaurioita. Sarja dokumentoi tilan yleisilmettä, karsinaolosuhteita ja yksittäisten eläinten kuntoa.</p>'
+        format: basic_html
+    field_project:
+      -
+        entity: 49938397-cbf9-427f-8180-328cfe38fbbf
+    field_species:
+      -
+        entity: 71e3587b-1ada-4b6e-8873-095db66b00f4
+    field_use:
+      -
+        entity: c9171a5d-9135-4404-96ff-0decb3e7fd42
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Meat pig farm, Jokioinen'
+  promote:
+    -
+      value: true
+  sticky:
+    -
+      value: true
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /elaintehtaat-2024/meat-pig-farm-jokioinen
+      langcode: en
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  field_album_media:
+    -
+      entity: 00576b15-72c4-44df-9b5a-beffb658a883
+    -
+      entity: 95872019-2d73-44f1-b1c4-4d5c57eb79d3
+    -
+      entity: 25fb4cff-28ee-40a3-8bdf-c1aa43ee73f0
+  field_date:
+    -
+      value: '2024-05-14'
+  field_description:
+    -
+      value: '<p>A facility holding roughly 2,200 meat pigs in Kanta-Häme. Photographs were taken in the late fattening stage, with animals close to slaughter weight. Pens are slatted and bare of bedding; enrichment in places amounted to a short chain. Tail-biting and skin lesions were visible on several animals. The set documents the overall site, pen conditions, and the condition of individual animals.</p>'
+      format: basic_html
+  field_project:
+    -
+      entity: 49938397-cbf9-427f-8180-328cfe38fbbf
+  field_species:
+    -
+      entity: 71e3587b-1ada-4b6e-8873-095db66b00f4
+  field_use:
+    -
+      entity: c9171a5d-9135-4404-96ff-0decb3e7fd42

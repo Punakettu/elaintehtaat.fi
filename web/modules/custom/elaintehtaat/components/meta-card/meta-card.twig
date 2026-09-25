@@ -1,0 +1,38 @@
+{#
+/**
+ * @file
+ * A card of metadata rows.
+ *
+ * Each row is a small uppercase label against its values, optionally set off as
+ * an accent pill and optionally qualified by a note under them.
+ *
+ * @see \Drupal\elaintehtaat\Hook\AlbumMetaHooks
+ */
+#}
+<div{{ attributes.addClass('meta-card') }}>
+  <dl class="meta-card__dl">
+    {% for row in rows %}
+      <dt>{{ row.label }}</dt>
+      <dd>
+        <span class="meta-card__values">
+          {%- for item in row.items -%}
+            {%- if not loop.first %}{{ row.separator|default(', ') }}{% endif -%}
+            {%- if item.url -%}
+              {%- set link = item.chip ? {'class': 'meta-card__chip'} : {} -%}
+              {%- set link = link|merge({'href': item.url}) -%}
+              {%- if item.rel %}{% set link = link|merge({'rel': item.rel}) %}{% endif -%}
+              <a{{ create_attribute(link) }}>{{ item.text }}</a>
+            {%- elseif item.chip -%}
+              <span class="meta-card__chip">{{ item.text }}</span>
+            {%- else -%}
+              {{- item.text -}}
+            {%- endif -%}
+          {%- endfor -%}
+        </span>
+        {% if row.note %}
+          <span class="meta-card__note">{{ row.note }}</span>
+        {% endif %}
+      </dd>
+    {% endfor %}
+  </dl>
+</div>

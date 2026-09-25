@@ -1,0 +1,52 @@
+{#
+/**
+ * @file
+ * Theme override for an album rendered in the teaser view mode.
+ *
+ * Renders the album as a card: cover image (first media item) with a media
+ * count badge, project name and year as an eyebrow, the title and a meta line
+ * with species and use. The title link is stretched over the whole card.
+ *
+ * @see node.html.twig
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    not node.isPublished() ? 'node--unpublished',
+    'node--view-mode-' ~ view_mode|clean_class,
+    'album-card',
+  ]
+%}
+{% set count = node.field_album_media|length %}
+{{ attach_library('elaintehtaat_theme/album-card') }}
+<article{{ attributes.addClass(classes) }}>
+  <div class="album-card__thumb">
+    {{ content.field_album_media.0 }}
+    <span class="album-card__count">
+      {% trans %}{{ count }} media item{% plural count %}{{ count }} media{% endtrans %}
+    </span>
+  </div>
+
+  <div class="album-card__body">
+    {{ title_prefix }}
+    {% if content.field_project.0 or content.field_date.0 %}
+      <p class="album-card__eyebrow eyebrow">
+        {{- content.field_project.0 -}}
+        {% if content.field_project.0 and content.field_date.0 %} · {% endif %}
+        {{- content.field_date.0 -}}
+      </p>
+    {% endif %}
+    <h3{{ title_attributes.addClass('album-card__title') }}>
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h3>
+    {{ title_suffix }}
+    {% if content.field_species.0 or content.field_use.0 %}
+      <div class="album-card__meta muted">
+        {{ content.field_species }}
+        {{ content.field_use }}
+      </div>
+    {% endif %}
+  </div>
+</article>

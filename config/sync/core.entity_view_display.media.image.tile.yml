@@ -1,0 +1,44 @@
+uuid: 079680b8-0b6d-41cd-9bac-9ca6a38f2fff
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.tile
+    - field.field.media.image.field_caption
+    - image.style.card
+    - media.type.image
+  module:
+    - image
+    - text
+id: media.image.tile
+targetEntityType: media
+bundle: image
+mode: tile
+content:
+  field_caption:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  thumbnail:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: card
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  field_author: true
+  field_date: true
+  field_licence: true
+  field_media_image: true
+  langcode: true
+  name: true
+  uid: true

@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Page template for the media page: no masthead, hero or footer.
+ *
+ * The media page fills the viewport on its own, so only the main content and
+ * status messages are printed.
+ *
+ * @see \Drupal\elaintehtaat_theme\Hook\ElaintehtaatThemeHooks::themeSuggestionsPageAlter()
+ * @see page.html.twig
+ */
+#}
+<div class="page page--media">
+  <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+  {{ page.highlighted }}
+  {{ page.content }}
+</div>

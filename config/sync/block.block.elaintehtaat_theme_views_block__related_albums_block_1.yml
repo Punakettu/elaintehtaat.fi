@@ -1,0 +1,32 @@
+uuid: 9db1b741-5a52-4ade-899b-9fd3e00a4c40
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.related_albums
+  module:
+    - node
+    - views
+  theme:
+    - elaintehtaat_theme
+id: elaintehtaat_theme_views_block__related_albums_block_1
+theme: elaintehtaat_theme
+region: content
+weight: 10
+provider: null
+plugin: 'views_block:related_albums-block_1'
+settings:
+  id: 'views_block:related_albums-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: null
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      album: album

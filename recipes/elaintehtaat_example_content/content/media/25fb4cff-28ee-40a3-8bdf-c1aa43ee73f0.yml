@@ -1,0 +1,77 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 25fb4cff-28ee-40a3-8bdf-c1aa43ee73f0
+  bundle: image
+  default_langcode: en
+  depends:
+    16dadaec-faa2-4a78-ba84-f701d62a8e85: file
+translations:
+  fi:
+    status:
+      -
+        value: true
+    uid:
+      -
+        target_id: 1
+    name:
+      -
+        value: 'Porsas porsitushäkin vieressä'
+    revision_translation_affected:
+      -
+        value: true
+    path:
+      -
+        langcode: fi
+        alias: null
+    content_translation_source:
+      -
+        value: und
+    content_translation_outdated:
+      -
+        value: false
+    field_caption:
+      -
+        value: '<p>Muutaman päivän ikäinen porsas porsitushäkkiin suljetun emakkonsa vieressä.</p>'
+        format: basic_html
+    field_media_image:
+      -
+        alt: 'Vastasyntynyt porsas seisoo betonilattialla porsitushäkkiin suljetun emakon vieressä'
+        title: ''
+        width: 2500
+        height: 1667
+        entity: 16dadaec-faa2-4a78-ba84-f701d62a8e85
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Piglet beside a farrowing crate'
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      langcode: en
+      alias: null
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  field_caption:
+    -
+      value: '<p>A piglet a few days old next to its mother, who is confined in a farrowing crate.</p>'
+      format: basic_html
+  field_media_image:
+    -
+      alt: 'A newborn piglet standing on a concrete floor beside a sow confined in a farrowing crate'
+      title: ''
+      width: 2500
+      height: 1667
+      entity: 16dadaec-faa2-4a78-ba84-f701d62a8e85

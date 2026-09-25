@@ -1,0 +1,33 @@
+uuid: 45412e39-0662-4ac6-9bac-67e68dad5f25
+langcode: fi
+status: true
+dependencies:
+  config:
+    - facets.facet.album_species
+  module:
+    - facets
+active_version: 8e863e17c2f25917
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'facet_block:album_species'
+        label: Laji
+        label_display: '0'
+        provider: facets
+    fallback_metadata:
+      slot_definitions: null
+  4317dfe2dc8044ae:
+    settings:
+      default_settings:
+        id: 'facet_block:album_species'
+        label: Species
+        label_display: '0'
+        provider: facets
+    fallback_metadata:
+      slot_definitions: null
+label: Laji
+id: block.facet_block.album_species
+provider: facets
+source: block
+source_local_id: 'facet_block:album_species'

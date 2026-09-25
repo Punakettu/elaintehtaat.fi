@@ -1,0 +1,49 @@
+/**
+ * @file
+ * Design tokens.
+ */
+
+:root {
+  /* Color. */
+  --color-bg: oklch(0.165 0.006 60);
+  --color-bg-deep: oklch(0.108 0.006 60);
+  --color-surface: oklch(0.205 0.006 60);
+  --color-surface-2: oklch(0.245 0.007 60);
+  --color-line: oklch(1 0 0 / 0.1);
+  --color-line-strong: oklch(1 0 0 / 0.2);
+  --color-text: oklch(0.945 0.008 75);
+  --color-text-muted: oklch(0.715 0.01 75);
+  --color-text-faint: oklch(0.545 0.01 75);
+  --color-accent: oklch(0.55 0.145 25);
+  --color-accent-text: oklch(0.72 0.135 28);
+  --color-accent-soft: oklch(0.55 0.145 25 / 0.16);
+  --color-accent-line: oklch(0.55 0.145 25 / 0.45);
+
+  /* Typography. */
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Hanken Grotesk", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --display-weight: 600;
+  --display-tracking: -0.02em;
+  --font-size-base: 16px;
+  --line-height-base: 1.55;
+
+  /* Layout. */
+  --max-width: 1440px;
+  --max-width-wide: 1760px;
+  --gutter: clamp(20px, 4vw, 64px);
+  --masthead-height: 64px;
+
+  /* Spacing. --space-section separates the components stacked on a page. */
+  --space-xs: 8px;
+  --space-sm: 14px;
+  --space-md: 20px;
+  --space-lg: 30px;
+  --space-section: clamp(44px, 7vh, 84px);
+
+  /* Shape & motion. */
+  --radius-sm: 7px;
+  --radius-md: 9px;
+  --radius-lg: 14px;
+  --transition-fast: 0.15s;
+}
