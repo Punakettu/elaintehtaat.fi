@@ -33,6 +33,8 @@
 
 # Local overrides that may contain secrets. settings.php itself is tracked.
 /sites/*/settings.*.php
+# CI settings contain no secrets.
+!/sites/default/settings.ci.php
 /sites/*/services.*.yml
 
 # User-generated content.

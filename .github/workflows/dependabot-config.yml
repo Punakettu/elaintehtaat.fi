@@ -1,0 +1,116 @@
+name: Dependabot config export
+
+# Replays a Dependabot package update on a fresh site and commits the config
+# that database updates changed. Without it, `drush deploy` would run the
+# updates and then revert their config changes during config import.
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - composer.json
+      - composer.lock
+
+concurrency:
+  group: dependabot-config-${{ github.head_ref }}
+  cancel-in-progress: true
+
+# Pushing uses DEPENDABOT_CONFIG_TOKEN: commits pushed with GITHUB_TOKEN do not
+# trigger CI.
+permissions:
+  contents: read
+
+env:
+  PHP_VERSION: '8.5'
+  PHP_EXTENSIONS: apcu, bcmath, gd, intl, mbstring, opcache, pdo_mysql, zip
+
+jobs:
+  export:
+    name: Export config
+    # The PR author stays Dependabot after this job pushes to the branch.
+    if: github.event.pull_request.user.login == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mariadb:12.3
+        env:
+          MARIADB_ROOT_PASSWORD: root
+          MARIADB_DATABASE: drupal
+          MARIADB_USER: drupal
+          MARIADB_PASSWORD: drupal
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd "healthcheck.sh --connect --innodb_initialized"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
+    env:
+      MYSQL_HOST: 127.0.0.1
+    steps:
+      - name: Check token
+        env:
+          TOKEN: ${{ secrets.DEPENDABOT_CONFIG_TOKEN }}
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "::error::Add a Dependabot secret DEPENDABOT_CONFIG_TOKEN with contents:write access (see README)."
+            exit 1
+          fi
+
+      # Start from the base branch: the site is installed with its packages and
+      # config before switching to the PR.
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.base_ref }}
+          token: ${{ secrets.DEPENDABOT_CONFIG_TOKEN }}
+          fetch-depth: 0
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          extensions: ${{ env.PHP_EXTENSIONS }}
+          coverage: none
+          tools: composer:v2
+          ini-values: memory_limit=-1
+
+      - name: Prepare directories
+        run: mkdir -p private
+
+      - name: Install the site with the base branch
+        run: |
+          composer install --no-interaction --no-progress
+          vendor/bin/drush site:install --existing-config -y
+
+      - name: Switch to the PR branch
+        run: |
+          git switch "$GITHUB_HEAD_REF"
+          composer install --no-interaction --no-progress
+
+      - name: Run database updates and export config
+        run: |
+          vendor/bin/drush updatedb -y
+          vendor/bin/drush cache:rebuild
+          vendor/bin/drush config:export -y
+          php .github/scripts/revert-canvas-version-flips.php
+
+      - name: Commit changed config
+        run: |
+          git add -A config/sync
+          if git diff --cached --quiet HEAD; then
+            echo "No config changes." | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          changed=$(git diff --cached --name-status HEAD)
+          {
+            echo "Committed config changes:"
+            echo '```'
+            echo "$changed"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "Export config changes from database updates" -m "$changed"
+          git push origin "HEAD:$GITHUB_HEAD_REF"

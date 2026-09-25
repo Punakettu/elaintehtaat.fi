@@ -84,10 +84,26 @@ and then redirected to the bucket.
 
 ## Deployment
 
-Every push to `main` runs CI (`.github/workflows/deploy.yml`). [Deployer](https://deployer.org) (`deploy.php`)
+Publishing a GitHub release deploys that release's tag (`.github/workflows/deploy.yml`). [Deployer](https://deployer.org) (`deploy.php`)
 rsyncs the build to `~/public_html/releases/<n>`. It then runs
 `drush deploy` (updb, config import, cache rebuild, deploy hooks) and switches the
 `~/public_html/current` symlink. A database dump is saved to `~/backups/elaintehtaat`
 before each deploy.
 
 `settings.local.php` is generated from GitHub secrets on every deploy.
+
+### Dependabot updates
+
+Dependabot (`.github/dependabot.yml`) opens weekly PRs for Drupal packages. On
+those PRs `.github/workflows/dependabot-config.yml` installs the site with the
+`main` packages and config, upgrades to the PR's packages, runs `drush updb`,
+and commits any exported config changes to the PR branch.
+
+It needs a fine-grained personal access token for this repository with
+**Contents: read and write**, saved as a **Dependabot** secret named
+`DEPENDABOT_CONFIG_TOKEN` (Settings → Secrets and variables → Dependabot).
+Dependabot runs can't read Actions secrets, and pushes made with the default
+`GITHUB_TOKEN` don't trigger CI.
+
+Once the workflow has committed to a PR, Dependabot stops rebasing it. Comment
+`@dependabot recreate` to pick up a newer release; the workflow then runs again.

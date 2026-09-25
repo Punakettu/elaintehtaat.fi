@@ -68,6 +68,7 @@ set('rsync', [
     '/private',
     '/web/sites/default/files',
     '/web/sites/default/settings.local.php',
+    '/web/sites/default/settings.ci.php',
     '/web/sites/simpletest',
     '.DS_Store',
   ],
