@@ -34,7 +34,8 @@ host('production')
 
 // Hetzner ships one CLI binary per PHP version; match CI (PHP 8.5).
 set('bin/php', '/usr/bin/php85');
-set('bin/drush', '{{bin/php}} {{release_path}}/vendor/bin/drush --root={{release_path}}/web');
+// vendor/bin/drush is a shell proxy; PHP must run the real entry point.
+set('bin/drush', '{{bin/php}} {{release_path}}/vendor/drush/drush/drush.php --root={{release_path}}/web');
 
 set('shared_dirs', [
   'web/sites/default/files',
@@ -58,6 +59,7 @@ set('rsync', [
     '/.phpunit.cache',
     '/compose.yaml',
     '/deploy.php',
+    '/deployer.phar',
     '/docker',
     '/Makefile',
     '/phpcs.xml*',
@@ -156,10 +158,6 @@ task('deploy:settings', function () {
     "\$settings['file_temp_path'] = " . $e($tmp) . ';',
     // Drupal chmods sites/default to 0555, which breaks deploy:cleanup.
     "\$settings['skip_permissions_hardening'] = TRUE;",
-    '',
-    '// No Varnish in front of PHP here: do not trust X-Forwarded-* headers.',
-    "\$settings['reverse_proxy'] = FALSE;",
-    "\$settings['omit_vary_cookie'] = FALSE;",
     '',
     '// --- Redis -------------------------------------------------------------------',
   );
