@@ -73,7 +73,12 @@ class AlbumMetaHooksTest extends KernelTestBase {
       ],
       [
         'label' => 'Use',
-        'items' => [['text' => 'Meat production', 'url' => AlbumMetaHooks::browseUrl(AlbumMetaHooks::USE_FACET, (int) $meat->id())]],
+        'items' => [
+          [
+            'text' => 'Meat production',
+            'url' => AlbumMetaHooks::browseUrl(AlbumMetaHooks::USE_FACET, (int) $meat->id()),
+          ],
+        ],
       ],
       [
         'label' => 'Project',
