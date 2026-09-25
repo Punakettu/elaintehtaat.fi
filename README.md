@@ -84,7 +84,7 @@ and then redirected to the bucket.
 
 ## Deployment
 
-Every push to `main` runs CI (`.github/workflows/deploy.yml`). [Deployer](https://deployer.org) (`deploy.php`)
+Publishing a GitHub release deploys that release's tag (`.github/workflows/deploy.yml`). [Deployer](https://deployer.org) (`deploy.php`)
 rsyncs the build to `~/public_html/releases/<n>`. It then runs
 `drush deploy` (updb, config import, cache rebuild, deploy hooks) and switches the
 `~/public_html/current` symlink. A database dump is saved to `~/backups/elaintehtaat`
