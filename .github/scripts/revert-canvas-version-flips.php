@@ -4,9 +4,11 @@
  * @file
  * Reverts exported Canvas block components that only switched versions.
  *
- * Drush re-saves canvas.component.block.* with English labels and a different
- * active_version, which the Finnish UI flips back. Both versions are already
- * listed in versioned_properties, so such an export is noise. A file whose new
+ * Canvas stores block labels in the interface language active when it
+ * regenerates components. Without Finnish translations, such as on a fresh CI
+ * install, it re-saves canvas.component.block.* with English labels and a
+ * different active_version. Both versions are already listed in
+ * versioned_properties, so such an export is noise. A file whose new
  * active_version is not in the committed file is a real change and is kept.
  *
  * Run from the project root after drush config:export.
