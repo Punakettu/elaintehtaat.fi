@@ -209,7 +209,8 @@ task('deploy:basic_auth', function () {
     '',
     '',
   ]);
-  $htaccess = '{{release_path}}/web/.htaccess';
+  // upload_contents() quotes the path, so "~" would not expand.
+  $htaccess = run('cd {{release_path}}/web && pwd -P') . '/.htaccess';
   upload_contents($block . run("cat $htaccess") . "\n", $htaccess, '0644');
 });
 
