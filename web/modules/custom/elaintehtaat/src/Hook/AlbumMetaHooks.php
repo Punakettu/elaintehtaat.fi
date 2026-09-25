@@ -11,6 +11,7 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\Core\Url;
 use Drupal\elaintehtaat\Entity\Album;
 use Drupal\node\NodeInterface;
 
@@ -47,6 +48,27 @@ final class AlbumMetaHooks {
    * The date format the album date is written in.
    */
   public const string DATE_FORMAT = 'medium';
+
+  /**
+   * The browse page the terms link to, filtered by the term.
+   *
+   * @see views.view.browse
+   */
+  public const string BROWSE_PATH = '/selaa';
+
+  /**
+   * The URL alias of the species facet on the browse page.
+   *
+   * @see facets.facet.album_species
+   */
+  public const string SPECIES_FACET = 'laji';
+
+  /**
+   * The URL alias of the use facet on the browse page.
+   *
+   * @see facets.facet.album_use
+   */
+  public const string USE_FACET = 'kaytto';
 
   public function __construct(
     private readonly DateFormatterInterface $dateFormatter,
@@ -123,7 +145,7 @@ final class AlbumMetaHooks {
       ];
     }
 
-    $species = $this->termItems($album->getSpecies(), $cache);
+    $species = $this->termItems($album->getSpecies(), self::SPECIES_FACET, $cache);
     if ($species !== []) {
       $rows[] = [
         'label' => (string) $this->t('Species'),
@@ -131,7 +153,7 @@ final class AlbumMetaHooks {
       ];
     }
 
-    $use = $this->termItems($album->getUse(), $cache);
+    $use = $this->termItems($album->getUse(), self::USE_FACET, $cache);
     if ($use !== []) {
       $rows[] = [
         'label' => (string) $this->t('Use'),
@@ -178,27 +200,46 @@ final class AlbumMetaHooks {
   }
 
   /**
-   * Turns terms into card items linking to them.
+   * Turns terms into card items linking to the browse page filtered by them.
    *
    * @param list<\Drupal\taxonomy\TermInterface> $terms
    *   The terms.
+   * @param string $facet
+   *   The URL alias of the browse page facet the terms filter by.
    * @param \Drupal\Core\Cache\CacheableMetadata $cache
    *   Collects the cacheability of the terms.
    *
    * @return list<array<string, string>>
    *   The items.
    */
-  private function termItems(array $terms, CacheableMetadata $cache): array {
+  private function termItems(array $terms, string $facet, CacheableMetadata $cache): array {
     $items = [];
     foreach ($terms as $term) {
       $term = $this->translated($term, $cache);
       $items[] = [
         'text' => (string) $term->label(),
-        'url' => $term->toUrl()->toString(),
+        'url' => $this->browseUrl($facet, (int) $term->id()),
       ];
     }
 
     return $items;
+  }
+
+  /**
+   * The browse page with a single facet value active.
+   *
+   * @param string $facet
+   *   The URL alias of the facet.
+   * @param int $id
+   *   The facet value, the ID of a term.
+   *
+   * @return string
+   *   The URL, in the form the facets query string URL processor reads.
+   */
+  public static function browseUrl(string $facet, int $id): string {
+    return Url::fromUserInput(self::BROWSE_PATH, [
+      'query' => ['f' => [$facet . ':' . $id]],
+    ])->toString();
   }
 
   /**

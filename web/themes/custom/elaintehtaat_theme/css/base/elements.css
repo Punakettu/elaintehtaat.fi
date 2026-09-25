@@ -71,6 +71,11 @@ p {
   text-wrap: pretty;
 }
 
+/*
+ * Text links: every link in running text or in a value, wherever it sits.
+ * Components restyle a link only when it is something other than a text
+ * link: navigation, a chip, a button or a whole card.
+ */
 a {
   color: var(--color-text);
   text-decoration: none;
