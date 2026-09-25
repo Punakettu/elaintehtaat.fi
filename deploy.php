@@ -142,7 +142,12 @@ task('deploy:settings', function () {
     $lines[] = "\$databases['default']['default']['pdo'][\\Pdo\\Mysql::ATTR_SSL_CA] = " . $e($caPath) . ';';
   }
 
-  $trusted = array_values(array_filter(array_map('trim', explode(',', read_env('TRUSTED_HOSTS')))));
+  // TRUSTED_HOSTS is a comma-separated list of plain hostnames; Drupal expects
+  // regular expressions, which it does not anchor.
+  $trusted = array_map(
+    static fn(string $host): string => '^' . preg_quote($host) . '$',
+    array_values(array_filter(array_map('trim', explode(',', read_env('TRUSTED_HOSTS'))))),
+  );
   array_push($lines,
     '',
     '// --- Core settings -----------------------------------------------------------',
