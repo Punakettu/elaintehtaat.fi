@@ -52,12 +52,24 @@
   <header class="masthead" role="banner">
     <div class="shell shell--wide masthead__row">
       {{ page.header }}
-      {{ page.primary_menu }}
+      {% if page.primary_menu %}
+        <div class="masthead__nav" id="masthead-nav">
+          {{ page.primary_menu }}
+        </div>
+      {% endif %}
       <div class="masthead__spacer"></div>
       {% if page.secondary_menu %}
         <div class="masthead__tools">
           {{ page.secondary_menu }}
         </div>
+      {% endif %}
+      {% if page.primary_menu %}
+        {# Shown below the nav breakpoint; js/masthead.js opens the menu panel. #}
+        <button type="button" class="masthead__toggle" aria-controls="masthead-nav" aria-expanded="false">
+          <span class="visually-hidden">{{ 'Menu'|t }}</span>
+          <span class="masthead__toggle-bars" aria-hidden="true"></span>
+        </button>
+        {{ attach_library('elaintehtaat_theme/masthead') }}
       {% endif %}
     </div>
   </header>

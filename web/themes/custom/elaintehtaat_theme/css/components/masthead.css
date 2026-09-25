@@ -112,8 +112,124 @@
   background: var(--color-surface);
 }
 
+/* Menu toggle, shown below the nav breakpoint. */
+.masthead__toggle {
+  display: none;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 36px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--color-line);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.masthead__toggle:hover,
+.masthead__toggle:focus-visible,
+.masthead.is-open .masthead__toggle {
+  color: var(--color-text);
+  background: var(--color-surface);
+}
+
+/* Three bars from one element; they turn into a cross when open. */
+.masthead__toggle-bars,
+.masthead__toggle-bars::before,
+.masthead__toggle-bars::after {
+  display: block;
+  width: 18px;
+  height: 2px;
+  border-radius: 1px;
+  background: currentColor;
+  transition: transform var(--transition-fast), background var(--transition-fast);
+}
+
+.masthead__toggle-bars {
+  position: relative;
+}
+
+.masthead__toggle-bars::before,
+.masthead__toggle-bars::after {
+  position: absolute;
+  left: 0;
+  content: "";
+}
+
+.masthead__toggle-bars::before {
+  top: -6px;
+}
+
+.masthead__toggle-bars::after {
+  top: 6px;
+}
+
+.masthead.is-open .masthead__toggle-bars {
+  background: transparent;
+}
+
+.masthead.is-open .masthead__toggle-bars::before {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.masthead.is-open .masthead__toggle-bars::after {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
 @media (max-width: 900px) {
-  .mast-nav {
+  .masthead__row {
+    gap: 12px;
+  }
+
+  .masthead__toggle {
+    display: flex;
+  }
+
+  /* The menu drops down as a panel under the masthead. */
+  .masthead__nav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    display: none;
+    /* Link text lines up with the wordmark. */
+    padding: 8px calc(var(--gutter) - 12px) 16px;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .masthead.is-open .masthead__nav {
+    display: block;
+  }
+
+  .menu.mast-nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    margin: 0;
+  }
+
+  .mast-nav .menu-item a {
+    padding: 12px;
+    font-size: 17px;
+  }
+}
+
+/* Room for the wordmark, language toggle and menu button on small phones. */
+@media (max-width: 400px) {
+  .masthead__row {
+    gap: 8px;
+  }
+
+  .wordmark__name {
+    font-size: 15px;
+  }
+
+  .wordmark__tag {
     display: none;
   }
 }
