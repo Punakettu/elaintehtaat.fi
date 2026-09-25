@@ -1,4 +1,4 @@
-.PHONY: up down build logs shell install config-export config-import reset varnish-purge
+.PHONY: up down build logs shell install config-export config-import reset
 
 COMPOSE = docker compose
 PHP     = $(COMPOSE) exec app
@@ -36,6 +36,3 @@ config-import: ## Import config/sync into the active site
 reset:         ## Destroy containers and volumes, then start fresh
 	$(COMPOSE) down -v
 	$(COMPOSE) up -d --build
-
-varnish-purge: ## Flush the entire Varnish cache
-	$(COMPOSE) exec varnish varnishadm "ban req.url ~ ."

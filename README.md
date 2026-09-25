@@ -4,8 +4,7 @@ Drupal 11 site running on Docker Compose.
 
 | Service | Image              | Purpose                                | Host port |
 |---------|--------------------|----------------------------------------|-----------|
-| varnish | varnish:7          | HTTP cache in front of nginx           | **8080**  |
-| nginx   | nginx:1.27-alpine  | Web server, serves `web/`              | 8081 (bypasses Varnish) |
+| nginx   | nginx:1.27-alpine  | Web server, serves `web/`              | **8080**  |
 | php     | php:8.3-fpm-alpine | PHP-FPM + Composer + Drush             | –         |
 | mysql   | mariadb:12.3       | Database                               | 3306      |
 | redis   | redis:7-alpine     | Cache backend (drupal/redis, PhpRedis) | 6379      |
@@ -27,7 +26,7 @@ Open <http://localhost:8080> and log in with `admin` / `admin`.
 
 ```
 compose.yml                      service definitions
-docker/                          per-service config (php Dockerfile + ini, nginx, varnish VCL, mysql, rustfs)
+docker/                          per-service config (php Dockerfile + ini, nginx, mysql, rustfs)
 composer.json                    Drupal project
 config/sync/                     exported Drupal configuration
 web/                             document root
@@ -40,7 +39,6 @@ web/sites/default/settings.php   Drupal settings
 make up / make down         start / stop
 make logs                   tail logs
 make shell                  sh into the php container
-make varnish-purge          flush Varnish
 make reset                  wipe containers + volumes and rebuild
 ```
 
@@ -70,15 +68,8 @@ and then redirected to the bucket.
 ## Caching notes
 
 - Anonymous page responses carry `Cache-Control: max-age=3600, public`
-  (`system.performance` config) and are cached by Varnish. Check the
-  `X-Varnish-Cache: HIT|MISS` response header.
-- Varnish passes through anything under `/admin`, `/user`, `/batch` and any
-  request with a Drupal session cookie.
-- `drupal/purge` and `drupal/varnish_purge` are in `composer.json` but not yet
-  enabled. Enable them and add a Varnish purger (BAN with `Cache-Tags` header,
-  host `varnish`, port 80) to get tag-based invalidation instead of waiting
-  for the TTL. The VCL already accepts `PURGE`, `BAN` and `URIBAN` from the
-  Docker network.
+  (`system.performance` config). There is no reverse proxy cache in front of
+  nginx, locally or in production.
 - Redis backs all cache bins except `form`, and also stores the compiled
   service container (`bootstrap_container_definition`).
 
