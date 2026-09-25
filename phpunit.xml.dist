@@ -27,11 +27,11 @@
   <php>
     <ini name="error_reporting" value="32767"/>
     <ini name="memory_limit" value="-1"/>
-    <!-- Internal URL of the nginx container (bypasses Varnish). -->
+    <!-- Internal URL of the nginx container. -->
     <env name="SIMPLETEST_BASE_URL" value="http://nginx"/>
     <env name="SIMPLETEST_DB" value="mysql://drupal:drupal@mysql/drupal"/>
     <!-- Host-reachable URL used for the links in browser test output. -->
-    <env name="BROWSERTEST_OUTPUT_BASE_URL" value="http://localhost:8081"/>
+    <env name="BROWSERTEST_OUTPUT_BASE_URL" value="http://localhost:8080"/>
     <env name="MINK_DRIVER_CLASS" value=""/>
     <env name="MINK_DRIVER_ARGS" value=""/>
     <env name="MINK_DRIVER_ARGS_WEBDRIVER" value=""/>

@@ -48,18 +48,12 @@ $settings['trusted_host_patterns'] = [
   '^php$',
 ];
 
-// --- Reverse proxy (Varnish) -------------------------------------------------
-// Only Varnish (and nginx on the debug port) can reach PHP inside the Docker
-// network, so trusting the immediate upstream is safe here.
-$settings['reverse_proxy'] = TRUE;
-$settings['reverse_proxy_addresses'] = [$_SERVER['REMOTE_ADDR'] ?? '127.0.0.1'];
-$settings['reverse_proxy_trusted_headers'] =
-  \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_FOR
-  | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_HOST
-  | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PORT
-  | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PROTO;
-// Let Varnish cache anonymous pages without a Vary: Cookie header.
-$settings['omit_vary_cookie'] = TRUE;
+// --- Reverse proxy (Cloudflare) ----------------------------------------------
+//$settings['reverse_proxy'] = TRUE;
+//$settings['reverse_proxy_addresses'] = [127.0.0.1];
+//$settings['reverse_proxy_trusted_headers'] =
+//  \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_FOR
+//  | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PROTO;
 
 // --- Redis -------------------------------------------------------------------
 // The redis module can serve as cache backend even before it is enabled, as

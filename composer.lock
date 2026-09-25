@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0b6f8766811594454ddc31be5e2fad91",
+    "content-hash": "c7bba7d3138acc104f31f901e81c4b9b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2370,66 +2370,6 @@
             }
         },
         {
-            "name": "drupal/purge",
-            "version": "3.7.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/purge.git",
-                "reference": "8.x-3.7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/purge-8.x-3.7.zip",
-                "reference": "8.x-3.7",
-                "shasum": "a471c8e9c5f766fc83057eabae257c77609051f1"
-            },
-            "require": {
-                "drupal/core": "^9.5 || ^10 || ^11"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "8.x-3.7",
-                    "datestamp": "1784660713",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                },
-                "branch-alias": {
-                    "dev-8.x-3.x": "3.x-dev"
-                },
-                "drush": {
-                    "services": {
-                        "drush.services.yml": ">=10"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Niels van Mourik",
-                    "homepage": "http://www.nielsvm.org"
-                },
-                {
-                    "name": "japerry",
-                    "homepage": "https://www.drupal.org/user/45640"
-                },
-                {
-                    "name": "nielsvm",
-                    "homepage": "https://www.drupal.org/user/163285"
-                }
-            ],
-            "description": "Provides a generic external cache invalidation API and queue service.",
-            "homepage": "https://www.drupal.org/project/purge",
-            "support": {
-                "source": "https://git.drupalcode.org/project/purge"
-            }
-        },
-        {
             "name": "drupal/redis",
             "version": "1.11.0",
             "source": {
@@ -2834,70 +2774,6 @@
             "homepage": "https://www.drupal.org/project/token",
             "support": {
                 "source": "https://git.drupalcode.org/project/token"
-            }
-        },
-        {
-            "name": "drupal/varnish_purge",
-            "version": "2.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/varnish_purge.git",
-                "reference": "8.x-2.3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/varnish_purge-8.x-2.3.zip",
-                "reference": "8.x-2.3",
-                "shasum": "e4a8b45ab81923ec8f250b385dd71f1178fa1ca9"
-            },
-            "require": {
-                "drupal/core": "^9.1 || ^10 || ^11"
-            },
-            "require-dev": {
-                "drupal/purge": "*",
-                "drupal/purge_tokens": "*",
-                "drupal/varnish_purger-varnish_purger": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "8.x-2.3",
-                    "datestamp": "1739875635",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "deadbeef",
-                    "homepage": "https://www.drupal.org/user/93644"
-                },
-                {
-                    "name": "dieterholvoet",
-                    "homepage": "https://www.drupal.org/user/3567222"
-                },
-                {
-                    "name": "javivf",
-                    "homepage": "https://www.drupal.org/user/2789335"
-                },
-                {
-                    "name": "littlethoughts",
-                    "homepage": "https://www.drupal.org/user/2479724"
-                },
-                {
-                    "name": "misc",
-                    "homepage": "https://www.drupal.org/user/382892"
-                }
-            ],
-            "homepage": "https://www.drupal.org/project/varnish_purge",
-            "support": {
-                "source": "https://git.drupalcode.org/project/varnish_purge"
             }
         },
         {
