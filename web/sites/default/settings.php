@@ -129,6 +129,12 @@ $config['s3fs.settings']['domain'] = getenv('S3_PUBLIC_HOST') ?: 'localhost:9000
 $config['s3fs.settings']['domain_root'] = 'none';
 $config['s3fs.settings']['disable_version_sync'] = TRUE;
 
+// --- CI ----------------------------------------------------------------------
+// GitHub Actions sets CI=true.
+if (getenv('CI')) {
+  include $app_root . '/' . $site_path . '/settings.ci.php';
+}
+
 // --- Local overrides ---------------------------------------------------------
 if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
   include $app_root . '/' . $site_path . '/settings.local.php';
