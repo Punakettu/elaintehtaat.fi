@@ -81,3 +81,13 @@ and then redirected to the bucket.
   Docker network.
 - Redis backs all cache bins except `form`, and also stores the compiled
   service container (`bootstrap_container_definition`).
+
+## Deployment
+
+Every push to `main` runs CI (`.github/workflows/deploy.yml`). If CI passes,
+the [Deployer](https://deployer.org) (`deploy.php`) rsyncs the build to `~/public_html/releases/<n>`. It then runs
+`drush deploy` (updb, config import, cache rebuild, deploy hooks) and switches the
+`~/public_html/current` symlink. A database dump is saved to `~/backups/elaintehtaat`
+before each deploy.
+
+`settings.local.php` is generated from GitHub secrets on every deploy.
