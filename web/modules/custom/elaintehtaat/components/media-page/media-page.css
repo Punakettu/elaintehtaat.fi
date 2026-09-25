@@ -182,16 +182,6 @@
   margin: 0;
 }
 
-.media-page__caption a {
-  color: inherit;
-  text-decoration: underline;
-  text-decoration-color: var(--color-line-strong, rgb(255 255 255 / 0.2));
-}
-
-.media-page__caption a:hover {
-  text-decoration-color: var(--color-accent, #a3312b);
-}
-
 /* Album card. */
 
 .media-page__album {

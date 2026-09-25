@@ -67,13 +67,18 @@ class AlbumMetaHooksTest extends KernelTestBase {
       [
         'label' => 'Species',
         'items' => [
-          ['text' => 'Pig', 'url' => $pig->toUrl()->toString()],
-          ['text' => 'Cow', 'url' => $cow->toUrl()->toString()],
+          ['text' => 'Pig', 'url' => AlbumMetaHooks::browseUrl(AlbumMetaHooks::SPECIES_FACET, (int) $pig->id())],
+          ['text' => 'Cow', 'url' => AlbumMetaHooks::browseUrl(AlbumMetaHooks::SPECIES_FACET, (int) $cow->id())],
         ],
       ],
       [
         'label' => 'Use',
-        'items' => [['text' => 'Meat production', 'url' => $meat->toUrl()->toString()]],
+        'items' => [
+          [
+            'text' => 'Meat production',
+            'url' => AlbumMetaHooks::browseUrl(AlbumMetaHooks::USE_FACET, (int) $meat->id()),
+          ],
+        ],
       ],
       [
         'label' => 'Project',
@@ -94,6 +99,18 @@ class AlbumMetaHooksTest extends KernelTestBase {
         ],
       ],
     ], $card['#props']['rows']);
+  }
+
+  /**
+   * Terms link to the browse page with the term as the active facet value.
+   */
+  public function testTermsLinkToBrowsePage(): void {
+    $meat = $this->createTerm(self::USE_VOCABULARY, 'Meat production');
+    $album = $this->createAlbum(['field_use' => [$meat]]);
+
+    $url = $this->card($album)['#props']['rows'][0]['items'][0]['url'];
+
+    $this->assertStringEndsWith('/selaa?f%5B0%5D=kaytto%3A' . $meat->id(), $url);
   }
 
   /**
