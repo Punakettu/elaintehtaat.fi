@@ -191,6 +191,28 @@ task('deploy:settings', function () {
   upload_contents(implode("\n", $lines) . "\n", "$shared/web/sites/default/settings.local.php", '0440');
 });
 
+desc('Password-protects the site while shared/.htpasswd exists');
+task('deploy:basic_auth', function () {
+  if (!test('[ -f {{deploy_path}}/shared/.htpasswd ]')) {
+    return;
+  }
+  // Apache only reads .htaccess files inside the document root, so the auth
+  // block has to go into Drupal's web/.htaccess, which rsync overwrites.
+  // AuthUserFile needs an absolute path.
+  $htpasswd = run('cd {{deploy_path}}/shared && pwd -P') . '/.htpasswd';
+  $block = implode("\n", [
+    '# Added by deploy.php while shared/.htpasswd exists.',
+    'AuthUserFile "' . $htpasswd . '"',
+    'AuthName "Development"',
+    'AuthType Basic',
+    'require valid-user',
+    '',
+    '',
+  ]);
+  $htaccess = '{{release_path}}/web/.htaccess';
+  upload_contents($block . run("cat $htaccess") . "\n", $htaccess, '0644');
+});
+
 /**
  * Checks whether Drupal bootstraps against the production database.
  */
@@ -244,6 +266,7 @@ task('deploy', [
   'rsync',
   'deploy:shared',
   'deploy:settings',
+  'deploy:basic_auth',
   'drush:backup',
   'drush:maint:on',
   'drush:deploy',

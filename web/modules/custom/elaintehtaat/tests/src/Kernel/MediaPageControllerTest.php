@@ -10,6 +10,7 @@ use Drupal\elaintehtaat\Entity\Album;
 use Drupal\elaintehtaat\Entity\Image;
 use Drupal\elaintehtaat\Entity\Licence;
 use Drupal\elaintehtaat\Entity\Project;
+use Drupal\image\Entity\ImageStyle;
 use Drupal\Tests\elaintehtaat\Traits\ContentModelTrait;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 use PHPUnit\Framework\Attributes\Group;
@@ -142,6 +143,19 @@ class MediaPageControllerTest extends KernelTestBase {
     $this->assertSame(3, $last['position']);
     $this->assertSame($this->mediaUrl($this->media[1]), $last['prev_url']);
     $this->assertSame($this->mediaUrl($this->media[0]), $last['next_url']);
+  }
+
+  /**
+   * Media without a caption renders the album fallback text.
+   */
+  public function testRenderWithoutCaption(): void {
+    ImageStyle::create(['name' => MediaPageController::IMAGE_STYLE, 'label' => 'Media page'])->save();
+
+    $build = $this->controller()->build($this->album, $this->media[0]);
+    $this->assertArrayNotHasKey('caption', $build['#slots']);
+
+    $html = (string) $this->container->get('renderer')->renderInIsolation($build);
+    $this->assertStringContainsString('No separate caption.', $html);
   }
 
   /**

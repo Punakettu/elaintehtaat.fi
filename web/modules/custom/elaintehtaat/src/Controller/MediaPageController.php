@@ -120,11 +120,12 @@ final class MediaPageController implements ContainerInjectionInterface {
     }
 
     $caption = $media->getCaption();
-    $slots = [
+    // The component element rejects empty arrays, so leave empty slots out.
+    $slots = array_filter([
       'image' => $this->image($media, self::IMAGE_STYLE, $cache, ['loading' => 'eager', 'fetchpriority' => 'high']),
       'album_thumbnail' => $this->image($items[0], self::THUMBNAIL_STYLE, $cache),
       'caption' => $caption?->view(['label' => 'hidden', 'type' => 'text_default']) ?? [],
-    ];
+    ]);
 
     $taken = $media->getDate();
     $date = $taken === NULL ? '' : $this->dateFormatter->format($taken->getTimestamp(), 'custom', 'j.n.Y');
