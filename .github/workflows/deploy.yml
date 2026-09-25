@@ -1,0 +1,58 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy to production
+    runs-on: ubuntu-latest
+    environment: Production
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.5'
+          extensions: apcu, bcmath, gd, intl, mbstring, opcache, pdo_mysql, zip
+          coverage: none
+          tools: composer:v2
+
+      - name: Build (composer install --no-dev)
+        uses: ramsey/composer-install@v4
+        with:
+          composer-options: --no-dev --optimize-autoloader
+
+      - name: Deploy
+        uses: deployphp/action@v1
+        with:
+          dep: deploy production -v
+          deployer-version: '8.0.5'
+          private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          known-hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          DB_HOST: ${{ vars.DB_HOST }}
+          DB_PORT: ${{ vars.DB_PORT }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_SSL_CA: ${{ vars.DB_SSL_CA }}
+          HASH_SALT: ${{ secrets.HASH_SALT }}
+          TRUSTED_HOSTS: ${{ vars.TRUSTED_HOSTS }}
+          REDIS_HOST: ${{ vars.REDIS_HOST }}
+          REDIS_PORT: ${{ vars.REDIS_PORT }}
+          REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}

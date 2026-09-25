@@ -1,11 +1,10 @@
 name: CI
 
 on:
-  push:
-    branches:
-      - main
+  # Pushes to main run CI through deploy.yml, which calls this workflow.
   pull_request:
   workflow_dispatch:
+  workflow_call:
 
 # Cancel superseded runs on the same branch/PR.
 concurrency:
