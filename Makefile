@@ -16,7 +16,7 @@ build:         ## Rebuild the PHP image
 	$(COMPOSE) build app
 
 logs:          ## Tail all container logs
-	$(COMPOSE) logs -f
+	$(COMPOSE) logs app -f
 
 shell:         ## Shell into the PHP container
 	$(PHP) sh
