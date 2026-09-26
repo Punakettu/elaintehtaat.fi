@@ -43,6 +43,15 @@ make shell                  sh into the php container
 make reset                  wipe containers + volumes and rebuild
 ```
 
+## Xdebug
+
+Xdebug is installed in the php image but off by default. To enable step
+debugging, set `XDEBUG_ENABLE=true` and recreate the container with
+`docker compose up -d app`.
+
+To debug a page, add `?XDEBUG_SESSION=1` to the URL. For command-line
+tools, use `docker compose exec -e XDEBUG_SESSION=1 app drush ...`
+
 ## File storage (S3 / RustFS)
 
 `public://` is served from the S3 bucket via the [s3fs](https://www.drupal.org/project/s3fs)

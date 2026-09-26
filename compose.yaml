@@ -40,6 +40,10 @@ services:
       BROWSERTEST_OUTPUT_BASE_URL: http://localhost:8081
       # Public ngrok host (`make ngrok`).
       NGROK_DOMAIN: ${NGROK_DOMAIN:-}
+      # Xdebug step debugging; export XDEBUG_ENABLE=true (shell or .env) and recreate app.
+      XDEBUG_ENABLE: ${XDEBUG_ENABLE:-false}
+      # PhpStorm: matches the server name under Settings > PHP > Servers.
+      PHP_IDE_CONFIG: serverName=elaintehtaat
     depends_on:
       mysql:
         condition: service_healthy
