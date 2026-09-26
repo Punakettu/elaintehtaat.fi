@@ -10,6 +10,7 @@ Drupal 11 site running on Docker Compose.
 | redis   | redis:7-alpine     | Cache backend (drupal/redis, PhpRedis) | 6379      |
 | rustfs  | rustfs/rustfs      | S3-compatible object storage for files | 9000 (S3 API), 9001 (console) |
 | rustfs-init | amazon/aws-cli | One-shot: creates the bucket, exits    | –         |
+| ngrok   | ngrok/ngrok        | Opt-in public tunnel for webhooks      | 4040 (inspector) |
 
 ## Quick start
 

@@ -1,4 +1,7 @@
-.PHONY: up down build logs shell install config-export config-import reset
+.PHONY: up down build logs shell install config-export config-import reset ngrok ngrok-stop
+
+-include .env
+PORT_NGROK_WEB ?= 4040
 
 COMPOSE = docker compose
 PHP     = $(COMPOSE) exec app
@@ -36,3 +39,22 @@ config-import: ## Import config/sync into the active site
 reset:         ## Destroy containers and volumes, then start fresh
 	$(COMPOSE) down -v
 	$(COMPOSE) up -d --build
+
+ngrok:         ## Start an ngrok tunnel to nginx
+	@missing=""; \
+	if [ -z "$(NGROK_AUTHTOKEN)" ]; then missing="$$missing NGROK_AUTHTOKEN"; fi; \
+	if [ -z "$(NGROK_DOMAIN)" ]; then missing="$$missing NGROK_DOMAIN"; fi; \
+	if [ -n "$$missing" ]; then \
+		printf "\nngrok is not configured — missing:$$missing\n"; \
+		printf "Set these in .env (see .env.example):\n"; \
+		printf "  NGROK_AUTHTOKEN  token from https://dashboard.ngrok.com/get-started/your-authtoken\n"; \
+		printf "  NGROK_DOMAIN     a reserved domain, e.g. your-name.ngrok-free.app\n\n"; \
+		exit 1; \
+	fi
+	$(COMPOSE) --profile ngrok up --force-recreate -d ngrok
+	@echo 'Tunnel:    https://$(NGROK_DOMAIN)  ->  nginx:80'
+	@echo 'Inspector: http://localhost:$(PORT_NGROK_WEB)'
+	@echo 'If the app container started before NGROK_DOMAIN was set, run `docker compose up -d app` so Drupal trusts the host.'
+
+ngrok-stop:    ## Stop the ngrok tunnel
+	$(COMPOSE) stop ngrok
