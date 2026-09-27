@@ -5,8 +5,8 @@ dependencies: {  }
 id: '763178'
 label: 'Video library'
 description: 'Eläintehtaat.fi video library.'
-api_key: c158651c-5aeb-4827-b3d89c1f7368-6256-41ba
+api_key: ''
 cdn_hostname: vz-a26f73bf-f21.b-cdn.net
 pull_zone: ''
 token_authentication_key: ''
-read_only_api_key: 80969ddf-3eda-4fdb-a5157dadee89-fb03-4bdd
+read_only_api_key: ''

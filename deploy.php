@@ -182,11 +182,45 @@ task('deploy:settings', function () {
     );
   }
 
+  array_push($lines,
+    '',
+    '// --- Bunny Stream --------------------------------------------------------------',
+    "\$config['bunny_stream.bunny_stream_library.763178']['read_only_api_key'] = " . $e(read_env('BUNNY_STREAM_READ_ONLY_API_KEY')) . ';',
+    "\$config['bunny_stream.bunny_stream_library.763178']['api_key'] = " . $e(read_env('BUNNY_STREAM_API_KEY')) . ';',
+  );
+  // A token authentication key makes the library private.
+  if ($bunnyTokenKey = read_env('BUNNY_STREAM_TOKEN_AUTHENTICATION_KEY', FALSE)) {
+    $lines[] = "\$config['bunny_stream.bunny_stream_library.763178']['token_authentication_key'] = " . $e($bunnyTokenKey) . ';';
+  }
+
   $lines[] = '';
   $lines[] = '// --- File storage ------------------------------------------------------------';
-  // S3 is not set up in production yet: keep public:// on the local (shared)
-  // disk.
-  $lines[] = "\$settings['s3fs.use_s3_for_public'] = FALSE;";
+  $s3 = [
+    'access_key' => read_env('S3_ACCESS_KEY', FALSE),
+    'secret_key' => read_env('S3_SECRET_KEY', FALSE),
+    'bucket' => read_env('S3_BUCKET', FALSE),
+    'endpoint' => read_env('S3_ENDPOINT', FALSE),
+    'public_host' => read_env('S3_PUBLIC_HOST', FALSE),
+  ];
+  if (!in_array(NULL, $s3, TRUE)) {
+    array_push($lines,
+      "\$settings['s3fs.use_s3_for_public'] = TRUE;",
+      "\$settings['s3fs.access_key'] = " . $e($s3['access_key']) . ';',
+      "\$settings['s3fs.secret_key'] = " . $e($s3['secret_key']) . ';',
+      "\$config['s3fs.settings']['bucket'] = " . $e($s3['bucket']) . ';',
+      "\$config['s3fs.settings']['region'] = " . $e(read_env('S3_REGION', FALSE) ?? 'us-east-1') . ';',
+      "\$config['s3fs.settings']['hostname'] = " . $e($s3['endpoint']) . ';',
+      "\$config['s3fs.settings']['use_https'] = TRUE;",
+      // With path-style addressing s3fs also prefixes public URLs with the
+      // bucket, which a CDN serving the bucket root (Bunny pull zone) lacks.
+      "\$config['s3fs.settings']['use_path_style_endpoint'] = " . $e(filter_var(read_env('S3_USE_PATH_STYLE', FALSE), FILTER_VALIDATE_BOOLEAN)) . ';',
+      "\$config['s3fs.settings']['domain'] = " . $e($s3['public_host']) . ';',
+    );
+  }
+  else {
+    // Without S3 credentials keep public:// on the local (shared) disk.
+    $lines[] = "\$settings['s3fs.use_s3_for_public'] = FALSE;";
+  }
 
   upload_contents(implode("\n", $lines) . "\n", "$shared/web/sites/default/settings.local.php", '0440');
 });

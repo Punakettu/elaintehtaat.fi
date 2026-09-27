@@ -128,6 +128,17 @@ $config['s3fs.settings']['domain'] = getenv('S3_PUBLIC_HOST') ?: 'localhost:9000
 $config['s3fs.settings']['domain_root'] = 'none';
 $config['s3fs.settings']['disable_version_sync'] = TRUE;
 
+// --- Bunny Stream --------------------------------------------------------------
+if ($bunny_api_key = getenv('BUNNY_STREAM_API_KEY')) {
+  $config['bunny_stream.bunny_stream_library.763178']['api_key'] = $bunny_api_key;
+}
+if ($bunny_read_only_api_key = getenv('BUNNY_STREAM_READ_ONLY_API_KEY')) {
+  $config['bunny_stream.bunny_stream_library.763178']['read_only_api_key'] = $bunny_read_only_api_key;
+}
+if ($bunny_token_authentication_key = getenv('BUNNY_STREAM_TOKEN_AUTHENTICATION_KEY')) {
+  $config['bunny_stream.bunny_stream_library.763178']['token_authentication_key'] = $bunny_token_authentication_key;
+}
+
 // --- CI ----------------------------------------------------------------------
 // GitHub Actions sets CI=true.
 if (getenv('CI')) {
