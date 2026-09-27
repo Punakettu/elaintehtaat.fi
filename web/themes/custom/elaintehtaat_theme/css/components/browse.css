@@ -71,15 +71,36 @@
   font-size: 14px;
 }
 
+/*
+ * Masonry: tiles keep their own aspect ratio and flow down the columns. The
+ * column counts follow the front page "Featured" media (featured.css).
+ */
 .browse__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 10px;
+  columns: 3;
+  column-gap: 10px;
+}
+
+.browse__grid > * {
+  margin-bottom: 10px;
+  break-inside: avoid;
+}
+
+/* Very large screens have room for a fourth column. */
+@media (min-width: 1800px) {
+  .browse__grid {
+    columns: 4;
+  }
+}
+
+@media (max-width: 1080px) {
+  .browse__grid {
+    columns: 2;
+  }
 }
 
 @media (max-width: 600px) {
   .browse__grid {
-    grid-template-columns: 1fr;
+    columns: 1;
   }
 }
 

@@ -8,6 +8,6 @@
 /* A block label is a section head, like the ones the view templates draw. */
 .block > h2 {
   margin: 0 0 18px;
-  font-size: 22px;
+  font-size: var(--font-size-h2);
   letter-spacing: -0.015em;
 }

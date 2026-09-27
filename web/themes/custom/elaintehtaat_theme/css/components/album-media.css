@@ -1,25 +1,30 @@
 /**
  * @file
- * Grid of media tiles on an album page.
+ * Masonry of media tiles on an album page: tiles keep their own aspect ratio
+ * and flow down the columns.
  *
  * @see templates/field/field--node--field-album-media.html.twig
  */
 
 .album-media {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
+  columns: 3;
+  column-gap: 10px;
   margin-top: clamp(20px, 3vh, 32px);
+}
+
+.album-media > .field__item {
+  margin-bottom: 10px;
+  break-inside: avoid;
 }
 
 @media (max-width: 1080px) {
   .album-media {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    columns: 2;
   }
 }
 
 @media (max-width: 600px) {
   .album-media {
-    grid-template-columns: 1fr;
+    columns: 1;
   }
 }

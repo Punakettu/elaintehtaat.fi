@@ -15,24 +15,36 @@
 
 .featured__title {
   margin: 0;
-  font-size: 22px;
+  font-size: var(--font-size-h2);
   letter-spacing: -0.015em;
 }
 
+/* Masonry: tiles keep their own aspect ratio and flow down the columns. */
 .featured__grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
+  columns: 3;
+  column-gap: 10px;
+}
+
+.featured__grid > * {
+  margin-bottom: 10px;
+  break-inside: avoid;
+}
+
+/* Very large screens have room for a fourth column. */
+@media (min-width: 1800px) {
+  .featured__grid {
+    columns: 4;
+  }
 }
 
 @media (max-width: 1080px) {
   .featured__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    columns: 2;
   }
 }
 
 @media (max-width: 600px) {
   .featured__grid {
-    grid-template-columns: 1fr;
+    columns: 1;
   }
 }

@@ -39,9 +39,9 @@ final class MediaPageController implements ContainerInjectionInterface {
   use StringTranslationTrait;
 
   /**
-   * Image style used for the stage image.
+   * Responsive image style used for the stage image.
    */
-  public const string IMAGE_STYLE = 'media_page';
+  public const string STAGE_STYLE = 'media_stage';
 
   /**
    * Image style used for the album thumbnail in the sidebar.
@@ -214,15 +214,15 @@ final class MediaPageController implements ContainerInjectionInterface {
       return $media->getSourceField()?->view('default') ?? [];
     }
 
-    return $this->image($media, self::IMAGE_STYLE, $cache, ['loading' => 'eager', 'fetchpriority' => 'high']);
+    return $this->image($media, self::STAGE_STYLE, $cache, ['loading' => 'eager', 'fetchpriority' => 'high'], TRUE);
   }
 
   /**
-   * Renders the media's image in an image style.
+   * Renders the media's image in an image style or a responsive image style.
    *
    * An image shows its source image, other media their thumbnail.
    */
-  private function image(MediaInterface $media, string $style_name, CacheableMetadata $cache, array $attributes = []): array {
+  private function image(MediaInterface $media, string $style_name, CacheableMetadata $cache, array $attributes = [], bool $responsive = FALSE): array {
     if (!$media instanceof AlbumMedia) {
       return [];
     }
@@ -233,11 +233,28 @@ final class MediaPageController implements ContainerInjectionInterface {
       return [];
     }
     $cache->addCacheableDependency($file);
-    $style = $this->entityTypeManager->getStorage('image_style')->load($style_name);
+    $style = $this->entityTypeManager->getStorage($responsive ? 'responsive_image_style' : 'image_style')->load($style_name);
     if ($style !== NULL) {
       $cache->addCacheableDependency($style);
     }
     $values = $item->getValue();
+
+    if ($responsive) {
+      // The responsive image reads its alt and title off the attributes.
+      $attributes['alt'] = $values['alt'] ?? '';
+      if (!empty($values['title'])) {
+        $attributes['title'] = $values['title'];
+      }
+
+      return [
+        '#theme' => 'responsive_image',
+        '#responsive_image_style_id' => $style_name,
+        '#uri' => $file->getFileUri(),
+        '#width' => $values['width'] ?? NULL,
+        '#height' => $values['height'] ?? NULL,
+        '#attributes' => $attributes,
+      ];
+    }
 
     return [
       '#theme' => 'image_style',

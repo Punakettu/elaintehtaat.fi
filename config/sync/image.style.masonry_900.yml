@@ -1,0 +1,21 @@
+uuid: f9f19027-4a15-4cd0-a6e7-4ac594c01d60
+langcode: en
+status: true
+dependencies: {  }
+name: masonry_900
+label: 'Masonry (900 wide)'
+effects:
+  f1a85866-e2c7-4aa5-adb6-78f004a23a80:
+    uuid: f1a85866-e2c7-4aa5-adb6-78f004a23a80
+    id: image_scale
+    weight: 1
+    data:
+      width: 900
+      height: null
+      upscale: false
+  94c7b0fa-5a13-48c8-a7d7-5d4c0c382bbc:
+    uuid: 94c7b0fa-5a13-48c8-a7d7-5d4c0c382bbc
+    id: image_convert_avif
+    weight: 2
+    data:
+      extension: webp

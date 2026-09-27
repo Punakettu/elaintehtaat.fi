@@ -1,0 +1,21 @@
+uuid: 915c85bb-ba44-4cba-bda7-f2ed5640af37
+langcode: en
+status: true
+dependencies: {  }
+name: tile_480
+label: 'Tile (480×320)'
+effects:
+  0fb51d3e-37c9-4576-ae8c-224aeab619ec:
+    uuid: 0fb51d3e-37c9-4576-ae8c-224aeab619ec
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 480
+      height: 320
+      anchor: center-center
+  0a525aa1-fa26-4043-a074-e71fd13cdde7:
+    uuid: 0a525aa1-fa26-4043-a074-e71fd13cdde7
+    id: image_convert_avif
+    weight: 2
+    data:
+      extension: webp

@@ -1,0 +1,21 @@
+uuid: 6dae6b32-4f8f-483b-8e80-5544d2a8d4f3
+langcode: en
+status: true
+dependencies: {  }
+name: stage_800
+label: 'Stage (800×560)'
+effects:
+  21bc2ac3-1131-44e2-911d-147e60d4e84f:
+    uuid: 21bc2ac3-1131-44e2-911d-147e60d4e84f
+    id: image_scale
+    weight: 1
+    data:
+      width: 800
+      height: 560
+      upscale: false
+  6174d377-7fcc-43dd-b959-123cdcc40952:
+    uuid: 6174d377-7fcc-43dd-b959-123cdcc40952
+    id: image_convert_avif
+    weight: 2
+    data:
+      extension: webp

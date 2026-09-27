@@ -1,0 +1,21 @@
+uuid: 0deecef6-e4e7-4819-aca3-fd854864694c
+langcode: en
+status: true
+dependencies: {  }
+name: tile_1200
+label: 'Tile (1200×800)'
+effects:
+  05eb8581-6107-422b-91f5-68679c69d4ec:
+    uuid: 05eb8581-6107-422b-91f5-68679c69d4ec
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1200
+      height: 800
+      anchor: center-center
+  ca70c20e-48d7-480e-8022-0e540f44fbf9:
+    uuid: ca70c20e-48d7-480e-8022-0e540f44fbf9
+    id: image_convert_avif
+    weight: 2
+    data:
+      extension: webp

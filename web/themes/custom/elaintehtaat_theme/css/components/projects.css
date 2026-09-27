@@ -14,7 +14,7 @@
 
 .projects__title {
   margin: 0;
-  font-size: 22px;
+  font-size: var(--font-size-h2);
   letter-spacing: -0.015em;
 }
 

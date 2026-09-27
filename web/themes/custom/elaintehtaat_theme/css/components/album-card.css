@@ -110,6 +110,26 @@
   }
 }
 
+/*
+ * The recent albums on the front page and the albums of a project follow the
+ * "Featured" media columns: three columns, and four on very large screens.
+ *
+ * @see featured.css
+ */
+@media (min-width: 1081px) {
+  .view-id-albums.view-display-id-block_1 .view-content,
+  .view-id-project_albums.view-display-id-block_1 .view-content {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1800px) {
+  .view-id-albums.view-display-id-block_1 .view-content,
+  .view-id-project_albums.view-display-id-block_1 .view-content {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 600px) {
   .view-content:has(> .views-row > .album-card) {
     grid-template-columns: 1fr;

@@ -1,0 +1,21 @@
+uuid: 86106335-e0b7-4453-ac83-7723eb42b3b4
+langcode: en
+status: true
+dependencies: {  }
+name: masonry_480
+label: 'Masonry (480 wide)'
+effects:
+  0aaa7734-474e-43cd-a5cb-21af5302f00f:
+    uuid: 0aaa7734-474e-43cd-a5cb-21af5302f00f
+    id: image_scale
+    weight: 1
+    data:
+      width: 480
+      height: null
+      upscale: false
+  b5da02d9-c7ac-4538-bc42-4b0b607b8dea:
+    uuid: b5da02d9-c7ac-4538-bc42-4b0b607b8dea
+    id: image_convert_avif
+    weight: 2
+    data:
+      extension: webp

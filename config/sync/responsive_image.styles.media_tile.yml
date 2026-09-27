@@ -1,0 +1,27 @@
+uuid: 0bae11a4-d7e8-4c8d-8805-4a0603a6ab16
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.card
+    - image.style.tile_1200
+    - image.style.tile_480
+    - image.style.tile_720
+  module:
+    - responsive_image
+id: media_tile
+label: 'Media tile'
+image_style_mappings:
+  -
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: '(max-width: 600px) 100vw, (max-width: 1080px) 50vw, min(33vw, 440px)'
+      sizes_image_styles:
+        - card
+        - tile_1200
+        - tile_480
+        - tile_720
+    breakpoint_id: responsive_image.viewport_sizing
+    multiplier: 1x
+breakpoint_group: responsive_image
+fallback_image_style: card

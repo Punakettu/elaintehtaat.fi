@@ -1,0 +1,21 @@
+uuid: 4407dc6b-894a-4789-871d-1d3a6283e1a7
+langcode: en
+status: true
+dependencies: {  }
+name: tile_720
+label: 'Tile (720×480)'
+effects:
+  b8b06ac5-8d46-41e1-8741-a59fc7d34418:
+    uuid: b8b06ac5-8d46-41e1-8741-a59fc7d34418
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 720
+      height: 480
+      anchor: center-center
+  5e7fcfe1-c564-4176-8ff0-12bd7bb0118f:
+    uuid: 5e7fcfe1-c564-4176-8ff0-12bd7bb0118f
+    id: image_convert_avif
+    weight: 2
+    data:
+      extension: webp

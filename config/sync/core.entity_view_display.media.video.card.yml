@@ -4,21 +4,21 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.media.card
-    - image.style.card
     - media.type.video
+    - responsive_image.styles.media_tile
   module:
-    - image
+    - responsive_image
 id: media.video.card
 targetEntityType: media
 bundle: video
 mode: card
 content:
   thumbnail:
-    type: image
+    type: responsive_image
     label: hidden
     settings:
+      responsive_image_style: media_tile
       image_link: ''
-      image_style: card
       image_loading:
         attribute: lazy
     third_party_settings: {  }
