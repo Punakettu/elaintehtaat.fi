@@ -1,0 +1,21 @@
+uuid: 4d1ba7a1-7bb4-4cab-a808-dc0ac79a84be
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_date
+    - media.type.video
+  module:
+    - datetime
+id: media.video.field_date
+field_name: field_date
+entity_type: media
+bundle: video
+label: Date
+description: 'When was this video captured'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

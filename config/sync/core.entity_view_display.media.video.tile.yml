@@ -1,18 +1,22 @@
-uuid: 079680b8-0b6d-41cd-9bac-9ca6a38f2fff
+uuid: 7142583b-575e-48f2-bc28-0bfde8f2d324
 langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.media.tile
-    - field.field.media.image.field_caption
+    - field.field.media.video.field_author
+    - field.field.media.video.field_caption
+    - field.field.media.video.field_date
+    - field.field.media.video.field_licence
+    - field.field.media.video.field_media_bunny_stream
     - image.style.card
-    - media.type.image
+    - media.type.video
   module:
     - image
     - text
-id: media.image.tile
+id: media.video.tile
 targetEntityType: media
-bundle: image
+bundle: video
 mode: tile
 content:
   field_caption:
@@ -38,7 +42,7 @@ hidden:
   field_author: true
   field_date: true
   field_licence: true
-  field_media_image: true
+  field_media_bunny_stream: true
   langcode: true
   name: true
   search_api_excerpt: true

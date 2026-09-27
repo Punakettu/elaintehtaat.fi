@@ -20,6 +20,11 @@ targetEntityType: node
 bundle: album
 mode: teaser
 content:
+  album_meta:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 102
+    region: content
   field_album_media:
     type: entity_reference_entity_view
     label: hidden
@@ -67,3 +72,4 @@ hidden:
   field_license: true
   langcode: true
   links: true
+  search_api_excerpt: true

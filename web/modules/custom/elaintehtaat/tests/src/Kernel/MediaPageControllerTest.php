@@ -7,10 +7,10 @@ namespace Drupal\Tests\elaintehtaat\Kernel;
 use Drupal\Core\Url;
 use Drupal\elaintehtaat\Controller\MediaPageController;
 use Drupal\elaintehtaat\Entity\Album;
-use Drupal\elaintehtaat\Entity\Image;
 use Drupal\elaintehtaat\Entity\Licence;
 use Drupal\elaintehtaat\Entity\Project;
 use Drupal\image\Entity\ImageStyle;
+use Drupal\media\MediaInterface;
 use Drupal\Tests\elaintehtaat\Traits\ContentModelTrait;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 use PHPUnit\Framework\Attributes\Group;
@@ -195,6 +195,34 @@ class MediaPageControllerTest extends KernelTestBase {
   }
 
   /**
+   * A video shows the player on the stage, video credits and no download.
+   */
+  public function testVideo(): void {
+    $video = $this->createVideoMedia('Video', ['field_author' => 'Jane Doe']);
+    $album = $this->createAlbum([
+      'title' => 'Videot',
+      'field_project' => $this->project,
+      'field_album_media' => [$video, $this->media[0]],
+    ]);
+
+    $build = $this->controller()->build($album, $video);
+    $props = $build['#props'];
+    $this->assertSame('Video', $props['type_label']);
+    $this->assertSame('Filmed by', $props['author_label']);
+    $this->assertSame('Video: Jane Doe / Eläintehtaat', $props['attribution']);
+    $this->assertSame('', $props['download_url']);
+
+    // The stage is the source field as the default display shows it.
+    $this->assertSame('field_media_test', $build['#slots']['image']['#field_name']);
+    // The video leads the album, so the album thumbnail is its thumbnail.
+    $this->assertSame($video->getThumbnailFile()?->getFileUri(), $build['#slots']['album_thumbnail']['#uri']);
+
+    $html = (string) $this->container->get('renderer')->renderInIsolation($build);
+    $this->assertStringContainsString('video-Video', $html);
+    $this->assertStringContainsString('Filmed by', $html);
+  }
+
+  /**
    * Instantiates the controller through the container.
    */
   protected function controller(): MediaPageController {
@@ -204,7 +232,7 @@ class MediaPageControllerTest extends KernelTestBase {
   /**
    * URL of the media page of one album item.
    */
-  protected function mediaUrl(Image $media): string {
+  protected function mediaUrl(MediaInterface $media): string {
     return Url::fromRoute('elaintehtaat.media_page', [
       'node' => $this->album->id(),
       'media' => $media->id(),

@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\elaintehtaat\Traits;
 
+use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\elaintehtaat\Entity\Album;
 use Drupal\elaintehtaat\Entity\Image;
 use Drupal\elaintehtaat\Entity\Licence;
 use Drupal\elaintehtaat\Entity\Project;
+use Drupal\elaintehtaat\Entity\Video;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\file\Entity\File;
@@ -25,6 +27,7 @@ use Drupal\Tests\node\Traits\NodeCreationTrait;
  * @see \Drupal\elaintehtaat\Entity\Image
  * @see \Drupal\elaintehtaat\Entity\Licence
  * @see \Drupal\elaintehtaat\Entity\Project
+ * @see \Drupal\elaintehtaat\Entity\Video
  */
 trait ContentModelTrait {
 
@@ -48,6 +51,8 @@ trait ContentModelTrait {
     'datetime',
     'node',
     'media',
+    // Stands in for Bunny Stream as the source of the video media type.
+    'media_test_source',
     'taxonomy',
     'link',
   ];
@@ -82,6 +87,14 @@ trait ContentModelTrait {
     // A node type that is neither an album nor a project.
     $this->createContentType(['type' => 'other'], create_body: FALSE);
     $this->createMediaType('image', ['id' => Image::BUNDLE]);
+    $video_type = $this->createMediaType('test', ['id' => Video::BUNDLE]);
+    // Like the Bunny player on the site, the default display shows the source.
+    EntityViewDisplay::create([
+      'targetEntityType' => 'media',
+      'bundle' => Video::BUNDLE,
+      'mode' => 'default',
+      'status' => TRUE,
+    ])->setComponent($video_type->getSource()->getSourceFieldDefinition($video_type)->getName(), ['type' => 'string'])->save();
 
     $this->createField('node', Album::BUNDLE, 'field_project', 'entity_reference', ['target_type' => 'node']);
     $this->createField('node', Album::BUNDLE, 'field_album_media', 'entity_reference', ['target_type' => 'media'], FieldStorageConfig::CARDINALITY_UNLIMITED);
@@ -100,6 +113,7 @@ trait ContentModelTrait {
     $this->createField('media', Image::BUNDLE, 'field_date', 'datetime', ['datetime_type' => 'date']);
     $this->createField('media', Image::BUNDLE, 'field_author', 'string');
     $this->createField('media', Image::BUNDLE, 'field_licence', 'entity_reference', ['target_type' => 'taxonomy_term']);
+    $this->createField('media', Video::BUNDLE, 'field_author', 'string', storage_exists: TRUE);
   }
 
   /**
@@ -109,14 +123,16 @@ trait ContentModelTrait {
    * except the ones holding prose: a translation of an album shares its
    * species, use, project and date with the original.
    */
-  protected function createField(string $entity_type, string $bundle, string $name, string $type, array $settings = [], int $cardinality = 1, bool $translatable = FALSE): void {
-    FieldStorageConfig::create([
-      'field_name' => $name,
-      'entity_type' => $entity_type,
-      'type' => $type,
-      'cardinality' => $cardinality,
-      'settings' => $settings,
-    ])->save();
+  protected function createField(string $entity_type, string $bundle, string $name, string $type, array $settings = [], int $cardinality = 1, bool $translatable = FALSE, bool $storage_exists = FALSE): void {
+    if (!$storage_exists) {
+      FieldStorageConfig::create([
+        'field_name' => $name,
+        'entity_type' => $entity_type,
+        'type' => $type,
+        'cardinality' => $cardinality,
+        'settings' => $settings,
+      ])->save();
+    }
     FieldConfig::create([
       'field_name' => $name,
       'entity_type' => $entity_type,
@@ -166,6 +182,23 @@ trait ContentModelTrait {
     ]);
     $media->save();
     $this->assertInstanceOf(Image::class, $media);
+    return $media;
+  }
+
+  /**
+   * Creates a published video media item.
+   *
+   * Pass other media values, such as the status or field_author, in $values.
+   */
+  protected function createVideoMedia(string $name = 'Clip', array $values = []): Video {
+    $media = Media::create($values + [
+      'bundle' => Video::BUNDLE,
+      'name' => $name,
+      'status' => 1,
+      'field_media_test' => 'video-' . $name,
+    ]);
+    $media->save();
+    $this->assertInstanceOf(Video::class, $media);
     return $media;
   }
 

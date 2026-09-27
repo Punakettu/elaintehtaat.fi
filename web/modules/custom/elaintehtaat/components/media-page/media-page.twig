@@ -59,7 +59,7 @@
       {% if author or date or licence_name %}
         <dl class="media-page__dl">
           {% if author %}
-            <dt>{{ 'Photographer'|t }}</dt>
+            <dt>{{ author_label ?: 'Photographer'|t }}</dt>
             <dd>{{ author }}</dd>
           {% endif %}
           {% if date %}

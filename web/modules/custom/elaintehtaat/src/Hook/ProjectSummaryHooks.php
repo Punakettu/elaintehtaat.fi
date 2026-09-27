@@ -10,7 +10,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\elaintehtaat\Entity\Album;
-use Drupal\elaintehtaat\Entity\Image;
+use Drupal\elaintehtaat\Entity\AlbumMedia;
 use Drupal\elaintehtaat\Entity\Project;
 use Drupal\node\NodeInterface;
 
@@ -137,7 +137,7 @@ final class ProjectSummaryHooks {
    */
   private function cover(Album $album, string $style, CacheableMetadata $cache): ?array {
     $media = $album->getCover();
-    if (!$media instanceof Image || !$media->isPublished()) {
+    if (!$media instanceof AlbumMedia || !$media->isPublished()) {
       return NULL;
     }
     $file = $media->getThumbnailFile();

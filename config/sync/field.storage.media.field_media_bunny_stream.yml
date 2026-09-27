@@ -1,0 +1,22 @@
+uuid: aa583396-20da-4c58-a765-2be056e71e72
+langcode: en
+status: true
+dependencies:
+  module:
+    - bunny_stream
+    - media
+id: media.field_media_bunny_stream
+field_name: field_media_bunny_stream
+entity_type: media
+type: bunny_stream_video
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: bunny_stream
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

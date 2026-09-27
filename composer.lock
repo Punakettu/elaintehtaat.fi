@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c7bba7d3138acc104f31f901e81c4b9b",
+    "content-hash": "982ad1fcc466f22ae97fa6940fa6326d",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1109,6 +1109,37 @@
                 }
             ],
             "time": "2024-02-05T11:56:58+00:00"
+        },
+        {
+            "name": "drupal/bunny_stream",
+            "version": "2.0.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Punakettu/bunny_stream.git",
+                "reference": "a34462f0043525185d003c678cfbc567f38b132c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Punakettu/bunny_stream/zipball/a34462f0043525185d003c678cfbc567f38b132c",
+                "reference": "a34462f0043525185d003c678cfbc567f38b132c",
+                "shasum": ""
+            },
+            "require": {
+                "drupal/core": "^11.4",
+                "php": "^8.4"
+            },
+            "default-branch": true,
+            "type": "drupal-module",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Drupal Media integration with the Bunny.net Stream service.",
+            "homepage": "https://www.drupal.org/project/bunny_stream",
+            "support": {
+                "source": "https://github.com/Punakettu/bunny_stream/tree/2.0.x",
+                "issues": "https://github.com/Punakettu/bunny_stream/issues"
+            },
+            "time": "2026-09-27T17:29:12+00:00"
         },
         {
             "name": "drupal/canvas",
@@ -4005,6 +4036,257 @@
                 "source": "https://github.com/nikic/PHP-Parser/tree/v5.9.0"
             },
             "time": "2026-09-13T18:51:52+00:00"
+        },
+        {
+            "name": "npm-asset/buffer-from",
+            "version": "1.1.2",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/buffer-from/-/buffer-from-1.1.2.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/combine-errors",
+            "version": "3.0.3",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/combine-errors/-/combine-errors-3.0.3.tgz"
+            },
+            "require": {
+                "npm-asset/custom-error-instance": "2.1.1",
+                "npm-asset/lodash.uniqby": "4.5.0"
+            },
+            "type": "npm-asset"
+        },
+        {
+            "name": "npm-asset/custom-error-instance",
+            "version": "2.1.1",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/custom-error-instance/-/custom-error-instance-2.1.1.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "ISC"
+            ]
+        },
+        {
+            "name": "npm-asset/graceful-fs",
+            "version": "4.2.11",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.11.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "ISC"
+            ]
+        },
+        {
+            "name": "npm-asset/is-stream",
+            "version": "2.0.1",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/is-stream/-/is-stream-2.0.1.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/js-base64",
+            "version": "3.9.2",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/js-base64/-/js-base64-3.9.2.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "BSD-3-Clause"
+            ]
+        },
+        {
+            "name": "npm-asset/lodash.throttle",
+            "version": "4.18.1-patch1",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:lodash/lodash.git",
+                "reference": "6bcfd517ccf0b867f119b3b872d0c1f9ef728162"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lodash/lodash/zipball/6bcfd517ccf0b867f119b3b872d0c1f9ef728162",
+                "reference": "6bcfd517ccf0b867f119b3b872d0c1f9ef728162"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/proper-lockfile",
+            "version": "4.1.2",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/proper-lockfile/-/proper-lockfile-4.1.2.tgz"
+            },
+            "require": {
+                "npm-asset/graceful-fs": ">=4.2.4,<5.0.0",
+                "npm-asset/retry": ">=0.12.0,<0.13.0",
+                "npm-asset/signal-exit": ">=3.0.2,<4.0.0"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/querystringify",
+            "version": "2.2.0",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/querystringify/-/querystringify-2.2.0.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/requires-port",
+            "version": "1.0.0",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/requires-port/-/requires-port-1.0.0.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/retry",
+            "version": "0.12.0",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/retry/-/retry-0.12.0.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/signal-exit",
+            "version": "3.0.7",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/signal-exit/-/signal-exit-3.0.7.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "ISC"
+            ]
+        },
+        {
+            "name": "npm-asset/tus-js-client",
+            "version": "4.3.1",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/tus-js-client/-/tus-js-client-4.3.1.tgz"
+            },
+            "require": {
+                "npm-asset/buffer-from": ">=1.1.2,<2.0.0",
+                "npm-asset/combine-errors": ">=3.0.3,<4.0.0",
+                "npm-asset/is-stream": ">=2.0.0,<3.0.0",
+                "npm-asset/js-base64": ">=3.7.2,<4.0.0",
+                "npm-asset/lodash.throttle": ">=4.1.1,<5.0.0",
+                "npm-asset/proper-lockfile": ">=4.1.2,<5.0.0",
+                "npm-asset/url-parse": ">=1.5.7,<2.0.0"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/url-parse",
+            "version": "1.5.10",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/url-parse/-/url-parse-1.5.10.tgz"
+            },
+            "require": {
+                "npm-asset/querystringify": ">=2.1.1,<3.0.0",
+                "npm-asset/requires-port": ">=1.0.0,<2.0.0"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "oomphinc/composer-installers-extender",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/oomphinc/composer-installers-extender.git",
+                "reference": "cbf4b6f9a24153b785d09eee755b995ba87bd5f9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/oomphinc/composer-installers-extender/zipball/cbf4b6f9a24153b785d09eee755b995ba87bd5f9",
+                "reference": "cbf4b6f9a24153b785d09eee755b995ba87bd5f9",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.1 || ^2.0",
+                "composer/installers": "^1.0 || ^2.0",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "composer/composer": "^2.0",
+                "phpunit/phpunit": "^7.2",
+                "squizlabs/php_codesniffer": "^3.3"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "OomphInc\\ComposerInstallersExtender\\Plugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "OomphInc\\ComposerInstallersExtender\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stephen Beemsterboer",
+                    "email": "stephen@oomphinc.com",
+                    "homepage": "https://github.com/balbuf"
+                },
+                {
+                    "name": "Nathan Dentzau",
+                    "email": "nate@oomphinc.com",
+                    "homepage": "http://oomph.is/ndentzau"
+                }
+            ],
+            "description": "Extend the composer/installers plugin to accept any arbitrary package type.",
+            "homepage": "http://www.oomphinc.com/",
+            "support": {
+                "issues": "https://github.com/oomphinc/composer-installers-extender/issues",
+                "source": "https://github.com/oomphinc/composer-installers-extender/tree/2.0.1"
+            },
+            "abandoned": true,
+            "time": "2021-12-15T12:32:42+00:00"
         },
         {
             "name": "pear/archive_tar",
@@ -13894,6 +14176,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "drupal/bunny_stream": 20,
         "drupal/canvas_translate": 15
     },
     "prefer-stable": true,

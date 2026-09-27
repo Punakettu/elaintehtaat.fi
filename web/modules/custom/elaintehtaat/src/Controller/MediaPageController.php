@@ -17,8 +17,11 @@ use Drupal\Core\File\FileUrlGeneratorInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Url;
+use Drupal\Core\Field\FieldItemInterface;
 use Drupal\elaintehtaat\Entity\Album;
+use Drupal\elaintehtaat\Entity\AlbumMedia;
 use Drupal\elaintehtaat\Entity\Image;
+use Drupal\elaintehtaat\Entity\Video;
 use Drupal\media\MediaInterface;
 use Drupal\node\NodeInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -80,7 +83,7 @@ final class MediaPageController implements ContainerInjectionInterface {
   public function build(NodeInterface $node, MediaInterface $media): array {
     $album = $this->translated($node);
     $media = $this->translated($media);
-    if (!$album instanceof Album || !$media instanceof Image) {
+    if (!$album instanceof Album || !$media instanceof AlbumMedia) {
       throw new NotFoundHttpException();
     }
 
@@ -122,7 +125,7 @@ final class MediaPageController implements ContainerInjectionInterface {
     $caption = $media->getCaption();
     // The component element rejects empty arrays, so leave empty slots out.
     $slots = array_filter([
-      'image' => $this->image($media, self::IMAGE_STYLE, $cache, ['loading' => 'eager', 'fetchpriority' => 'high']),
+      'image' => $this->stage($media, $cache),
       'album_thumbnail' => $this->image($items[0], self::THUMBNAIL_STYLE, $cache),
       'caption' => $caption?->view(['label' => 'hidden', 'type' => 'text_default']) ?? [],
     ]);
@@ -131,9 +134,17 @@ final class MediaPageController implements ContainerInjectionInterface {
     $date = $taken === NULL ? '' : $this->dateFormatter->format($taken->getTimestamp(), 'custom', 'j.n.Y');
 
     $author = $media->getAuthor();
-    $attribution = $author === ''
-      ? $this->t('Photo: @organisation', ['@organisation' => self::ORGANISATION])
-      : $this->t('Photo: @author / @organisation', ['@author' => $author, '@organisation' => self::ORGANISATION]);
+    $args = ['@author' => $author, '@organisation' => self::ORGANISATION];
+    if ($media instanceof Video) {
+      $type_label = $this->t('Video');
+      $author_label = $this->t('Filmed by');
+      $attribution = $author === '' ? $this->t('Video: @organisation', $args) : $this->t('Video: @author / @organisation', $args);
+    }
+    else {
+      $type_label = $this->t('Photograph');
+      $author_label = $this->t('Photographer');
+      $attribution = $author === '' ? $this->t('Photo: @organisation', $args) : $this->t('Photo: @author / @organisation', $args);
+    }
 
     $licence_name = '';
     $licence_url = '';
@@ -147,7 +158,8 @@ final class MediaPageController implements ContainerInjectionInterface {
 
     $download_url = '';
     $download_filename = '';
-    $file = $media->getSourceFile();
+    // Videos stream from Bunny and have no file to download.
+    $file = $media instanceof Image ? $media->getSourceFile() : NULL;
     if ($file !== NULL) {
       $download_url = $this->fileUrlGenerator->generateString($file->getFileUri());
       $download_filename = (string) $file->getFilename();
@@ -162,12 +174,13 @@ final class MediaPageController implements ContainerInjectionInterface {
         'next_url' => $next_url,
         'position' => $index + 1,
         'total' => $total,
-        'type_label' => (string) $this->t('Photograph'),
+        'type_label' => (string) $type_label,
         'date' => $date,
         'album_title' => (string) $album->label(),
         'album_url' => $album->toUrl()->toString(),
         'project_title' => $project === NULL ? '' : (string) $project->label(),
         'author' => $author,
+        'author_label' => (string) $author_label,
         'licence_name' => $licence_name,
         'licence_url' => $licence_url,
         'attribution' => (string) $attribution,
@@ -192,15 +205,31 @@ final class MediaPageController implements ContainerInjectionInterface {
   }
 
   /**
-   * Renders the media's source image in an image style.
+   * Builds the stage: the image in the stage style, or the video player.
+   */
+  private function stage(AlbumMedia $media, CacheableMetadata $cache): array {
+    if ($media instanceof Video) {
+      // The source field shows as the Bunny player, configured on the
+      // media's default display.
+      return $media->getSourceField()?->view('default') ?? [];
+    }
+
+    return $this->image($media, self::IMAGE_STYLE, $cache, ['loading' => 'eager', 'fetchpriority' => 'high']);
+  }
+
+  /**
+   * Renders the media's image in an image style.
+   *
+   * An image shows its source image, other media their thumbnail.
    */
   private function image(MediaInterface $media, string $style_name, CacheableMetadata $cache, array $attributes = []): array {
-    if (!$media instanceof Image) {
+    if (!$media instanceof AlbumMedia) {
       return [];
     }
-    $item = $media->getSourceItem();
-    $file = $media->getSourceFile();
-    if ($item === NULL || $file === NULL) {
+    [$item, $file] = $media instanceof Image
+      ? [$media->getSourceItem(), $media->getSourceFile()]
+      : [$media->getThumbnailItem(), $media->getThumbnailFile()];
+    if (!$item instanceof FieldItemInterface || $file === NULL) {
       return [];
     }
     $cache->addCacheableDependency($file);
