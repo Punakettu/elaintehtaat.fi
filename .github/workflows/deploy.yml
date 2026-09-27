@@ -56,3 +56,5 @@ jobs:
           REDIS_HOST: ${{ vars.REDIS_HOST }}
           REDIS_PORT: ${{ vars.REDIS_PORT }}
           REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
+          BUNNY_STREAM_API_KEY: ${{ secrets.BUNNY_STREAM_API_KEY }}
+          BUNNY_STREAM_READ_ONLY_API_KEY: ${{ secrets.BUNNY_STREAM_READ_ONLY_API_KEY }}

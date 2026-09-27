@@ -182,6 +182,13 @@ task('deploy:settings', function () {
     );
   }
 
+  array_push($lines,
+    '',
+    '// --- Bunny Stream --------------------------------------------------------------',
+    "\$config['bunny_stream.bunny_stream_library.763178']['read_only_api_key'] = " . $e(read_env('BUNNY_STREAM_READ_ONLY_API_KEY')) . ';',
+    "\$config['bunny_stream.bunny_stream_library.763178']['api_key'] = " . $e(read_env('BUNNY_STREAM_API_KEY')) . ';',
+  );
+
   $lines[] = '';
   $lines[] = '// --- File storage ------------------------------------------------------------';
   // S3 is not set up in production yet: keep public:// on the local (shared)
