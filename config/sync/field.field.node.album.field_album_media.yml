@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_album_media
     - media.type.image
+    - media.type.video
     - node.type.album
 id: node.album.field_album_media
 field_name: field_album_media
@@ -21,9 +22,10 @@ settings:
   handler_settings:
     target_bundles:
       image: image
+      video: video
     sort:
       field: _none
       direction: ASC
     auto_create: true
-    auto_create_bundle: ''
+    auto_create_bundle: image
 field_type: entity_reference

@@ -10,6 +10,7 @@ use Drupal\elaintehtaat\Entity\Album;
 use Drupal\elaintehtaat\Entity\Image;
 use Drupal\elaintehtaat\Entity\Licence;
 use Drupal\elaintehtaat\Entity\Project;
+use Drupal\elaintehtaat\Entity\Video;
 use Drupal\media\MediaInterface;
 use Drupal\Tests\elaintehtaat\Traits\ContentModelTrait;
 use Drupal\Tests\user\Traits\UserCreationTrait;
@@ -61,7 +62,7 @@ class BundleClassTest extends KernelTestBase {
   }
 
   /**
-   * Image media and licence terms are loaded as their bundle class too.
+   * Image and video media and licence terms load as their bundle class too.
    */
   public function testMediaAndTermsUseTheirBundleClass(): void {
     $species = $this->createTerm(self::SPECIES_VOCABULARY, 'Fox');
@@ -77,6 +78,9 @@ class BundleClassTest extends KernelTestBase {
     $media_storage = $entity_type_manager->getStorage('media');
     $media_storage->resetCache();
     $this->assertInstanceOf(Image::class, $media_storage->load($media->id()));
+    $video = $this->createVideoMedia();
+    $media_storage->resetCache();
+    $this->assertInstanceOf(Video::class, $media_storage->load($video->id()));
 
     $term_storage = $entity_type_manager->getStorage('taxonomy_term');
     $term_storage->resetCache();

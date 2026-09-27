@@ -1,0 +1,62 @@
+uuid: 25c7f1ae-e557-46b5-95d7-463bb8ee3b99
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.media.media_library
+    - field.field.media.video.field_author
+    - field.field.media.video.field_caption
+    - field.field.media.video.field_date
+    - field.field.media.video.field_licence
+    - field.field.media.video.field_media_bunny_stream
+    - media.type.video
+  module:
+    - bunny_stream
+    - datetime
+    - text
+id: media.video.media_library
+targetEntityType: media
+bundle: video
+mode: media_library
+content:
+  field_caption:
+    type: text_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_date:
+    type: datetime_default
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_licence:
+    type: entity_reference_autocomplete
+    weight: 3
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_media_bunny_stream:
+    type: bunny_stream_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+      mode: upload
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_author: true
+  langcode: true
+  name: true
+  path: true
+  status: true
+  uid: true

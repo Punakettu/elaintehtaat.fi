@@ -52,3 +52,4 @@ hidden:
   field_species: true
   field_use: true
   langcode: true
+  search_api_excerpt: true

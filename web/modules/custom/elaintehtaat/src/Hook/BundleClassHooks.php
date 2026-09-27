@@ -9,6 +9,7 @@ use Drupal\elaintehtaat\Entity\Album;
 use Drupal\elaintehtaat\Entity\Image;
 use Drupal\elaintehtaat\Entity\Licence;
 use Drupal\elaintehtaat\Entity\Project;
+use Drupal\elaintehtaat\Entity\Video;
 
 /**
  * Registers the bundle classes of the site's own bundles.
@@ -27,6 +28,7 @@ final class BundleClassHooks {
       ],
       'media' => [
         Image::BUNDLE => Image::class,
+        Video::BUNDLE => Video::class,
       ],
       'taxonomy_term' => [
         Licence::BUNDLE => Licence::class,

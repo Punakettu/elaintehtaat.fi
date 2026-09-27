@@ -10,6 +10,7 @@ dependencies:
     - taxonomy.vocabulary.species
     - taxonomy.vocabulary.use
   module:
+    - bunny_stream
     - canvas
     - canvas_translate
     - content_translation
@@ -89,6 +90,7 @@ permissions:
   - 'translate use taxonomy_term'
   - 'update any media'
   - 'update media'
+  - 'upload bunny_stream videos'
   - 'view album revisions'
   - 'view all media revisions'
   - 'view all revisions'

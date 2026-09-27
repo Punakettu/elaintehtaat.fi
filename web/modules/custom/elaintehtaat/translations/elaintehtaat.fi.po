@@ -76,6 +76,18 @@ msgstr "Kuva: @organisation"
 msgid "Photo: @author / @organisation"
 msgstr "Kuva: @author / @organisation"
 
+msgid "Video"
+msgstr "Video"
+
+msgid "Filmed by"
+msgstr "Kuvaaja"
+
+msgid "Video: @organisation"
+msgstr "Video: @organisation"
+
+msgid "Video: @author / @organisation"
+msgstr "Video: @author / @organisation"
+
 msgid "No separate caption. Part of the album <a href=\"@album_url\">@album_title</a>, see the album for details."
 msgstr "Ei erillistä kuvatekstiä. Osa albumia <a href=\"@album_url\">@album_title</a>, katso albumin kuvaus."
 

@@ -1,0 +1,19 @@
+uuid: ceb8874e-22c3-4a91-9d7f-9ee9bc1ef1c3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_author
+    - media.type.video
+id: media.video.field_author
+field_name: field_author
+entity_type: media
+bundle: video
+label: Author
+description: 'Optional video author'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

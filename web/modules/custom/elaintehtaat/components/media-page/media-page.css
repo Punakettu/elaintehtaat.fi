@@ -87,6 +87,12 @@
   box-shadow: 0 30px 80px rgb(0 0 0 / 0.6);
 }
 
+/* The Bunny player keeps its 16:9 box, fitted in the stage like an image. */
+.media-page__frame > .field {
+  width: min(100%, calc((100vh - 80px - var(--drupal-displace-offset-top, 0px)) * 16 / 9));
+  box-shadow: 0 30px 80px rgb(0 0 0 / 0.6);
+}
+
 .media-page__close,
 .media-page__nav {
   position: absolute;

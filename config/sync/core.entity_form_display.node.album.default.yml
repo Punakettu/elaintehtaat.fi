@@ -14,7 +14,6 @@ dependencies:
   module:
     - datetime
     - media_library
-    - options
     - text
 id: node.album.default
 targetEntityType: node
@@ -59,10 +58,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_project:
-    type: options_select
+    type: entity_reference_autocomplete
     weight: 1
     region: content
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_species:
     type: entity_reference_autocomplete
@@ -97,6 +100,11 @@ content:
     region: content
     settings:
       display_label: true
+    third_party_settings: {  }
+  simple_sitemap:
+    weight: 10
+    region: content
+    settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox

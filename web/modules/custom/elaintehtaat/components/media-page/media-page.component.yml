@@ -70,7 +70,13 @@ props:
     author:
       type: string
       title: Author
-      description: Photographer, or empty.
+      description: Photographer or filmmaker, or empty.
+    author_label:
+      type: string
+      title: Author label
+      description: Term for the author. Defaults to "Photographer".
+      examples:
+        - Photographer
     licence_name:
       type: string
       title: Licence name
@@ -96,7 +102,7 @@ props:
 slots:
   image:
     title: Image
-    description: The stage image.
+    description: The stage image, or the video player.
   caption:
     title: Caption
     description: Caption of the media. When empty a link to the album is shown instead.

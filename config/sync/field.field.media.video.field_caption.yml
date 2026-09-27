@@ -1,0 +1,24 @@
+uuid: 7447d10c-0561-4544-bcc3-33680097fe6c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_caption
+    - filter.format.basic_html
+    - media.type.video
+  module:
+    - text
+id: media.video.field_caption
+field_name: field_caption
+entity_type: media
+bundle: video
+label: Caption
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+field_type: text

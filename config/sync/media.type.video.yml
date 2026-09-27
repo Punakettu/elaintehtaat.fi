@@ -1,0 +1,18 @@
+uuid: 835667ef-7b31-402f-afbe-fcfcab92455f
+langcode: en
+status: true
+dependencies:
+  module:
+    - bunny_stream
+id: video
+label: Video
+description: 'Video content.'
+source: bunny_stream
+queue_thumbnail_downloads: true
+new_revision: false
+source_configuration:
+  source_field: field_media_bunny_stream
+  thumbnails_directory: 'public://bunny_stream_thumbnails/[date:custom:Y-m]'
+  library: '763178'
+field_map:
+  title: name

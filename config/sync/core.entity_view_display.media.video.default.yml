@@ -1,22 +1,21 @@
-uuid: bf939857-afe9-424d-9432-8958839625d0
+uuid: e7801a12-d0d2-473c-8123-d7d620b4add3
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.media.image.field_author
-    - field.field.media.image.field_caption
-    - field.field.media.image.field_date
-    - field.field.media.image.field_licence
-    - field.field.media.image.field_media_image
-    - image.style.large
-    - media.type.image
+    - field.field.media.video.field_author
+    - field.field.media.video.field_caption
+    - field.field.media.video.field_date
+    - field.field.media.video.field_licence
+    - field.field.media.video.field_media_bunny_stream
+    - media.type.video
   module:
+    - bunny_stream
     - datetime
-    - image
     - text
-id: media.image.default
+id: media.video.default
 targetEntityType: media
-bundle: image
+bundle: video
 mode: default
 content:
   field_author:
@@ -52,14 +51,17 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-  field_media_image:
-    type: image
+  field_media_bunny_stream:
+    type: bunny_stream_embed
     label: visually_hidden
     settings:
-      image_link: ''
-      image_style: large
-      image_loading:
-        attribute: lazy
+      responsive: true
+      autoplay: false
+      preload: true
+      loop: false
+      muted: false
+      allow_fullscreen: true
+      time: 21600
     third_party_settings: {  }
     weight: 0
     region: content

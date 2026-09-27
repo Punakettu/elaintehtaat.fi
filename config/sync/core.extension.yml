@@ -5,6 +5,7 @@ module:
   big_pipe: 0
   block: 0
   breakpoint: 0
+  bunny_stream: 0
   canvas: 0
   canvas_page_template_component: 0
   canvas_translate: 0
