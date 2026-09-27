@@ -38,6 +38,12 @@ services:
       SIMPLETEST_BASE_URL: http://nginx
       BROWSERTEST_OUTPUT_DIRECTORY: /var/www/html/web/sites/simpletest/browser_output
       BROWSERTEST_OUTPUT_BASE_URL: http://localhost:8081
+      # Public ngrok host (`make ngrok`).
+      NGROK_DOMAIN: ${NGROK_DOMAIN:-}
+      # Xdebug step debugging; export XDEBUG_ENABLE=true (shell or .env) and recreate app.
+      XDEBUG_ENABLE: ${XDEBUG_ENABLE:-false}
+      # PhpStorm: matches the server name under Settings > PHP > Servers.
+      PHP_IDE_CONFIG: serverName=elaintehtaat
     depends_on:
       mysql:
         condition: service_healthy
@@ -106,6 +112,22 @@ services:
     depends_on:
       rustfs:
         condition: service_healthy
+
+  # Opt-in public tunnel to nginx, for receiving Bunny Stream webhooks against
+  # the local environment. Disabled by default — start with `make ngrok` /
+  # `make ngrok-stop`. Requires NGROK_AUTHTOKEN and a reserved NGROK_DOMAIN in
+  # .env (see .env.example). Webhooks hit POST /bunny-stream/webhook/{hash}.
+  ngrok:
+    image: ngrok/ngrok:latest
+    command: ["http", "nginx:80", "--url=${NGROK_DOMAIN:-}"]
+    environment:
+      NGROK_AUTHTOKEN: ${NGROK_AUTHTOKEN:-}
+    depends_on:
+      - nginx
+    ports:
+      # ngrok agent web inspector (live request inspection / replay).
+      - "${PORT_NGROK_WEB:-4040}:4040"
+    profiles: ["ngrok"]
 
 volumes:
   mysql-data:

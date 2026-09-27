@@ -10,6 +10,7 @@ Drupal 11 site running on Docker Compose.
 | redis   | redis:7-alpine     | Cache backend (drupal/redis, PhpRedis) | 6379      |
 | rustfs  | rustfs/rustfs      | S3-compatible object storage for files | 9000 (S3 API), 9001 (console) |
 | rustfs-init | amazon/aws-cli | One-shot: creates the bucket, exits    | –         |
+| ngrok   | ngrok/ngrok        | Opt-in public tunnel for webhooks      | 4040 (inspector) |
 
 ## Quick start
 
@@ -41,6 +42,15 @@ make logs                   tail logs
 make shell                  sh into the php container
 make reset                  wipe containers + volumes and rebuild
 ```
+
+## Xdebug
+
+Xdebug is installed in the php image but off by default. To enable step
+debugging, set `XDEBUG_ENABLE=true` and recreate the container with
+`docker compose up -d app`.
+
+To debug a page, add `?XDEBUG_SESSION=1` to the URL. For command-line
+tools, use `docker compose exec -e XDEBUG_SESSION=1 app drush ...`
 
 ## File storage (S3 / RustFS)
 

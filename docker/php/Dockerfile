@@ -10,6 +10,7 @@ RUN install-php-extensions \
     opcache \
     pdo_mysql \
     redis \
+    xdebug \
     zip
 
 RUN apk add --no-cache git unzip mysql-client patch
@@ -19,3 +20,8 @@ COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
 WORKDIR /var/www/html
 
 ENV PATH="/var/www/html/vendor/bin:${PATH}"
+
+# Switches Xdebug on when XDEBUG_ENABLE=true, then hands off to the stock entrypoint.
+COPY --chmod=0755 entrypoint.sh /usr/local/bin/xdebug-entrypoint
+ENTRYPOINT ["xdebug-entrypoint"]
+CMD ["php-fpm"]

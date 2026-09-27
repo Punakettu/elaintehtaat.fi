@@ -45,8 +45,13 @@ $settings['trusted_host_patterns'] = [
   '^localhost$',
   '^127\.0\.0\.1$',
   '^nginx$',
-  '^php$',
+  '^app$',
 ];
+
+// Public ngrok tunnel host (`make ngrok`).
+if ($ngrok_domain = getenv('NGROK_DOMAIN')) {
+  $settings['trusted_host_patterns'][] = '^' . preg_quote($ngrok_domain) . '$';
+}
 
 // --- Reverse proxy (Cloudflare) ----------------------------------------------
 //$settings['reverse_proxy'] = TRUE;
