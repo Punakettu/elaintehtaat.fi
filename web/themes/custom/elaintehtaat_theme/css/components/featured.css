@@ -19,6 +19,11 @@
   letter-spacing: -0.015em;
 }
 
+.featured__link {
+  flex-shrink: 0;
+  font-size: 18px;
+}
+
 /* Masonry: tiles keep their own aspect ratio and flow down the columns. */
 .featured__grid {
   columns: 3;

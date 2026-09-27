@@ -34,6 +34,9 @@ msgstr[1] "@count mediaa"
 msgid "Featured"
 msgstr "Esiin nostettua"
 
+msgid "All images"
+msgstr "Kaikki kuvat"
+
 msgid "Projects"
 msgstr "Projektit"
 
@@ -84,3 +87,6 @@ msgstr "Seuraava ›"
 
 msgid "Last »"
 msgstr "Viimeinen »"
+
+msgid "RSS feed"
+msgstr "RSS-syöte"

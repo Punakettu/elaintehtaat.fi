@@ -11,3 +11,21 @@
   font-size: var(--font-size-h2);
   letter-spacing: -0.015em;
 }
+
+/* A label with a link beside it, like the RSS feed of the latest albums. */
+.block__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 28px;
+  margin: 0 0 18px;
+}
+
+.block__head > h2 {
+  margin: 0;
+}
+
+.block__feed {
+  color: var(--color-text-faint);
+  border-bottom: 0;
+}
