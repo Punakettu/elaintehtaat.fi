@@ -32,6 +32,7 @@ services:
       DRUPAL_HASH_SALT: ${DRUPAL_HASH_SALT:-change-me-in-dot-env}
       BUNNY_STREAM_API_KEY: ${BUNNY_STREAM_API_KEY:-}
       BUNNY_STREAM_READ_ONLY_API_KEY: ${BUNNY_STREAM_READ_ONLY_API_KEY:-}
+      BUNNY_STREAM_TOKEN_AUTHENTICATION_KEY: ${BUNNY_STREAM_TOKEN_AUTHENTICATION_KEY:-}
       # Lets drush (uli, etc.) generate links with the real host instead of http://default.
       DRUSH_OPTIONS_URI: ${DRUPAL_BASE_URL:-http://localhost:8080}
       COMPOSER_HOME: /tmp/composer

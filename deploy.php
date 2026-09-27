@@ -188,6 +188,10 @@ task('deploy:settings', function () {
     "\$config['bunny_stream.bunny_stream_library.763178']['read_only_api_key'] = " . $e(read_env('BUNNY_STREAM_READ_ONLY_API_KEY')) . ';',
     "\$config['bunny_stream.bunny_stream_library.763178']['api_key'] = " . $e(read_env('BUNNY_STREAM_API_KEY')) . ';',
   );
+  // A token authentication key makes the library private.
+  if ($bunnyTokenKey = read_env('BUNNY_STREAM_TOKEN_AUTHENTICATION_KEY', FALSE)) {
+    $lines[] = "\$config['bunny_stream.bunny_stream_library.763178']['token_authentication_key'] = " . $e($bunnyTokenKey) . ';';
+  }
 
   $lines[] = '';
   $lines[] = '// --- File storage ------------------------------------------------------------';
