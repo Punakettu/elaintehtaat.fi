@@ -1,69 +1,98 @@
 /**
  * @file
  * Styles for system messages.
+ *
+ * Each type sets --message-color, which tints the border, background and
+ * icon so the boxes sit on the dark surface instead of glowing on it.
  */
 
 .messages {
-  padding: 15px 20px 15px 35px; /* LTR */
+  --message-color: var(--color-text-muted);
+
+  position: relative;
+  padding: var(--space-sm) var(--space-md) var(--space-sm) calc(var(--space-md) + 26px); /* LTR */
+  border: 1px solid color-mix(in oklch, var(--message-color) 35%, transparent);
+  border-left: 3px solid var(--message-color); /* LTR */
+  border-radius: var(--radius-md);
+  background: color-mix(in oklch, var(--message-color) 10%, var(--color-surface));
+  color: var(--color-text);
+  font-size: 15px;
   word-wrap: break-word;
-  border: 1px solid;
-  border-width: 1px 1px 1px 0; /* LTR */
-  border-radius: 2px;
-  background: no-repeat 10px 17px; /* LTR */
   overflow-wrap: break-word;
 }
+
+.messages::before {
+  position: absolute;
+  top: calc(var(--space-sm) + 0.2em);
+  left: var(--space-md); /* LTR */
+  width: 16px;
+  height: 16px;
+  content: "";
+  background-color: var(--message-color);
+  mask: no-repeat center / contain;
+}
+
 [dir="rtl"] .messages {
-  padding-right: 35px;
-  padding-left: 20px;
+  padding-right: calc(var(--space-md) + 26px);
+  padding-left: var(--space-md);
   text-align: right;
-  border-width: 1px 0 1px 1px;
-  background-position: right 10px top 17px;
+  border-right: 3px solid var(--message-color);
+  border-left-width: 1px;
+  border-left-color: color-mix(in oklch, var(--message-color) 35%, transparent);
 }
+
+[dir="rtl"] .messages::before {
+  right: var(--space-md);
+  left: auto;
+}
+
 .messages + .messages {
-  margin-top: 1.538em;
+  margin-top: var(--space-sm);
 }
+
+.messages a {
+  color: var(--color-text);
+  border-bottom-color: color-mix(in oklch, var(--message-color) 60%, transparent);
+}
+
+.messages a:hover {
+  border-bottom-color: var(--message-color);
+}
+
 .messages__list {
   margin: 0;
   padding: 0;
   list-style: none;
 }
+
 .messages__item + .messages__item {
-  margin-top: 0.769em;
+  margin-top: var(--space-xs);
 }
+
 .messages--status {
-  color: #325e1c;
-  border-color: #c9e1bd #c9e1bd #c9e1bd transparent; /* LTR */
-  background-color: #f3faef;
-  background-image: url(../../images/icons/check.svg);
-  box-shadow: -8px 0 0 #77b259; /* LTR */
+  --message-color: oklch(0.72 0.12 145);
 }
-[dir="rtl"] .messages--status {
-  margin-left: 0;
-  border-color: #c9e1bd transparent #c9e1bd #c9e1bd;
-  box-shadow: 8px 0 0 #77b259;
+
+.messages--status::before {
+  mask-image: url(../../images/icons/check.svg);
 }
+
 .messages--warning {
-  color: #734c00;
-  border-color: #f4daa6 #f4daa6 #f4daa6 transparent; /* LTR */
-  background-color: #fdf8ed;
-  background-image: url(../../images/icons/warning.svg);
-  box-shadow: -8px 0 0 #e09600; /* LTR */
+  --message-color: oklch(0.78 0.13 80);
 }
-[dir="rtl"] .messages--warning {
-  border-color: #f4daa6 transparent #f4daa6 #f4daa6;
-  box-shadow: 8px 0 0 #e09600;
+
+.messages--warning::before {
+  mask-image: url(../../images/icons/warning.svg);
 }
+
 .messages--error {
-  color: #a51b00;
-  border-color: #f9c9bf #f9c9bf #f9c9bf transparent; /* LTR */
-  background-color: #fcf4f2;
-  background-image: url(../../images/icons/error.svg);
-  box-shadow: -8px 0 0 #e62600; /* LTR */
+  --message-color: var(--color-accent-text);
 }
-[dir="rtl"] .messages--error {
-  border-color: #f9c9bf transparent #f9c9bf #f9c9bf;
-  box-shadow: 8px 0 0 #e62600;
+
+.messages--error::before {
+  mask-image: url(../../images/icons/error.svg);
 }
+
 .messages--error p.error {
-  color: #a51b00;
+  color: inherit;
 }
