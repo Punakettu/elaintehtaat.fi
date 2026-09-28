@@ -1,0 +1,15 @@
+uuid: fa467405-fd80-41a1-90f7-fb073e664d4b
+langcode: en
+status: true
+dependencies: {  }
+name: og_image
+label: 'Share image (1200×630)'
+effects:
+  cf564546-83f0-4016-a4ee-9d8836f123da:
+    uuid: cf564546-83f0-4016-a4ee-9d8836f123da
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1200
+      height: 630
+      anchor: center-center

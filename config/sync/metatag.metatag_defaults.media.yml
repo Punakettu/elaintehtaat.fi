@@ -1,0 +1,16 @@
+uuid: 8adb86bb-27a0-4fdc-b20d-c446970b15a0
+langcode: en
+status: true
+dependencies: {  }
+id: media
+label: Media
+tags:
+  title: '[current-page:album:title] – [media:name] | [site:name]'
+  description: '[media:field_caption] [current-page:album:field_description]'
+  og_type: article
+  og_title: '[current-page:album:title] – [media:name]'
+  og_description: '[media:field_caption] [current-page:album:field_description]'
+  og_image: '[media:thumbnail:og_image:url]'
+  og_image_width: '[media:thumbnail:og_image:width]'
+  og_image_height: '[media:thumbnail:og_image:height]'
+  og_image_alt: '[current-page:album:title]'

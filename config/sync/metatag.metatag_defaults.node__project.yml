@@ -1,0 +1,16 @@
+uuid: 75bfb900-3b0c-4b18-9c2e-5c43298d2985
+langcode: en
+status: true
+dependencies: {  }
+id: node__project
+label: 'Content: Project'
+tags:
+  description: '[node:field_description]'
+  og_type: article
+  og_title: '[node:title]'
+  og_description: '[node:field_description]'
+  og_url: '[node:url]'
+  og_image: '[node:cover:thumbnail:og_image:url]'
+  og_image_width: '[node:cover:thumbnail:og_image:width]'
+  og_image_height: '[node:cover:thumbnail:og_image:height]'
+  og_image_alt: '[node:title]'

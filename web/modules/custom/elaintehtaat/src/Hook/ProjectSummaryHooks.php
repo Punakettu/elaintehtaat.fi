@@ -6,8 +6,8 @@ namespace Drupal\elaintehtaat\Hook;
 
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Hook\Attribute\Hook;
+use Drupal\elaintehtaat\Album\AlbumLookup;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\elaintehtaat\Entity\Album;
 use Drupal\elaintehtaat\Entity\AlbumMedia;
@@ -42,7 +42,7 @@ final class ProjectSummaryHooks {
   ];
 
   public function __construct(
-    private readonly EntityTypeManagerInterface $entityTypeManager,
+    private readonly AlbumLookup $albumLookup,
   ) {}
 
   /**
@@ -59,7 +59,7 @@ final class ProjectSummaryHooks {
     // Saving any album may add it to this project or take it out again.
     $cache->addCacheTags(['node_list:album']);
 
-    $albums = $this->loadAlbums($node);
+    $albums = $this->albumLookup->albumsOfProject($node);
     foreach ($albums as $album) {
       $cache->addCacheableDependency($album);
     }
@@ -97,38 +97,6 @@ final class ProjectSummaryHooks {
 
     // applyTo() would wipe node's cache tags.
     CacheableMetadata::createFromRenderArray($build)->merge($cache)->applyTo($build);
-  }
-
-  /**
-   * Loads the published albums of a project, newest first.
-   *
-   * @return list<\Drupal\elaintehtaat\Entity\Album>
-   *   The albums.
-   */
-  private function loadAlbums(Project $project): array {
-    $storage = $this->entityTypeManager->getStorage('node');
-    $ids = $storage->getQuery()
-      ->accessCheck(FALSE)
-      ->condition('type', Album::BUNDLE)
-      ->condition('status', NodeInterface::PUBLISHED)
-      ->condition('field_project.target_id', $project->id())
-      ->sort('field_date', 'DESC')
-      ->sort('created', 'DESC')
-      ->execute();
-    if (!$ids) {
-      return [];
-    }
-
-    // loadMultiple() ignores the order the IDs come in, so restore it.
-    $albums = $storage->loadMultiple($ids);
-    $ordered = [];
-    foreach ($ids as $id) {
-      if (($albums[$id] ?? NULL) instanceof Album) {
-        $ordered[] = $albums[$id];
-      }
-    }
-
-    return $ordered;
   }
 
   /**
