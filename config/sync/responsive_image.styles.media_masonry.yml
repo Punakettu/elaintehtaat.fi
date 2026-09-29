@@ -1,0 +1,27 @@
+uuid: 876fecfc-5ba8-453b-b34d-b9ea9670c6c5
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.masonry_1200
+    - image.style.masonry_480
+    - image.style.masonry_720
+    - image.style.masonry_900
+  module:
+    - responsive_image
+id: media_masonry
+label: 'Media masonry'
+image_style_mappings:
+  -
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: '(max-width: 600px) 100vw, (max-width: 1080px) 50vw, min(33vw, 440px)'
+      sizes_image_styles:
+        - masonry_1200
+        - masonry_480
+        - masonry_720
+        - masonry_900
+    breakpoint_id: responsive_image.viewport_sizing
+    multiplier: 1x
+breakpoint_group: responsive_image
+fallback_image_style: masonry_900

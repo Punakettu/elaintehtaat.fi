@@ -1,0 +1,21 @@
+uuid: ba7705cd-d8f1-4238-b6f1-28be35de1c92
+langcode: en
+status: true
+dependencies: {  }
+name: stage_1600
+label: 'Stage (1600×1120)'
+effects:
+  5885ad31-9789-49d1-819a-a98efe071a48:
+    uuid: 5885ad31-9789-49d1-819a-a98efe071a48
+    id: image_scale
+    weight: 1
+    data:
+      width: 1600
+      height: 1120
+      upscale: false
+  bb002c71-a289-4b1c-9cbc-d1b637de9cdb:
+    uuid: bb002c71-a289-4b1c-9cbc-d1b637de9cdb
+    id: image_convert_avif
+    weight: 2
+    data:
+      extension: webp

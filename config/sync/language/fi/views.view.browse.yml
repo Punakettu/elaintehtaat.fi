@@ -6,3 +6,10 @@ display:
       empty:
         area_text_custom:
           content: 'Ei tuloksia näillä suodattimilla.'
+      pager:
+        options:
+          tags:
+            next: 'Seuraava ›'
+            previous: '‹ Edellinen'
+            first: '« Ensimmäinen'
+            last: 'Viimeinen »'

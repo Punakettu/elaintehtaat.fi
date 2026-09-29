@@ -22,6 +22,7 @@ use Drupal\elaintehtaat\Entity\Album;
 use Drupal\elaintehtaat\Entity\AlbumMedia;
 use Drupal\elaintehtaat\Entity\Image;
 use Drupal\elaintehtaat\Entity\Video;
+use Drupal\elaintehtaat\Language\FallbackLanguage;
 use Drupal\media\MediaInterface;
 use Drupal\node\NodeInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -39,9 +40,9 @@ final class MediaPageController implements ContainerInjectionInterface {
   use StringTranslationTrait;
 
   /**
-   * Image style used for the stage image.
+   * Responsive image style used for the stage image.
    */
-  public const string IMAGE_STYLE = 'media_page';
+  public const string STAGE_STYLE = 'media_stage';
 
   /**
    * Image style used for the album thumbnail in the sidebar.
@@ -58,6 +59,7 @@ final class MediaPageController implements ContainerInjectionInterface {
     private readonly EntityTypeManagerInterface $entityTypeManager,
     private readonly FileUrlGeneratorInterface $fileUrlGenerator,
     private readonly DateFormatterInterface $dateFormatter,
+    private readonly FallbackLanguage $fallbackLanguage,
   ) {}
 
   /**
@@ -122,12 +124,16 @@ final class MediaPageController implements ContainerInjectionInterface {
       $cache->addCacheableDependency($project);
     }
 
-    $caption = $media->getCaption();
+    $caption = $media->getCaption()?->view(['label' => 'hidden', 'type' => 'text_default']) ?? [];
+    $media_langcode = $this->fallbackLanguage->fallbackLangcode($media);
+    if ($caption !== [] && $media_langcode !== NULL) {
+      $caption['#attributes']['lang'] = $media_langcode;
+    }
     // The component element rejects empty arrays, so leave empty slots out.
     $slots = array_filter([
       'image' => $this->stage($media, $cache),
       'album_thumbnail' => $this->image($items[0], self::THUMBNAIL_STYLE, $cache),
-      'caption' => $caption?->view(['label' => 'hidden', 'type' => 'text_default']) ?? [],
+      'caption' => $caption,
     ]);
 
     $taken = $media->getDate();
@@ -177,8 +183,10 @@ final class MediaPageController implements ContainerInjectionInterface {
         'type_label' => (string) $type_label,
         'date' => $date,
         'album_title' => (string) $album->label(),
+        'album_lang' => $this->fallbackLanguage->fallbackLangcode($album) ?? '',
         'album_url' => $album->toUrl()->toString(),
         'project_title' => $project === NULL ? '' : (string) $project->label(),
+        'project_lang' => $project === NULL ? '' : ($this->fallbackLanguage->fallbackLangcode($project) ?? ''),
         'author' => $author,
         'author_label' => (string) $author_label,
         'licence_name' => $licence_name,
@@ -214,15 +222,15 @@ final class MediaPageController implements ContainerInjectionInterface {
       return $media->getSourceField()?->view('default') ?? [];
     }
 
-    return $this->image($media, self::IMAGE_STYLE, $cache, ['loading' => 'eager', 'fetchpriority' => 'high']);
+    return $this->image($media, self::STAGE_STYLE, $cache, ['loading' => 'eager', 'fetchpriority' => 'high'], TRUE);
   }
 
   /**
-   * Renders the media's image in an image style.
+   * Renders the media's image in an image style or a responsive image style.
    *
    * An image shows its source image, other media their thumbnail.
    */
-  private function image(MediaInterface $media, string $style_name, CacheableMetadata $cache, array $attributes = []): array {
+  private function image(MediaInterface $media, string $style_name, CacheableMetadata $cache, array $attributes = [], bool $responsive = FALSE): array {
     if (!$media instanceof AlbumMedia) {
       return [];
     }
@@ -233,11 +241,28 @@ final class MediaPageController implements ContainerInjectionInterface {
       return [];
     }
     $cache->addCacheableDependency($file);
-    $style = $this->entityTypeManager->getStorage('image_style')->load($style_name);
+    $style = $this->entityTypeManager->getStorage($responsive ? 'responsive_image_style' : 'image_style')->load($style_name);
     if ($style !== NULL) {
       $cache->addCacheableDependency($style);
     }
     $values = $item->getValue();
+
+    if ($responsive) {
+      // The responsive image reads its alt and title off the attributes.
+      $attributes['alt'] = $values['alt'] ?? '';
+      if (!empty($values['title'])) {
+        $attributes['title'] = $values['title'];
+      }
+
+      return [
+        '#theme' => 'responsive_image',
+        '#responsive_image_style_id' => $style_name,
+        '#uri' => $file->getFileUri(),
+        '#width' => $values['width'] ?? NULL,
+        '#height' => $values['height'] ?? NULL,
+        '#attributes' => $attributes,
+      ];
+    }
 
     return [
       '#theme' => 'image_style',

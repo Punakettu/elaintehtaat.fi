@@ -34,6 +34,9 @@ msgstr[1] "@count mediaa"
 msgid "Featured"
 msgstr "Esiin nostettua"
 
+msgid "All images"
+msgstr "Kaikki kuvat"
+
 msgid "Projects"
 msgstr "Projektit"
 
@@ -42,3 +45,48 @@ msgstr "Selaa arkistoa"
 
 msgid "The whole library"
 msgstr "Koko aineisto"
+
+msgid "Pagination"
+msgstr "Sivutus"
+
+msgid "First page"
+msgstr "Ensimmäinen sivu"
+
+msgid "Previous page"
+msgstr "Edellinen sivu"
+
+msgid "Next page"
+msgstr "Seuraava sivu"
+
+msgid "Last page"
+msgstr "Viimeinen sivu"
+
+msgid "Go to first page"
+msgstr "Siirry ensimmäiselle sivulle"
+
+msgid "Go to previous page"
+msgstr "Siirry edelliselle sivulle"
+
+msgid "Go to next page"
+msgstr "Siirry seuraavalle sivulle"
+
+msgid "Go to last page"
+msgstr "Siirry viimeiselle sivulle"
+
+msgid "Go to page @key"
+msgstr "Siirry sivulle @key"
+
+msgid "« First"
+msgstr "« Ensimmäinen"
+
+msgid "‹ Previous"
+msgstr "‹ Edellinen"
+
+msgid "Next ›"
+msgstr "Seuraava ›"
+
+msgid "Last »"
+msgstr "Viimeinen »"
+
+msgid "RSS feed"
+msgstr "RSS-syöte"

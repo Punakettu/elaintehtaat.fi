@@ -1,0 +1,21 @@
+uuid: 16944dd2-d10a-47e6-90b0-f50e0cec836b
+langcode: en
+status: true
+dependencies: {  }
+name: masonry_720
+label: 'Masonry (720 wide)'
+effects:
+  7e223c90-1da8-44b7-82fa-61d6e62246f0:
+    uuid: 7e223c90-1da8-44b7-82fa-61d6e62246f0
+    id: image_scale
+    weight: 1
+    data:
+      width: 720
+      height: null
+      upscale: false
+  b8ee7b08-afc4-4778-bf30-b3bd5be2098d:
+    uuid: b8ee7b08-afc4-4778-bf30-b3bd5be2098d
+    id: image_convert_avif
+    weight: 2
+    data:
+      extension: webp

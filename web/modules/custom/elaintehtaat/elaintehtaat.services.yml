@@ -4,6 +4,8 @@ services:
 
   Drupal\elaintehtaat\Album\AlbumLookup: ~
 
+  Drupal\elaintehtaat\Language\FallbackLanguage: ~
+
   Drupal\elaintehtaat\PathProcessor\MediaPagePathProcessor:
     tags:
       - { name: path_processor_inbound, priority: 50 }

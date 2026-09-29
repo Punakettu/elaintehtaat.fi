@@ -1,0 +1,29 @@
+uuid: ca4b8331-df2e-4973-952f-5b3692954262
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.media_page
+    - image.style.stage_1200
+    - image.style.stage_1600
+    - image.style.stage_2400
+    - image.style.stage_800
+  module:
+    - responsive_image
+id: media_stage
+label: 'Media page stage'
+image_style_mappings:
+  -
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: '(max-width: 720px) 100vw, (max-width: 900px) calc(100vw - 320px), min(1100px, calc(100vw - 392px))'
+      sizes_image_styles:
+        - media_page
+        - stage_1200
+        - stage_1600
+        - stage_2400
+        - stage_800
+    breakpoint_id: responsive_image.viewport_sizing
+    multiplier: 1x
+breakpoint_group: responsive_image
+fallback_image_style: stage_1200

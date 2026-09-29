@@ -6,17 +6,19 @@ namespace Drupal\elaintehtaat\Album;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\elaintehtaat\Entity\Album;
+use Drupal\elaintehtaat\Entity\Project;
 use Drupal\media\MediaInterface;
 use Drupal\node\NodeInterface;
 
 /**
- * Finds the albums a media item belongs to.
+ * Finds the albums a media item or a project belongs to.
  *
- * Albums reference their media, not the other way round, so the only way from
- * a media item back to its album is this reverse query. An item may sit in
- * several albums.
+ * Albums reference their media and their project, not the other way round, so
+ * the only way from a media item or a project back to its albums is a reverse
+ * query. An item may sit in several albums.
  *
  * @see \Drupal\elaintehtaat\Hook\MediaTileHooks
+ * @see \Drupal\elaintehtaat\Hook\ProjectSummaryHooks
  * @see \Drupal\elaintehtaat\Plugin\search_api\processor\AlbumData
  */
 final readonly class AlbumLookup {
@@ -73,6 +75,38 @@ final readonly class AlbumLookup {
    */
   public function newestAlbumOf(MediaInterface $media, ?string $langcode = NULL): ?Album {
     return $this->albumsOf($media, $langcode)[0] ?? NULL;
+  }
+
+  /**
+   * The published albums of a project, newest first.
+   *
+   * @return list<\Drupal\elaintehtaat\Entity\Album>
+   *   The albums, newest album date first.
+   */
+  public function albumsOfProject(Project $project): array {
+    $storage = $this->entityTypeManager->getStorage('node');
+    $ids = $storage->getQuery()
+      ->accessCheck(FALSE)
+      ->condition('type', Album::BUNDLE)
+      ->condition('status', NodeInterface::PUBLISHED)
+      ->condition('field_project.target_id', $project->id())
+      ->sort('field_date', 'DESC')
+      ->sort('created', 'DESC')
+      ->execute();
+    if (!$ids) {
+      return [];
+    }
+
+    // loadMultiple() ignores the order the IDs come in, so restore it.
+    $albums = $storage->loadMultiple($ids);
+    $ordered = [];
+    foreach ($ids as $id) {
+      if (($albums[$id] ?? NULL) instanceof Album) {
+        $ordered[] = $albums[$id];
+      }
+    }
+
+    return $ordered;
   }
 
   /**

@@ -1,0 +1,21 @@
+uuid: a7194434-2eed-4261-8dcf-46fb7a206f72
+langcode: en
+status: true
+dependencies: {  }
+name: masonry_1200
+label: 'Masonry (1200 wide)'
+effects:
+  310aeb16-85af-4482-868d-ff9f1195a98c:
+    uuid: 310aeb16-85af-4482-868d-ff9f1195a98c
+    id: image_scale
+    weight: 1
+    data:
+      width: 1200
+      height: null
+      upscale: false
+  037c2005-e2a4-45bf-a5b3-88f1b52f2f51:
+    uuid: 037c2005-e2a4-45bf-a5b3-88f1b52f2f51
+    id: image_convert_avif
+    weight: 2
+    data:
+      extension: webp

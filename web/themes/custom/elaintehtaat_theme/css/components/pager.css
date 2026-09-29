@@ -1,16 +1,91 @@
 /**
  * @file
- * Visual styles for pager.
+ * Pager: page links as small mono boxes, styled like the facet chips, with
+ * the current page in the accent colours of an active filter.
+ *
+ * @see templates/navigation/pager.html.twig
+ * @see templates/views/views-mini-pager.html.twig
  */
 
+.pager {
+  margin-top: var(--space-lg);
+}
+
 .pager__items {
-  clear: both;
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
+
 .pager__item {
-  display: inline;
-  padding: 0.5em;
+  display: block;
+  margin: 0;
+  padding: 0;
 }
-.pager__item.is-active {
-  font-weight: bold;
+
+.pager__item > a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  min-height: 36px;
+  padding: 0 10px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  color: var(--color-text-muted);
+  transition: border-color var(--transition-fast), color var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.pager__item > a:hover,
+.pager__item > a:focus-visible {
+  border-color: var(--color-line-strong);
+  color: var(--color-text);
+}
+
+.pager__item.is-active > a {
+  background: var(--color-accent-soft);
+  border-color: var(--color-accent-line);
+  color: var(--color-accent-text);
+}
+
+/* First, previous, next and last carry a word, so they get more room. */
+.pager__item--first > a,
+.pager__item--previous > a,
+.pager__item--next > a,
+.pager__item--last > a {
+  padding-inline: 14px;
+}
+
+/* The mini pager prints the current page as text, not a link. */
+.pager__item.is-active:not(:has(> a)) {
+  padding-inline: 10px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.pager__item--ellipsis {
+  min-width: 24px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-align: center;
+  color: var(--color-text-faint);
+}
+
+/* On phones the numbers go; the direction links and current page remain. */
+@media (max-width: 600px) {
+  .pager__item:not(.is-active, .pager__item--first, .pager__item--previous, .pager__item--next, .pager__item--last) {
+    display: none;
+  }
 }

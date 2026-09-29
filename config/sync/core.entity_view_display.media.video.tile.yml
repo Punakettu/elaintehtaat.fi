@@ -9,10 +9,10 @@ dependencies:
     - field.field.media.video.field_date
     - field.field.media.video.field_licence
     - field.field.media.video.field_media_bunny_stream
-    - image.style.card
     - media.type.video
+    - responsive_image.styles.media_masonry
   module:
-    - image
+    - responsive_image
     - text
 id: media.video.tile
 targetEntityType: media
@@ -27,11 +27,11 @@ content:
     weight: 1
     region: content
   thumbnail:
-    type: image
+    type: responsive_image
     label: hidden
     settings:
+      responsive_image_style: media_masonry
       image_link: ''
-      image_style: card
       image_loading:
         attribute: lazy
     third_party_settings: {  }

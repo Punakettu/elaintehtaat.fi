@@ -26,6 +26,7 @@
   --display-weight: 600;
   --display-tracking: -0.02em;
   --font-size-base: 16px;
+  --font-size-h2: clamp(28px, 2.8vw, 36px);
   --line-height-base: 1.55;
 
   /* Layout. */

@@ -138,7 +138,10 @@ class ProjectSummaryHooksTest extends KernelTestBase {
 
     $build = $this->buildProject($project, $view_mode);
 
-    $styles = array_column($this->covers($build), '#style_name');
+    $styles = array_map(
+      static fn (array $cover): string => $cover['#style_name'] ?? $cover['#responsive_image_style_id'],
+      $this->covers($build),
+    );
     $this->assertSame($expected, $styles);
   }
 
@@ -151,8 +154,9 @@ class ProjectSummaryHooksTest extends KernelTestBase {
   public static function coverStyles(): iterable {
     // The teaser covers are all the same size, so they share one style.
     yield 'teaser' => ['teaser', ['thumbnail', 'thumbnail', 'thumbnail']];
-    // The card's first cover fills most of the mosaic, the rest a quarter.
-    yield 'card' => ['card', ['card', 'large', 'large']];
+    // The card's first cover fills most of the mosaic, as a media tile does,
+    // the rest a quarter.
+    yield 'card' => ['card', ['media_tile', 'large', 'large']];
   }
 
   /**

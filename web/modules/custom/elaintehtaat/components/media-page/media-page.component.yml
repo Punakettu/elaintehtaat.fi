@@ -61,12 +61,20 @@ props:
     album_title:
       type: string
       title: Album title
+    album_lang:
+      type: string
+      title: Album title language
+      description: Langcode of the album title when it is not in the page's language, or empty.
     album_url:
       type: string
       title: Album URL
     project_title:
       type: string
       title: Project title
+    project_lang:
+      type: string
+      title: Project title language
+      description: Langcode of the project title when it is not in the page's language, or empty.
     author:
       type: string
       title: Author

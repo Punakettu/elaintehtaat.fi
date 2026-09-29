@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Theme override for the "Latest albums" views block.
+ *
+ * Puts a link to the albums RSS feed next to the block label.
+ *
+ * @see block.html.twig
+ */
+#}
+{%
+  set classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {% if label %}
+    <div class="block__head">
+      <h2{{ title_attributes }}>{{ label }}</h2>
+      <a class="block__feed" href="{{ path('view.albums.feed_1') }}" type="application/rss+xml">{{ 'RSS feed'|t }}</a>
+    </div>
+  {% endif %}
+  {{ title_suffix }}
+  {{ content }}
+</div>

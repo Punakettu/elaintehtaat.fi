@@ -6,8 +6,8 @@ namespace Drupal\elaintehtaat\Hook;
 
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Hook\Attribute\Hook;
+use Drupal\elaintehtaat\Album\AlbumLookup;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\elaintehtaat\Entity\Album;
 use Drupal\elaintehtaat\Entity\AlbumMedia;
@@ -32,16 +32,17 @@ final class ProjectSummaryHooks {
    *
    * The teaser is a row of the front page index, where the covers are a line
    * of small thumbnails. The card is a tile of the projects page, where the
-   * first cover fills most of a mosaic and needs the resolution to match;
-   * the others are a quarter of the tile, so they get a smaller style.
+   * first cover fills most of a mosaic and needs the resolution to match, so
+   * it takes the responsive style of the media tiles, which are as wide; the
+   * others are a quarter of the tile, so they get a smaller image style.
    */
   private const array MODES = [
-    'teaser' => ['limit' => 4, 'lead_style' => 'thumbnail', 'style' => 'thumbnail'],
-    'card' => ['limit' => 3, 'lead_style' => 'card', 'style' => 'large'],
+    'teaser' => ['limit' => 4, 'lead_style' => 'thumbnail', 'lead_responsive' => FALSE, 'style' => 'thumbnail'],
+    'card' => ['limit' => 3, 'lead_style' => 'media_tile', 'lead_responsive' => TRUE, 'style' => 'large'],
   ];
 
   public function __construct(
-    private readonly EntityTypeManagerInterface $entityTypeManager,
+    private readonly AlbumLookup $albumLookup,
   ) {}
 
   /**
@@ -58,7 +59,7 @@ final class ProjectSummaryHooks {
     // Saving any album may add it to this project or take it out again.
     $cache->addCacheTags(['node_list:album']);
 
-    $albums = $this->loadAlbums($node);
+    $albums = $this->albumLookup->albumsOfProject($node);
     foreach ($albums as $album) {
       $cache->addCacheableDependency($album);
     }
@@ -76,8 +77,9 @@ final class ProjectSummaryHooks {
     foreach (array_slice($albums, 0, $mode['limit']) as $album) {
       // The lead style belongs to the first cover there actually is, which is
       // not the first album when that album has no usable cover.
-      $style = $covers === [] ? $mode['lead_style'] : $mode['style'];
-      $cover = $this->cover($album, $style, $cache);
+      $lead = $covers === [];
+      $style = $lead ? $mode['lead_style'] : $mode['style'];
+      $cover = $this->cover($album, $style, $lead && $mode['lead_responsive'], $cache);
       if ($cover !== NULL) {
         $covers[] = $cover;
       }
@@ -98,44 +100,21 @@ final class ProjectSummaryHooks {
   }
 
   /**
-   * Loads the published albums of a project, newest first.
-   *
-   * @return list<\Drupal\elaintehtaat\Entity\Album>
-   *   The albums.
-   */
-  private function loadAlbums(Project $project): array {
-    $storage = $this->entityTypeManager->getStorage('node');
-    $ids = $storage->getQuery()
-      ->accessCheck(FALSE)
-      ->condition('type', Album::BUNDLE)
-      ->condition('status', NodeInterface::PUBLISHED)
-      ->condition('field_project.target_id', $project->id())
-      ->sort('field_date', 'DESC')
-      ->sort('created', 'DESC')
-      ->execute();
-    if (!$ids) {
-      return [];
-    }
-
-    // loadMultiple() ignores the order the IDs come in, so restore it.
-    $albums = $storage->loadMultiple($ids);
-    $ordered = [];
-    foreach ($ids as $id) {
-      if (($albums[$id] ?? NULL) instanceof Album) {
-        $ordered[] = $albums[$id];
-      }
-    }
-
-    return $ordered;
-  }
-
-  /**
    * Builds the thumbnail of an album's cover in an image style.
    *
    * The covers repeat what the title and the album count already say, so they
    * are decorative: the templates hide them from assistive technology.
+   *
+   * @param \Drupal\elaintehtaat\Entity\Album $album
+   *   The album.
+   * @param string $style
+   *   The image style, or the responsive image style when $responsive is set.
+   * @param bool $responsive
+   *   Whether $style names a responsive image style.
+   * @param \Drupal\Core\Cache\CacheableMetadata $cache
+   *   Collects the cacheability of the cover.
    */
-  private function cover(Album $album, string $style, CacheableMetadata $cache): ?array {
+  private function cover(Album $album, string $style, bool $responsive, CacheableMetadata $cache): ?array {
     $media = $album->getCover();
     if (!$media instanceof AlbumMedia || !$media->isPublished()) {
       return NULL;
@@ -148,11 +127,28 @@ final class ProjectSummaryHooks {
     $cache->addCacheableDependency($media);
     $cache->addCacheableDependency($file);
 
+    $item = $media->getThumbnailItem();
+    $width = $item?->get('width')->getValue();
+    $height = $item?->get('height')->getValue();
+
+    if ($responsive) {
+      return [
+        '#theme' => 'responsive_image',
+        '#responsive_image_style_id' => $style,
+        '#uri' => $file->getFileUri(),
+        '#width' => $width,
+        '#height' => $height,
+        '#attributes' => ['alt' => '', 'loading' => 'lazy'],
+      ];
+    }
+
     return [
       '#theme' => 'image_style',
       '#style_name' => $style,
       '#uri' => $file->getFileUri(),
       '#alt' => '',
+      '#width' => $width,
+      '#height' => $height,
       '#attributes' => ['loading' => 'lazy'],
     ];
   }

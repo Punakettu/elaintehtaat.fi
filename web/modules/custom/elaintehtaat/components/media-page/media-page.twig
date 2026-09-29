@@ -48,9 +48,9 @@
         <span class="media-page__album-thumb">{% block album_thumbnail %}{% endblock %}</span>
         <span class="media-page__album-text">
           <span class="eyebrow">{{ 'Album'|t }}</span>
-          <span class="media-page__album-title">{{ album_title }}</span>
+          <span class="media-page__album-title"{% if album_lang %} lang="{{ album_lang }}"{% endif %}>{{ album_title }}</span>
           {% if project_title %}
-            <span class="media-page__album-project faint">{{ project_title }}</span>
+            <span class="media-page__album-project faint"{% if project_lang %} lang="{{ project_lang }}"{% endif %}>{{ project_title }}</span>
           {% endif %}
         </span>
         {{ icon_chevron }}

@@ -11,6 +11,7 @@ use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Url;
 use Drupal\elaintehtaat\Album\AlbumLookup;
 use Drupal\elaintehtaat\Entity\Album;
+use Drupal\elaintehtaat\Language\FallbackLanguage;
 use Drupal\media\MediaInterface;
 
 /**
@@ -33,6 +34,7 @@ final readonly class MediaTileHooks {
   public function __construct(
     private AlbumLookup $albumLookup,
     private EntityRepositoryInterface $entityRepository,
+    private FallbackLanguage $fallbackLanguage,
   ) {}
 
   /**
@@ -64,6 +66,11 @@ final readonly class MediaTileHooks {
         ]),
         '#weight' => 10,
       ];
+      $langcode = $this->fallbackLanguage->fallbackLangcode($album);
+      if ($langcode !== NULL) {
+        $build['album']['#attributes']['lang'] = $langcode;
+      }
+      $cache->addCacheContexts([FallbackLanguage::CACHE_CONTEXT]);
     }
 
     // Merge instead of applyTo(): the view builder has already put the media

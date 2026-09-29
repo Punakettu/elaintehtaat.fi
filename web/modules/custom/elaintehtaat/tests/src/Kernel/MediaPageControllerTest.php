@@ -11,6 +11,7 @@ use Drupal\elaintehtaat\Entity\Licence;
 use Drupal\elaintehtaat\Entity\Project;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\media\MediaInterface;
+use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 use Drupal\Tests\elaintehtaat\Traits\ContentModelTrait;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 use PHPUnit\Framework\Attributes\Group;
@@ -30,7 +31,11 @@ class MediaPageControllerTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = self::CONTENT_MODEL_MODULES;
+  protected static $modules = [
+    ...self::CONTENT_MODEL_MODULES,
+    'breakpoint',
+    'responsive_image',
+  ];
 
   /**
    * The project node.
@@ -114,8 +119,9 @@ class MediaPageControllerTest extends KernelTestBase {
     $this->assertStringContainsString('image-test.png', $props['download_url']);
     $this->assertSame('image-test.png', $props['download_filename']);
 
-    $this->assertSame('image_style', $build['#slots']['image']['#theme']);
-    $this->assertSame(MediaPageController::IMAGE_STYLE, $build['#slots']['image']['#style_name']);
+    $this->assertSame('responsive_image', $build['#slots']['image']['#theme']);
+    $this->assertSame(MediaPageController::STAGE_STYLE, $build['#slots']['image']['#responsive_image_style_id']);
+    $this->assertSame('eager', $build['#slots']['image']['#attributes']['loading']);
     $this->assertSame(MediaPageController::THUMBNAIL_STYLE, $build['#slots']['album_thumbnail']['#style_name']);
     $this->assertStringContainsString('Emakko häkissä.', (string) $this->container->get('renderer')->renderInIsolation($build['#slots']['caption']));
 
@@ -149,13 +155,25 @@ class MediaPageControllerTest extends KernelTestBase {
    * Media without a caption renders the album fallback text.
    */
   public function testRenderWithoutCaption(): void {
-    ImageStyle::create(['name' => MediaPageController::IMAGE_STYLE, 'label' => 'Media page'])->save();
+    ImageStyle::create(['name' => 'stage', 'label' => 'Stage'])->save();
+    ResponsiveImageStyle::create([
+      'id' => MediaPageController::STAGE_STYLE,
+      'label' => 'Stage',
+      'breakpoint_group' => 'responsive_image',
+      'fallback_image_style' => 'stage',
+    ])->addImageStyleMapping('responsive_image.viewport_sizing', '1x', [
+      'image_mapping_type' => 'sizes',
+      'image_mapping' => ['sizes' => '100vw', 'sizes_image_styles' => ['stage']],
+    ])->save();
 
     $build = $this->controller()->build($this->album, $this->media[0]);
     $this->assertArrayNotHasKey('caption', $build['#slots']);
 
     $html = (string) $this->container->get('renderer')->renderInIsolation($build);
     $this->assertStringContainsString('No separate caption.', $html);
+    // The stage is one img the browser picks a size for, not a picture.
+    $this->assertStringContainsString('sizes="100vw"', $html);
+    $this->assertStringNotContainsString('<picture', $html);
   }
 
   /**
