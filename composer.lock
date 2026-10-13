@@ -1114,12 +1114,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Punakettu/bunny_stream.git",
-                "reference": "a34462f0043525185d003c678cfbc567f38b132c"
+                "reference": "c713510fbd6519a0a4d9445b04a915e022ecbddb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Punakettu/bunny_stream/zipball/a34462f0043525185d003c678cfbc567f38b132c",
-                "reference": "a34462f0043525185d003c678cfbc567f38b132c",
+                "url": "https://api.github.com/repos/Punakettu/bunny_stream/zipball/c713510fbd6519a0a4d9445b04a915e022ecbddb",
+                "reference": "c713510fbd6519a0a4d9445b04a915e022ecbddb",
                 "shasum": ""
             },
             "require": {
@@ -1137,7 +1137,7 @@
                 "source": "https://github.com/Punakettu/bunny_stream/tree/2.0.x",
                 "issues": "https://github.com/Punakettu/bunny_stream/issues"
             },
-            "time": "2026-09-27T17:29:12+00:00"
+            "time": "2026-10-13T20:19:13+00:00"
         },
         {
             "name": "drupal/canvas",
