@@ -22,7 +22,7 @@ permissions:
 
 env:
   PHP_VERSION: '8.5'
-  PHP_EXTENSIONS: apcu, bcmath, gd, intl, mbstring, opcache, pdo_mysql, zip
+  PHP_EXTENSIONS: apcu, bcmath, gd, intl, mbstring, opcache, pdo_mysql, zip, :redis
 
 jobs:
   export:
