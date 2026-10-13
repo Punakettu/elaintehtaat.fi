@@ -12,6 +12,8 @@
 /phpstan.neon
 /phpcs.xml
 /phpunit.xml
+/coverage.xml
+/.phpunit.cache/
 
 .idea
 
