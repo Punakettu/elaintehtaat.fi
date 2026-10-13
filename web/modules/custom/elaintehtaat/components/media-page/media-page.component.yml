@@ -75,6 +75,38 @@ props:
       type: string
       title: Project title language
       description: Langcode of the project title when it is not in the page's language, or empty.
+    species:
+      type: array
+      title: Species
+      description: Species of the album, each linking to the browse page filtered by it.
+      items:
+        type: object
+        required:
+          - text
+        properties:
+          text:
+            type: string
+            title: Text
+          url:
+            type: string
+            title: URL
+            description: Where the term leads, or empty for plain text.
+    use:
+      type: array
+      title: Use
+      description: Kinds of animal production of the album, each linking to the browse page filtered by it.
+      items:
+        type: object
+        required:
+          - text
+        properties:
+          text:
+            type: string
+            title: Text
+          url:
+            type: string
+            title: URL
+            description: Where the term leads, or empty for plain text.
     author:
       type: string
       title: Author

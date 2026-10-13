@@ -22,6 +22,7 @@ use Drupal\elaintehtaat\Entity\Album;
 use Drupal\elaintehtaat\Entity\AlbumMedia;
 use Drupal\elaintehtaat\Entity\Image;
 use Drupal\elaintehtaat\Entity\Video;
+use Drupal\elaintehtaat\Hook\AlbumMetaHooks;
 use Drupal\elaintehtaat\Language\FallbackLanguage;
 use Drupal\media\MediaInterface;
 use Drupal\node\NodeInterface;
@@ -154,7 +155,8 @@ final class MediaPageController implements ContainerInjectionInterface {
 
     $licence_name = '';
     $licence_url = '';
-    $licence = $media->getLicence();
+    // Media without a licence of its own are under the album's.
+    $licence = $media->getLicence() ?? $album->getLicence();
     if ($licence !== NULL) {
       $licence = $this->translated($licence);
       $cache->addCacheableDependency($licence);
@@ -187,6 +189,8 @@ final class MediaPageController implements ContainerInjectionInterface {
         'album_url' => $album->toUrl()->toString(),
         'project_title' => $project === NULL ? '' : (string) $project->label(),
         'project_lang' => $project === NULL ? '' : ($this->fallbackLanguage->fallbackLangcode($project) ?? ''),
+        'species' => $this->termItems($album->getSpecies(), AlbumMetaHooks::SPECIES_FACET, $cache),
+        'use' => $this->termItems($album->getUse(), AlbumMetaHooks::USE_FACET, $cache),
         'author' => $author,
         'author_label' => (string) $author_label,
         'licence_name' => $licence_name,
@@ -210,6 +214,35 @@ final class MediaPageController implements ContainerInjectionInterface {
       'node' => $album->id(),
       'media' => $media->id(),
     ])->toString();
+  }
+
+  /**
+   * Turns terms into items linking to the browse page filtered by them.
+   *
+   * @param list<\Drupal\taxonomy\TermInterface> $terms
+   *   The terms.
+   * @param string $facet
+   *   The URL alias of the browse page facet the terms filter by.
+   * @param \Drupal\Core\Cache\CacheableMetadata $cache
+   *   Collects the cacheability of the terms.
+   *
+   * @return list<array{text: string, url: string}>
+   *   The items.
+   *
+   * @see \Drupal\elaintehtaat\Hook\AlbumMetaHooks::termItems()
+   */
+  private function termItems(array $terms, string $facet, CacheableMetadata $cache): array {
+    $items = [];
+    foreach ($terms as $term) {
+      $term = $this->translated($term);
+      $cache->addCacheableDependency($term);
+      $items[] = [
+        'text' => (string) $term->label(),
+        'url' => AlbumMetaHooks::browseUrl($facet, (int) $term->id()),
+      ];
+    }
+
+    return $items;
   }
 
   /**

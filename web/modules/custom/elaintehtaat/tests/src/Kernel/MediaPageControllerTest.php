@@ -9,9 +9,11 @@ use Drupal\elaintehtaat\Controller\MediaPageController;
 use Drupal\elaintehtaat\Entity\Album;
 use Drupal\elaintehtaat\Entity\Licence;
 use Drupal\elaintehtaat\Entity\Project;
+use Drupal\elaintehtaat\Hook\AlbumMetaHooks;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\media\MediaInterface;
 use Drupal\responsive_image\Entity\ResponsiveImageStyle;
+use Drupal\taxonomy\Entity\Term;
 use Drupal\Tests\elaintehtaat\Traits\ContentModelTrait;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 use PHPUnit\Framework\Attributes\Group;
@@ -53,6 +55,16 @@ class MediaPageControllerTest extends KernelTestBase {
   protected Licence $licence;
 
   /**
+   * The album's species term.
+   */
+  protected Term $species;
+
+  /**
+   * The album's use term.
+   */
+  protected Term $use;
+
+  /**
    * The album's media, in album order.
    *
    * @var list<\Drupal\elaintehtaat\Entity\Image>
@@ -68,6 +80,8 @@ class MediaPageControllerTest extends KernelTestBase {
     $this->installContentModel();
 
     $this->licence = $this->createLicence();
+    $this->species = $this->createTerm(self::SPECIES_VOCABULARY, 'Pig');
+    $this->use = $this->createTerm(self::USE_VOCABULARY, 'Meat production');
 
     $this->setUpCurrentUser(permissions: ['access content', 'view media']);
 
@@ -88,6 +102,8 @@ class MediaPageControllerTest extends KernelTestBase {
     $this->album = $this->createAlbum([
       'title' => 'Sikala 2024',
       'field_project' => $this->project,
+      'field_species' => [$this->species],
+      'field_use' => [$this->use],
       'field_album_media' => [$this->media[0], $hidden, $this->media[1], $this->media[2]],
     ]);
   }
@@ -116,6 +132,16 @@ class MediaPageControllerTest extends KernelTestBase {
     $this->assertSame('7.3.2024', $props['date']);
     $this->assertSame('CC BY 4.0', $props['licence_name']);
     $this->assertSame('https://creativecommons.org/licenses/by/4.0/', $props['licence_url']);
+    $this->assertSame([[
+      'text' => 'Pig',
+      'url' => AlbumMetaHooks::browseUrl(AlbumMetaHooks::SPECIES_FACET, (int) $this->species->id()),
+    ],
+    ], $props['species']);
+    $this->assertSame([[
+      'text' => 'Meat production',
+      'url' => AlbumMetaHooks::browseUrl(AlbumMetaHooks::USE_FACET, (int) $this->use->id()),
+    ],
+    ], $props['use']);
     $this->assertStringContainsString('image-test.png', $props['download_url']);
     $this->assertSame('image-test.png', $props['download_filename']);
 
@@ -128,7 +154,30 @@ class MediaPageControllerTest extends KernelTestBase {
     $this->assertContains('node:' . $this->album->id(), $build['#cache']['tags']);
     $this->assertContains('media:' . $this->media[1]->id(), $build['#cache']['tags']);
     $this->assertContains('taxonomy_term:' . $this->licence->id(), $build['#cache']['tags']);
+    $this->assertContains('taxonomy_term:' . $this->species->id(), $build['#cache']['tags']);
+    $this->assertContains('taxonomy_term:' . $this->use->id(), $build['#cache']['tags']);
     $this->assertContains('user.permissions', $build['#cache']['contexts']);
+  }
+
+  /**
+   * Media without a licence of its own show the album's licence.
+   */
+  public function testAlbumLicenceFallback(): void {
+    $album_licence = $this->createLicence('CC BY-NC-ND 4.0', 'https://creativecommons.org/licenses/by-nc-nd/4.0/');
+    $album = $this->createAlbum([
+      'field_license' => $album_licence,
+      'field_album_media' => [$this->media[0], $this->media[1]],
+    ]);
+    $controller = $this->controller();
+
+    $build = $controller->build($album, $this->media[0]);
+    $this->assertSame('CC BY-NC-ND 4.0', $build['#props']['licence_name']);
+    $this->assertSame('https://creativecommons.org/licenses/by-nc-nd/4.0/', $build['#props']['licence_url']);
+    $this->assertContains('taxonomy_term:' . $album_licence->id(), $build['#cache']['tags']);
+
+    // The media's own licence wins over the album's.
+    $own = $controller->build($album, $this->media[1])['#props'];
+    $this->assertSame('CC BY 4.0', $own['licence_name']);
   }
 
   /**
