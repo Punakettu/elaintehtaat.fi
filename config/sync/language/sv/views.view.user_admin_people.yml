@@ -10,7 +10,6 @@ display:
         name:
           label: Användarnamn
         status:
-          label: Status
           settings:
             format_custom_false: Spärrad
             format_custom_true: Aktiv
@@ -22,8 +21,6 @@ display:
           label: 'Senast åtkomst'
         operations:
           label: Funktioner
-        mail:
-          separator: ', '
       pager:
         options:
           tags:
@@ -48,7 +45,6 @@ display:
       filters:
         status:
           group_info:
-            label: Status
             group_items:
               1:
                 title: Aktiv

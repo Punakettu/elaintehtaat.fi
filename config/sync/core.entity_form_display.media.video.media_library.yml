@@ -48,9 +48,9 @@ content:
     weight: 0
     region: content
     settings:
+      mode: upload
       size: 60
       placeholder: ''
-      mode: upload
     third_party_settings: {  }
 hidden:
   created: true
