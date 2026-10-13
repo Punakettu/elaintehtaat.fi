@@ -7,3 +7,15 @@ display:
   block_1:
     display_options:
       block_description: Albumit
+  page_1:
+    display_options:
+      menu:
+        title: Albumit
+      title: 'Kaikki albumit'
+      pager:
+        options:
+          tags:
+            next: 'Seuraava ›'
+            previous: '‹ Edellinen'
+            first: '« Ensimmäinen'
+            last: 'Viimeinen »'

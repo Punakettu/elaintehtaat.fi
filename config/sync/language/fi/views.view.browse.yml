@@ -13,3 +13,7 @@ display:
             previous: '‹ Edellinen'
             first: '« Ensimmäinen'
             last: 'Viimeinen »'
+  page_1:
+    display_options:
+      menu:
+        title: Selaa

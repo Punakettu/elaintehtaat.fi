@@ -34,6 +34,9 @@ translations:
       -
         value: '<p>Muutaman päivän ikäinen porsas porsitushäkkiin suljetun emakkonsa vieressä.</p>'
         format: basic_html
+    field_date:
+      -
+        value: '2026-01-01'
     field_media_image:
       -
         alt: 'Vastasyntynyt porsas seisoo betonilattialla porsitushäkkiin suljetun emakon vieressä'
@@ -68,6 +71,9 @@ default:
     -
       value: '<p>A piglet a few days old next to its mother, who is confined in a farrowing crate.</p>'
       format: basic_html
+  field_date:
+    -
+      value: '2026-01-01'
   field_media_image:
     -
       alt: 'A newborn piglet standing on a concrete floor beside a sow confined in a farrowing crate'

@@ -33,6 +33,9 @@ default:
     -
       value: '<p>Useilla sioilla näkyi ihovaurioita ja naarmuja.</p>'
       format: basic_html
+  field_date:
+    -
+      value: '2026-01-01'
   field_media_image:
     -
       alt: 'Lähikuva lihasiasta, jonka kasvoissa on haavoja ja naarmuja'
@@ -68,6 +71,9 @@ translations:
       -
         value: '<p>Skin lesions and scratches were visible on several pigs.</p>'
         format: basic_html
+    field_date:
+      -
+        value: '2026-01-01'
     field_media_image:
       -
         alt: 'Close-up of a fattening pig with sores and scratches on its face'

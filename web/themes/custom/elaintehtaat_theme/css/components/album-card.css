@@ -97,6 +97,46 @@
   display: block;
 }
 
+/*
+ * The albums index page: its heading, above the grid.
+ *
+ * @see templates/views/views-view--albums--page-1.html.twig
+ */
+.albums-page__head {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 28px;
+}
+
+.albums-page__eyebrow {
+  margin: 0;
+}
+
+.albums-page__headline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.albums-page__title {
+  margin: 0;
+  font-size: 30px;
+  letter-spacing: -0.015em;
+}
+
+.albums-page__count {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 14px;
+}
+
+.albums-page__empty {
+  padding: 60px 0;
+  color: var(--color-text-muted);
+}
+
 /* Any Views listing of album cards becomes a responsive card grid. */
 .view-content:has(> .views-row > .album-card) {
   display: grid;
@@ -111,13 +151,14 @@
 }
 
 /*
- * The recent albums on the front page and the albums of a project follow the
- * "Featured" media columns: three columns, and four on very large screens.
+ * The recent albums on the front page, the albums index page and the albums of
+ * a project follow the "Featured" media columns: three columns, and four on very large screens.
  *
  * @see featured.css
  */
 @media (min-width: 1081px) {
   .view-id-albums.view-display-id-block_1 .view-content,
+  .view-id-albums.view-display-id-page_1 .view-content,
   .view-id-project_albums.view-display-id-block_1 .view-content {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -125,6 +166,7 @@
 
 @media (min-width: 1800px) {
   .view-id-albums.view-display-id-block_1 .view-content,
+  .view-id-albums.view-display-id-page_1 .view-content,
   .view-id-project_albums.view-display-id-block_1 .view-content {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
