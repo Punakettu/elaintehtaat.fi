@@ -30,8 +30,7 @@
   --line-height-base: 1.55;
 
   /* Layout. */
-  --max-width: 1440px;
-  --max-width-wide: 1760px;
+  --max-width: 1760px;
   --gutter: clamp(20px, 4vw, 64px);
   --masthead-height: 64px;
 

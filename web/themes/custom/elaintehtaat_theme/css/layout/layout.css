@@ -1,6 +1,9 @@
 /**
  * @file
- * Page layout: shell widths, main column and optional sidebar.
+ * Page layout: the shell, main column and optional sidebar.
+ *
+ * Every page uses the same shell width, so the masthead, page title, content
+ * and footer share their edges from one page to the next.
  */
 
 .page {
@@ -18,10 +21,6 @@
   max-width: var(--max-width);
   margin: 0 auto;
   padding-inline: var(--gutter);
-}
-
-.shell--wide {
-  max-width: var(--max-width-wide);
 }
 
 /*
