@@ -56,7 +56,7 @@
         {{ icon_chevron }}
       </a>
 
-      {% if author or date or licence_name %}
+      {% if author or date or species or use or licence_name %}
         <dl class="media-page__dl">
           {% if author %}
             <dt>{{ author_label ?: 'Photographer'|t }}</dt>
@@ -66,6 +66,21 @@
             <dt>{{ 'Captured'|t }}</dt>
             <dd>{{ date }}</dd>
           {% endif %}
+          {% for row in [{label: 'Species'|t, items: species}, {label: 'Use'|t, items: use}] %}
+            {% if row.items %}
+              <dt>{{ row.label }}</dt>
+              <dd>
+                {%- for item in row.items -%}
+                  {%- if not loop.first %}, {% endif -%}
+                  {%- if item.url -%}
+                    <a href="{{ item.url }}">{{ item.text }}</a>
+                  {%- else -%}
+                    {{- item.text -}}
+                  {%- endif -%}
+                {%- endfor -%}
+              </dd>
+            {% endif %}
+          {% endfor %}
           {% if licence_name %}
             <dt>{{ 'License'|t }}</dt>
             <dd>

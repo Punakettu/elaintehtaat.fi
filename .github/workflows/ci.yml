@@ -75,7 +75,9 @@ jobs:
         with:
           php-version: ${{ env.PHP_VERSION }}
           extensions: ${{ env.PHP_EXTENSIONS }}
-          coverage: none
+          # PCOV collects the coverage uploaded to Codecov; the <source> in
+          # phpunit.xml.dist limits it to custom code.
+          coverage: pcov
           tools: composer:v2
           ini-values: memory_limit=-1, error_reporting=E_ALL, display_errors=On
 
@@ -88,7 +90,15 @@ jobs:
       # Functional suites need a web server in front of web/; add one (and
       # extend the suite list) when the first Functional test is written.
       - name: Run phpunit
-        run: vendor/bin/phpunit --testsuite unit,kernel
+        run: vendor/bin/phpunit --testsuite unit,kernel --coverage-clover coverage.xml
+
+      - name: Upload coverage reports to Codecov
+        # Upload also when a test failed, so the report covers the tests that ran.
+        if: success() || failure()
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage.xml
 
       - name: Upload browser output
         if: failure()
