@@ -40,6 +40,26 @@ function elaintehtaat_deploy_albums_page(): string {
 }
 
 /**
+ * Delete the hand-made browse menu link that the browse view now provides.
+ */
+function elaintehtaat_deploy_browse_menu_link(): string {
+  $storage = \Drupal::entityTypeManager()->getStorage('menu_link_content');
+  $ids = $storage->getQuery()
+    ->accessCheck(FALSE)
+    ->condition('menu_name', 'main')
+    ->condition('link.uri', [
+      'internal:/selaa',
+      'internal:/browse',
+      'internal:/bladdra',
+      'route:view.browse.page_1',
+    ], 'IN')
+    ->execute();
+  $storage->delete($storage->loadMultiple($ids));
+
+  return sprintf('Deleted %d browse menu links.', count($ids));
+}
+
+/**
  * Creates the path aliases that do not exist yet.
  *
  * @param array<string, array<string, string>> $aliases

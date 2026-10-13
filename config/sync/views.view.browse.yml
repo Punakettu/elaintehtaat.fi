@@ -190,6 +190,15 @@ display:
     display_options:
       display_extenders: {  }
       path: selaa
+      menu:
+        type: normal
+        title: Browse
+        description: ''
+        weight: -2
+        expanded: false
+        menu_name: main
+        parent: ''
+        context: '0'
     cache_metadata:
       max-age: -1
       contexts:

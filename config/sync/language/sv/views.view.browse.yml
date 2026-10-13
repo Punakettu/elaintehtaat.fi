@@ -8,3 +8,7 @@ display:
             previous: '‹ Föregående'
             first: '« Första'
             last: 'Sista »'
+  page_1:
+    display_options:
+      menu:
+        title: Bläddra
