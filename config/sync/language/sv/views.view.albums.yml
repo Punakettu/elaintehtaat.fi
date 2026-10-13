@@ -1,0 +1,14 @@
+label: Album
+display:
+  page_1:
+    display_options:
+      menu:
+        title: Album
+      title: 'Alla album'
+      pager:
+        options:
+          tags:
+            next: 'Nästa ›'
+            previous: '‹ Föregående'
+            first: '« Första'
+            last: 'Sista »'
