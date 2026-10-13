@@ -27,8 +27,11 @@ env:
 jobs:
   export:
     name: Export config
-    # The PR author stays Dependabot after this job pushes to the branch.
-    if: github.event.pull_request.user.login == 'dependabot[bot]'
+    # The job's own config commit (pushed with DEPENDABOT_CONFIG_TOKEN) must
+    # not trigger another run.
+    if: >-
+      github.event.pull_request.user.login == 'dependabot[bot]'
+      && github.actor == 'dependabot[bot]'
     runs-on: ubuntu-latest
     services:
       mysql:
