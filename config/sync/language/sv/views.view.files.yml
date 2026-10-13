@@ -7,16 +7,13 @@ display:
       fields:
         filename:
           label: Namn
-          separator: ', '
         filemime:
           label: 'Typ av MIME'
         filesize:
           label: Storlek
         status:
-          label: Status
           settings:
             format_custom_false: Temporär
-            format_custom_true: Permanent
         changed:
           label: 'Datum för ändring'
         count:
@@ -46,9 +43,6 @@ display:
         filemime:
           expose:
             label: 'Typ av MIME'
-        status:
-          expose:
-            label: Status
   page_1:
     display_options:
       menu:

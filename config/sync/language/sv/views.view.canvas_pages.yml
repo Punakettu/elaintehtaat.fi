@@ -10,19 +10,14 @@ display:
           text: redigera
         title:
           label: Titel
-          separator: ', '
         status:
-          label: Status
           settings:
             format_custom_false: 'Ej publicerad'
             format_custom_true: Publicerad
-          separator: ', '
         owner:
           label: Författare
-          separator: ', '
         changed:
           label: Uppdaterad
-          separator: ', '
       exposed_form:
         options:
           submit_button: Applicera
@@ -50,19 +45,14 @@ display:
       fields:
         title:
           label: Titel
-          separator: ', '
         status:
-          label: Status
           settings:
             format_custom_false: 'Ej publicerad'
             format_custom_true: Publicerad
-          separator: ', '
         owner:
           label: Författare
-          separator: ', '
         changed:
           label: Uppdaterad
-          separator: ', '
         operations:
           label: Funktioner
       pager:
